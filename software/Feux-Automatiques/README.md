@@ -3,10 +3,10 @@
 Responsables : Oussama, Anes
 
 ## Description
-Gestion allumage phare en fonction d la luminosité, gestion des clignotants.
+Gestion allumage phare en fonction de la luminosité, gestion des clignotants.
 
 ## Entrées
-Valeur tension phtorésistance,
+Valeur tension photorésistance,
 Commande wireless.
 
 ## Sorties
