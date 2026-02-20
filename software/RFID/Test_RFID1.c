@@ -91,6 +91,7 @@ int main (void){
         while(Driver_USART2.GetStatus().tx_busy == 1);
     }   
 }
+// Indispensable pour le fonctionnement tu code test.
 void SysTick_Handler(void) {
     HAL_IncTick(); // Incrémente le compteur de 1 milliseconde
 }
