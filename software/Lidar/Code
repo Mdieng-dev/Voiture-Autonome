@@ -1,0 +1,199 @@
+#include "Driver_USART.h"               // CMSIS Driver:USART
+#include "LPC17xx.h"                    // Device header
+#include "RTE_Components.h"
+#include  CMSIS_device_header
+#include "cmsis_os2.h"
+#include "GLCD_Config.h"                // Board Support:Graphic LCD
+#include "GLCD_Fonts.h"                 // Board Support:Graphic LCD
+#include "Board_GLCD.h"                 // Board Support:Graphic LCD
+#include "Driver_SPI.h"
+#include "stdio.h"
+
+osThreadId_t ID_Tache1,ID_Tache2,ID_tache_recup,ID_tache_traitement;
+osMessageQueueId_t ID_BAL; 
+
+uint8_t lidar_buffer0[7];// Taille du buffer sur 7 octets de réponse de confirmation du mode "Flux continu" (Voir S.P.D page 5,e)
+uint8_t lidar_buffer1[5]; // Tableau du buffer sur 5 octets (Voir S.P.D page 5,e)
+int packet_count = 0;
+
+float distance = 0.0f; // On stocke la distance ici
+float angle = 0.0f;    // On stocke l'angle ici
+uint8_t qualite = 0;   // On stocke la qualité ici (fiabilité du signal renvoyée par le LiDAR)
+
+extern ARM_DRIVER_USART Driver_USART1; 
+extern GLCD_FONT GLCD_Font_6x8;
+extern GLCD_FONT GLCD_Font_16x24;
+
+	typedef struct {
+			float M_distance;
+			float M_angle;
+			float M_qualite;
+	} MaLettre;
+
+	
+//Fonction d'interruption utilisée, pour activer la tache de traitement dès qu'on reçoit un octet
+void myUART_Callback(uint32_t event) 
+{
+    if (event & ARM_USART_EVENT_RECEIVE_COMPLETE) 
+    {
+			osThreadFlagsSet(ID_tache_traitement,2); //Mise à 1 du flag n°1 de la tâche traitement
+		}
+}
+	
+void tache_traitement(void const*argument)
+{
+			(void)argument;
+			
+			MaLettre msgE;
+			
+				while(1)
+				{
+				
+				osThreadFlagsWait(2, osFlagsWaitAny, osWaitForever);// Attente mise à 1 Flag n°1
+					
+        // Calcul de la distance avec lidar_buffer1
+        uint16_t distance_brute = (lidar_buffer1[4] << 8) | lidar_buffer1[3]; // Découpage car 16l'UART ne peut envoyer que 8 bits à la fois
+        distance = ((float)distance_brute / 4.0f)/10; // Division par 4 pour obtenir des milimètres (Voir S.P.D page 5,g) + Division par 10 pour cm 
+
+        // Calcul de l'angle avec lidar_buffer1
+        uint16_t angle_brut = (lidar_buffer1[2] << 8) | lidar_buffer1[1]; // Découpage car l'UART ne peut envoyer que 8 bits à la fois
+        angle = (float)(angle_brut >> 1) / 64.0f;// Décalage (Voir S.P.D page 5,e) + Division par 64 pour obtenir des milimètres (Voir S.P.D page 5,g)			
+			
+        // Extraction de la qualité
+        uint16_t qualite_brute = (lidar_buffer1[0] >> 2);
+				qualite = ((float)qualite_brute*100.0f ) / 63.0f; // On décale car les deux premiers bits de cet octet sont des signaux de synchronisation (A ignorer) ((Voir S.P.D page 5,e)					
+				
+				// Relance de la réception sur le buffer des mesures (5 octets)
+        Driver_USART1.Receive(lidar_buffer1, 5);	
+		
+				msgE.M_distance = distance;
+				msgE.M_angle = angle;
+				msgE.M_qualite = qualite;	
+				
+				osMessageQueuePut(ID_BAL, &msgE, 0,0); 
+				}
+		}
+
+
+void tache_recup (void const*argument)
+{
+			(void)argument;
+			
+			 MaLettre msgR;
+     
+       osStatus_t status;
+       char tab[50];
+	
+				while(1)
+				{			
+				status = osMessageQueueGet(ID_BAL, &msgR, NULL, osWaitForever); // attente mail
+             if (status == osOK) 
+                 {
+                     GLCD_DrawString(0,0,"Bien recu"); 
+                     osDelay(100);
+                 }
+								 
+						else 
+						{
+							GLCD_DrawString(0,10,"Pas recu"); 
+							osDelay(100);
+						
+						}
+				}
+		}
+		
+void Init_UART(void)
+{
+	Driver_USART1.Initialize(myUART_Callback); // Mode interruption, passage dans myUART_Callback quand un octet arrive
+	Driver_USART1.PowerControl(ARM_POWER_FULL);
+	Driver_USART1.Control(	ARM_USART_MODE_ASYNCHRONOUS |
+							ARM_USART_DATA_BITS_8		|
+							ARM_USART_STOP_BITS_1		|
+							ARM_USART_PARITY_NONE		|
+							ARM_USART_FLOW_CONTROL_NONE,
+							115200);
+	Driver_USART1.Control(ARM_USART_CONTROL_TX,1);
+	Driver_USART1.Control(ARM_USART_CONTROL_RX,1);
+}
+
+
+
+//Configuation Timer
+void init_PWM_Lidar(void) 
+{
+    LPC_SC->PCONP |= (1 << 6); //Activer le périphérique PWM1(table 46, page 65)
+    
+		//Config de la broche 2.4 donc bits [1:0] pour le moteur PWM1.1 (table 83, page 120)
+		LPC_PINCON->PINSEL4 &= ~(1 << 9 ); 
+    LPC_PINCON->PINSEL4 |=  (1 << 8);
+
+    //Réglage de la fréquence à 20kHz (Avec horloge à 25MHz)
+    LPC_PWM1->PR = 0; 
+		LPC_PWM1->MR0 = 1250; // MR0 = Période complète
+    
+    //Réglage de la vitesse (Duty Cycle)
+    LPC_PWM1->MR5 = 250;  // MR1 = Point de bascule 
+     
+    
+    //Lancement du PWM
+    LPC_PWM1->PCR |= (1 << 13); // Activer sortie PWM1.5 -> PWMENA5 (table 451, page 519)
+    LPC_PWM1->TCR = 9;          // Activer PWM + Counter (table 448, page 527)
+		LPC_PWM1->LER |= (1 << 0) | (1 << 5); // Validation des changements pour MR0 et MR5
+}
+
+
+//Configuration Envoi des commandes
+void Lidar_Start_Scan(void) 
+{
+    uint8_t cmd_scan[] = {0xA5, 0x20}; //  0xA5 (= Start Flag) + 0x20(= Scan) (Voir S.P.D page 4,d)
+    Driver_USART1.Send(cmd_scan, 2); //Envoi des 2 octets
+}
+
+
+osThreadAttr_t configT1 = {.priority=osPriorityNormal};
+osThreadAttr_t configT2 = {.priority=osPriorityNormal};
+
+
+int main (void)
+{
+	//Utilisation LED en test
+	LPC_GPIO1->FIODIR3 |= 0x10;//Config LED P1.28 en sortie
+	LPC_GPIO1->FIOPIN3 &= 0x00;
+	
+	//Partie Initialisation
+	SystemInit(); // Configuration des horloges systèmes
+	Init_UART();
+	init_PWM_Lidar();
+	SystemCoreClockUpdate();
+	
+	osKernelInitialize() ; // début création tâche(s), main prend priorité max
+	GLCD_Initialize();
+	GLCD_ClearScreen();
+	GLCD_SetFont(&GLCD_Font_6x8);
+	
+
+	ID_tache_traitement = osThreadNew ( (osThreadFunc_t )tache_traitement, NULL, &configT1);
+	ID_tache_recup = osThreadNew ( (osThreadFunc_t )tache_recup, NULL, &configT2);
+	
+	packet_count = 0;
+	
+	Lidar_Start_Scan();//Commande de démarrage
+	
+	Driver_USART1.Receive(lidar_buffer0, 7);// Réception 7 octets de confirmation 
+	while(Driver_USART1.GetStatus().rx_busy); //Attendre que les 7 octets de confirmation soient traités0
+	
+	Driver_USART1.Receive(lidar_buffer1, 5);//Réception 5 octets de confirmation
+
+	
+	osKernelStart() ; // lancement horloge TR, main retrouve sa priorité.
+  
+	while(1)
+		{
+			osDelay(osWaitForever) ; // main passe en sommeil... infini !
+		}
+	
+	return 0 ;
+	
+}
+
+
