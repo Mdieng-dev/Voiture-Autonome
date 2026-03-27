@@ -1,6 +1,6 @@
 # Module IA
 
-Responsables : Sofiane - Joachim
+Responsables :  Joachim
 
 ## Description
 Assurer le traitement des différents panneaux sur le parcours de la voiture
