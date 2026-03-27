@@ -6,8 +6,8 @@
 
 
 /*extern ARM_DRIVER_USART Driver_USART3;
-uint8_t buffer_gps;   // Octet reçu par l'UART
-char trame[100];      // Tableau pour stocker la phrase complète
+uint8_t buffer_gps;   // Octet reÃ§u par l'UART
+char trame[100];      // Tableau pour stocker la phrase complÃ¨te
 int index_trame = 0;  
 
 float latitude, longitude;
@@ -42,7 +42,7 @@ int main(void) {
         
         trame[index_trame++] = (char)buffer_gps;
 
-        // Si on reçoit un retour à la ligne '\n', la phrase est finie
+        // Si on reÃ§oit un retour Ã  la ligne '\n', la phrase est finie
         if (buffer_gps == '\n') {
             trame[index_trame] = '\0'; 
             extraire_position(trame);  
@@ -56,7 +56,7 @@ int main(void) {
 void extraire_position(char *t) {
     // On ne traite que la trame qui contient la position (GGA)
     if (strncmp(t, "$GPGGA", 6) == 0) {
-        // On découpe la trame pour extraire Latitude, Longitude et Qualité du Fix
+        // On dÃ©coupe la trame pour extraire Latitude, Longitude et QualitÃ© du Fix
         // Le %*f permet d'ignorer l'heure, le %*c ignore les lettres N/S/E/W
         sscanf(t, "$GPGGA,%*f,%f,%*c,%f,%*c,%d", &latitude, &longitude, &fix_quality);
         
@@ -71,33 +71,69 @@ void extraire_position(char *t) {
 
 extern ARM_DRIVER_USART Driver_USART3;
 osThreadId_t tid_GPS;           
-uint8_t buffer_uart;            
-char trame_complete[100];
-int idx = 0;
+
+char trame_gps[100],idx=0;                      
+int octet_recu;             
 
 
+float latitude_recup, longitude_recup;
+int fix_quality;
 float latitude, longitude;
-int fix_q;
 
-
-// Cette fonction est lancée AUTOMATIQUEMENT à chaque événement sur l'UART
+//FONCTION CALLBACK 
 void myUART_callback(uint32_t event) {
     if (event & ARM_USART_EVENT_RECEIVE_COMPLETE) {
-        osThreadFlagsSet(tid_GPS, 0x01); 
-    }
+		
+        
+				if ((octet_recu == '$' && (idx < 99))|| idx > 0) {
+                trame_gps[idx++] = (char)octet_recu;}
+        else;
+            // Si on reÃ§oit la fin de ligne
+        if (octet_recu == '\n') {
+                osThreadFlagsSet(tid_GPS, 0x01); // On rÃ©veille la tÃ¢che de traitement
+								idx = 0;}
+        else;
+        }
+    
+		Driver_USART3.Receive(&octet_recu, 1);          // On relance la rÃ©ception de l'octet suivant
+		}
+
+//traitement de la trame 
+void Thread_Traitement_GPS(void *argument) {
+		int deg_lat,deg_lon;
+		float min_lat,min_lon;
+    while (1) {
+        // La tÃ¢che s'endort ici et attend le flag 0x01 envoyÃ© par la Callback
+        osThreadFlagsWait(0x01, osFlagsWaitAny, osWaitForever);
+
+        // analyse de la trame
+        if (strncmp(trame_gps, "$GPGGA", 6) == 0) {
+            sscanf(trame_gps, "$GPGGA,%*f,%f,%*c,%f,%*c,%d", &latitude_recup, &longitude_recup, &fix_quality); }
+				else;
+				if (fix_quality > 0) {
+						// Latitude
+						deg_lat = (int)(latitude_recup / 100);             // RÃ©cupÃ¨re la partie entiere 48,75058
+						min_lat = latitude_recup - (deg_lat * 100);        // RÃ©cupÃ¨re le reste 
+						latitude = (float)deg_lat + (min_lat / 60.0);      // on calcule la vrai valeur
+
+						// Longitude
+						deg_lon = (int)(longitude_recup / 100);            
+						min_lon = longitude_recup - (deg_lon * 100);       
+						longitude = (float)deg_lon + (min_lon / 60.0);}
+					else;
+					}
+        
 }
 
 
-void parser_gps(char *t) {
-    if (strncmp(t, "$GPGGA", 6) == 0) {
-        sscanf(t, "$GPGGA,%*f,%f,%*c,%f,%*c,%d", &latitude, &longitude, &fix_q);
-    }
-}
 
+//MAIN
 
-void GPS_Thread(void *argument) {
-	
-    Driver_USART3.Initialize(myUART_callback); 
+int main (void) {
+    HAL_Init();
+
+    //	Init UART3
+    Driver_USART3.Initialize(myUART_callback);
     Driver_USART3.PowerControl(ARM_POWER_FULL);
     Driver_USART3.Control(ARM_USART_MODE_ASYNCHRONOUS |
                           ARM_USART_DATA_BITS_8       |
@@ -105,45 +141,17 @@ void GPS_Thread(void *argument) {
                           ARM_USART_STOP_BITS_1       |
                           ARM_USART_FLOW_CONTROL_NONE , 9600);
     
-    Driver_USART3.Control(ARM_USART_CONTROL_RX, 1);
+    Driver_USART3.Control(ARM_USART_CONTROL_RX, 1); // Active la rÃ©ception
+    
 
-    while (1) {
-        // On lance une demande de réception d'un octet
-        Driver_USART3.Receive(&buffer_uart, 1);
-        
-        // SOMMEIL ATTENTE RÉCEPTION (Comme à la Slide 15)
-        // Le thread s'arrête ici et ne consomme plus de CPU
-        osThreadFlagsWait(0x01, osFlagsWaitAny, osWaitForever);
-
-        // Si on arrive ici, c'est que le callback nous a réveillé !
-        if (buffer_uart == '$') idx = 0;
-        
-        if (idx < 99) {
-            trame_complete[idx++] = (char)buffer_uart;
-        }
-
-        if (buffer_uart == '\n') {
-            trame_complete[idx] = '\0';
-            parser_gps(trame_complete);
-            idx = 0;
-        }
-    }
-}
-
-
-int main (void) {
-    HAL_Init();
-	
-    osKernelInitialize(); 
-
-    tid_GPS = osThreadNew(GPS_Thread, NULL, NULL);
-
-    if (osKernelGetState() == osKernelReady) {
-        osKernelStart(); 
-    }
-
+    osKernelInitialize();  
+    // CrÃ©ation de la tÃ¢che
+    tid_GPS = osThreadNew(Thread_Traitement_GPS, NULL, NULL);
+    
+    osKernelStart();
     while(1);
 }
+
 
 
 
