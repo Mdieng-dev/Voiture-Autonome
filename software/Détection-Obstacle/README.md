@@ -7,7 +7,7 @@ Détection Ostacles via capteur ultrason, Affichage distance par rapport à l’
 Intégrer communication avec l'avertisseur sonore.
 
 ## Entrées
-??? // à remplir en fonction sur les capteurs
+3 capteurs SRF10
 
 ## Sorties
 Distance obstacle , signal sonore (variable)
