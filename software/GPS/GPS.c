@@ -5,90 +5,6 @@
 #include <string.h>  // Pour strncmp
 
 
-/*extern ARM_DRIVER_USART Driver_USART3;
-uint8_t buffer_gps;   // Octet reçu par l'UART
-char trame[100];      // Tableau pour stocker la phrase complète
-int index_trame = 0;  
-
-float latitude, longitude;
-int fix_quality;
-
-
-void extraire_position(char *t);
-
-
-int main(void) {
-    HAL_Init();
-    
-
-    Driver_USART3.Initialize(NULL);
-    Driver_USART3.PowerControl(ARM_POWER_FULL);
-    Driver_USART3.Control(ARM_USART_MODE_ASYNCHRONOUS |
-                          ARM_USART_DATA_BITS_8       |
-                          ARM_USART_PARITY_NONE       |
-                          ARM_USART_STOP_BITS_1       |
-                          ARM_USART_FLOW_CONTROL_NONE ,
-                          9600);
-    Driver_USART3.Control(ARM_USART_CONTROL_RX, 1);
-
-    while (1) {
-        Driver_USART3.Receive(&buffer_gps, 1);
-        while (Driver_USART3.GetRxCount() < 1);
-
-        if (buffer_gps == '$') {
-            index_trame = 0;
-        }
-        
-        
-        trame[index_trame++] = (char)buffer_gps;
-
-        // Si on reçoit un retour à la ligne '\n', la phrase est finie
-        if (buffer_gps == '\n') {
-            trame[index_trame] = '\0'; 
-            extraire_position(trame);  
-            index_trame = 0;           
-        }
-				if (index_trame > 100) {index_trame = 0;}
-    }
-}
-
-
-void extraire_position(char *t) {
-    // On ne traite que la trame qui contient la position (GGA)
-    if (strncmp(t, "$GPGGA", 6) == 0) {
-        // On découpe la trame pour extraire Latitude, Longitude et Qualité du Fix
-        // Le %*f permet d'ignorer l'heure, le %*c ignore les lettres N/S/E/W
-        sscanf(t, "$GPGGA,%*f,%f,%*c,%f,%*c,%d", &latitude, &longitude, &fix_quality);
-        
-        if (fix_quality > 0) {
-            
-        }
-    }
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 extern ARM_DRIVER_USART Driver_USART3;
 osThreadId_t tid_GPS;           
 
@@ -171,6 +87,7 @@ int main (void) {
     osKernelStart();
     while(1);
 }
+
 
 
 
