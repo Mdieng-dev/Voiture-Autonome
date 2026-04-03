@@ -1,0 +1,2478 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+<title>Static Call Graph - [.\Objects\TP_RTOS3.axf]</title></head>
+<body><HR>
+<H1>Static Call Graph for image .\Objects\TP_RTOS3.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Mon Mar 30 09:52:07 2026
+<BR><P>
+<H3>Maximum Stack Usage =        232 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+Call chain for Maximum Stack Depth:</H3>
+svcRtxKernelStart &rArr; osRtxThreadStartup &rArr; svcRtxThreadNew &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+<P>
+<H3>
+Functions with no stack information
+</H3><UL>
+ <LI><a href="#[6]">SVC_Handler</a>
+ <LI><a href="#[8]">PendSV_Handler</a>
+ <LI><a href="#[9]">SysTick_Handler</a>
+ <LI><a href="#[64]">__user_initial_stackheap</a>
+</UL>
+</UL>
+<P>
+<H3>
+Mutually Recursive functions
+</H3> <LI><a href="#[1]">NMI_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1]">NMI_Handler</a><BR>
+ <LI><a href="#[2]">HardFault_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[2]">HardFault_Handler</a><BR>
+ <LI><a href="#[3]">MemManage_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[3]">MemManage_Handler</a><BR>
+ <LI><a href="#[4]">BusFault_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[4]">BusFault_Handler</a><BR>
+ <LI><a href="#[5]">UsageFault_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[5]">UsageFault_Handler</a><BR>
+ <LI><a href="#[7]">DebugMon_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[7]">DebugMon_Handler</a><BR>
+ <LI><a href="#[21]">BOD_IRQHandler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[21]">BOD_IRQHandler</a><BR>
+</UL>
+<P>
+<H3>
+Function Pointers
+</H3><UL>
+ <LI><a href="#[20]">ADC_IRQHandler</a> from adc_mcb1700.o(.text.ADC_IRQHandler) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[21]">BOD_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[4]">BusFault_Handler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[2c]">CANActivity_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[23]">CAN_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[24]">DMA_IRQHandler</a> from gpdma_lpc17xx.o(.text.DMA_IRQHandler) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[7]">DebugMon_Handler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[1c]">EINT0_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[1d]">EINT1_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[1e]">EINT2_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[1f]">EINT3_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[26]">ENET_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[2]">HardFault_Handler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[14]">I2C0_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[15]">I2C1_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[16]">I2C2_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[25]">I2S_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[28]">MCPWM_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[3]">MemManage_Handler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[1]">NMI_Handler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[1a]">PLL0_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[2a]">PLL1_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[13]">PWM1_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[8]">PendSV_Handler</a> from irq_armv7m.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[29]">QEI_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[27]">RIT_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[1b]">RTC_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[0]">Reset_Handler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[17]">SPI_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[18]">SSP0_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[44]">SSP1_GPDMA_Rx_SignalEvent</a> from ssp_lpc17xx.o(.text.SSP1_GPDMA_Rx_SignalEvent) referenced from ssp_lpc17xx.o(.rodata.SSP1_Resources)
+ <LI><a href="#[43]">SSP1_GPDMA_Tx_SignalEvent</a> from ssp_lpc17xx.o(.text.SSP1_GPDMA_Tx_SignalEvent) referenced from ssp_lpc17xx.o(.rodata.SSP1_Resources)
+ <LI><a href="#[19]">SSP1_IRQHandler</a> from ssp_lpc17xx.o(.text.SSP1_IRQHandler) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[6]">SVC_Handler</a> from irq_armv7m.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[9]">SysTick_Handler</a> from irq_armv7m.o(.text) referenced 2 times from rtx_kernel.o(.text.svcRtxKernelStart)
+ <LI><a href="#[9]">SysTick_Handler</a> from irq_armv7m.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[2d]">SystemInit</a> from system_lpc17xx.o(.text.SystemInit) referenced from startup_lpc17xx.o(.text)
+ <LI><a href="#[b]">TIMER0_IRQHandler</a> from main.o(.text.TIMER0_IRQHandler) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[c]">TIMER1_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[d]">TIMER2_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[e]">TIMER3_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[f]">UART0_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[10]">UART1_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[11]">UART2_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[12]">UART3_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[2b]">USBActivity_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[22]">USB_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[5]">UsageFault_Handler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[a]">WDT_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
+ <LI><a href="#[2e]">__main</a> from __main.o(!!!main) referenced from startup_lpc17xx.o(.text)
+ <LI><a href="#[3a]">osRtxIdleThread</a> from rtx_config.o(.text.osRtxIdleThread) referenced 2 times from rtx_thread.o(.text.osRtxThreadStartup)
+ <LI><a href="#[3e]">osRtxMessageQueuePostProcess</a> from rtx_msgqueue.o(.text.osRtxMessageQueuePostProcess) referenced 2 times from rtx_msgqueue.o(.text.svcRtxMessageQueueNew)
+ <LI><a href="#[40]">osRtxThreadPostProcess</a> from rtx_thread.o(.text.osRtxThreadPostProcess) referenced 2 times from rtx_thread.o(.text.svcRtxThreadNew)
+ <LI><a href="#[42]">osRtxTimerSetup</a> from rtx_timer.o(.text.osRtxTimerSetup) referenced from rtx_lib.o(.rodata)
+ <LI><a href="#[41]">osRtxTimerThread</a> from rtx_timer.o(.text.osRtxTimerThread) referenced from rtx_lib.o(.rodata)
+ <LI><a href="#[3b]">osRtxTimerTick</a> from rtx_timer.o(.text.osRtxTimerTick) referenced 2 times from rtx_timer.o(.text.osRtxTimerSetup)
+ <LI><a href="#[3f]">osThreadEntry</a> from rtx_thread.o(.text.osThreadEntry) referenced 2 times from rtx_thread.o(.text.svcRtxThreadNew)
+ <LI><a href="#[30]">svcRtxDelay</a> from rtx_delay.o(.text.svcRtxDelay) referenced 2 times from rtx_delay.o(.text.osDelay)
+ <LI><a href="#[31]">svcRtxKernelGetState</a> from rtx_kernel.o(.text.svcRtxKernelGetState) referenced 2 times from rtx_kernel.o(.text.osKernelGetState)
+ <LI><a href="#[32]">svcRtxKernelInitialize</a> from rtx_kernel.o(.text.svcRtxKernelInitialize) referenced 2 times from rtx_kernel.o(.text.osKernelInitialize)
+ <LI><a href="#[33]">svcRtxKernelStart</a> from rtx_kernel.o(.text.svcRtxKernelStart) referenced 2 times from rtx_kernel.o(.text.osKernelStart)
+ <LI><a href="#[34]">svcRtxMessageQueueGet</a> from rtx_msgqueue.o(.text.svcRtxMessageQueueGet) referenced 2 times from rtx_msgqueue.o(.text.osMessageQueueGet)
+ <LI><a href="#[35]">svcRtxMessageQueuePut</a> from rtx_msgqueue.o(.text.svcRtxMessageQueuePut) referenced 2 times from rtx_msgqueue.o(.text.osMessageQueuePut)
+ <LI><a href="#[36]">svcRtxMutexAcquire</a> from rtx_mutex.o(.text.svcRtxMutexAcquire) referenced 2 times from rtx_mutex.o(.text.osMutexAcquire)
+ <LI><a href="#[37]">svcRtxMutexDelete</a> from rtx_mutex.o(.text.svcRtxMutexDelete) referenced 2 times from rtx_mutex.o(.text.osMutexDelete)
+ <LI><a href="#[38]">svcRtxMutexNew</a> from rtx_mutex.o(.text.svcRtxMutexNew) referenced 2 times from rtx_mutex.o(.text.osMutexNew)
+ <LI><a href="#[39]">svcRtxMutexRelease</a> from rtx_mutex.o(.text.svcRtxMutexRelease) referenced 2 times from rtx_mutex.o(.text.osMutexRelease)
+ <LI><a href="#[3c]">svcRtxThreadExit</a> from rtx_thread.o(.text.svcRtxThreadExit) referenced 2 times from rtx_thread.o(.text.osThreadExit)
+ <LI><a href="#[3d]">svcRtxThreadNew</a> from rtx_thread.o(.text.svcRtxThreadNew) referenced 2 times from rtx_thread.o(.text.osThreadNew)
+ <LI><a href="#[2f]">thread_motor</a> from main.o(.text.thread_motor) referenced 2 times from main.o(.text.main)
+</UL>
+<P>
+<H3>
+Global Symbols
+</H3>
+<P><STRONG><a name="[2e]"></a>__main</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, __main.o(!!!main))
+<BR><BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(.text)
+</UL>
+<P><STRONG><a name="[49]"></a>__scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter))
+<BR><BR>[Called By]<UL><LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+</UL>
+
+<P><STRONG><a name="[4b]"></a>__scatterload_rt2</STRONG> (Thumb, 84 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+</UL>
+
+<P><STRONG><a name="[12f]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+
+<P><STRONG><a name="[130]"></a>__scatterload_loop</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+
+<P><STRONG><a name="[4c]"></a>__scatterload_copy</STRONG> (Thumb, 26 bytes, Stack size unknown bytes, __scatter_copy.o(!!handler_copy), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
+</UL>
+
+<P><STRONG><a name="[131]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, __scatter.o(!!handler_null), UNUSED)
+
+<P><STRONG><a name="[132]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
+
+<P><STRONG><a name="[52]"></a>__rt_lib_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit.o(.ARM.Collect$$libinit$$00000000))
+<BR><BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_li
+</UL>
+
+<P><STRONG><a name="[133]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000030))
+
+<P><STRONG><a name="[134]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
+
+<P><STRONG><a name="[135]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001D))
+
+<P><STRONG><a name="[136]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000023))
+
+<P><STRONG><a name="[137]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000034))
+
+<P><STRONG><a name="[138]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000032))
+
+<P><STRONG><a name="[139]"></a>__rt_lib_init_fp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000002))
+
+<P><STRONG><a name="[13a]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000021))
+
+<P><STRONG><a name="[13b]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000025))
+
+<P><STRONG><a name="[13c]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
+
+<P><STRONG><a name="[13d]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000013))
+
+<P><STRONG><a name="[13e]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000015))
+
+<P><STRONG><a name="[13f]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000017))
+
+<P><STRONG><a name="[140]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000019))
+
+<P><STRONG><a name="[141]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
+
+<P><STRONG><a name="[142]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000006))
+
+<P><STRONG><a name="[143]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000010))
+
+<P><STRONG><a name="[144]"></a>__rt_lib_init_relocate_pie_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000004))
+
+<P><STRONG><a name="[145]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000035))
+
+<P><STRONG><a name="[146]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001F))
+
+<P><STRONG><a name="[147]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000027))
+
+<P><STRONG><a name="[148]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000E))
+
+<P><STRONG><a name="[57]"></a>__rt_lib_shutdown</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown.o(.ARM.Collect$$libshutdown$$00000000))
+<BR><BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_ls
+</UL>
+
+<P><STRONG><a name="[149]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
+
+<P><STRONG><a name="[14a]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000007))
+
+<P><STRONG><a name="[14b]"></a>__rt_lib_shutdown_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F))
+
+<P><STRONG><a name="[14c]"></a>__rt_lib_shutdown_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000010))
+
+<P><STRONG><a name="[14d]"></a>__rt_lib_shutdown_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A))
+
+<P><STRONG><a name="[14e]"></a>__rt_lib_shutdown_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000004))
+
+<P><STRONG><a name="[14f]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
+
+<P><STRONG><a name="[4a]"></a>__rt_entry</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry.o(.ARM.Collect$$rtentry$$00000000))
+<BR><BR>[Called By]<UL><LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
+</UL>
+
+<P><STRONG><a name="[150]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
+
+<P><STRONG><a name="[4d]"></a>__rt_entry_sh</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry4.o(.ARM.Collect$$rtentry$$00000004))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
+<LI>Call Chain = __rt_entry_sh &rArr; __user_setup_stackheap
+</UL>
+<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
+</UL>
+
+<P><STRONG><a name="[4f]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000008))
+<BR><BR>[Stack]<UL><LI>Max Depth = 44 + Unknown Stack Size
+<LI>Call Chain = __rt_entry_postsh_1 &rArr; _platform_post_stackheap_init &rArr; osKernelInitialize &rArr; IsIrqMasked
+</UL>
+<BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_platform_post_stackheap_init
+</UL>
+
+<P><STRONG><a name="[51]"></a>__rt_entry_li</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000A))
+<BR><BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init
+</UL>
+
+<P><STRONG><a name="[53]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96 + Unknown Stack Size
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; SystemCoreClockUpdate &rArr; __aeabi_uldivmod
+</UL>
+<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
+</UL>
+
+<P><STRONG><a name="[151]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
+
+<P><STRONG><a name="[60]"></a>__rt_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit.o(.ARM.Collect$$rtexit$$00000000))
+<BR><BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
+</UL>
+
+<P><STRONG><a name="[56]"></a>__rt_exit_ls</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000003))
+<BR><BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown
+</UL>
+
+<P><STRONG><a name="[152]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
+
+<P><STRONG><a name="[58]"></a>__rt_exit_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000004))
+<BR><BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
+</UL>
+
+<P><STRONG><a name="[6]"></a>SVC_Handler</STRONG> (Thumb, 146 bytes, Stack size unknown bytes, irq_armv7m.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28 + Unknown Stack Size
+<LI>Call Chain = SVC_Handler &rArr; osRtxKernelErrorNotify &rArr; osRtxErrorNotify
+</UL>
+<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxKernelErrorNotify
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadStackCheck
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[8]"></a>PendSV_Handler</STRONG> (Thumb, 16 bytes, Stack size unknown bytes, irq_armv7m.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 116 + Unknown Stack Size
+<LI>Call Chain = PendSV_Handler &rArr; osRtxPendSV_Handler &rArr; osRtxThreadDispatch &rArr; osRtxThreadReadyPut &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxPendSV_Handler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[9]"></a>SysTick_Handler</STRONG> (Thumb, 16 bytes, Stack size unknown bytes, irq_armv7m.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 148 + Unknown Stack Size
+<LI>Call Chain = SysTick_Handler &rArr; osRtxTick_Handler &rArr; osRtxThreadDelayTick &rArr; osRtxMutexOwnerRestore &rArr; osRtxThreadListSort &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTick_Handler
+</UL>
+<BR>[Address Reference Count : 2]<UL><LI> rtx_kernel.o(.text.svcRtxKernelStart)
+<LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[0]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[1]"></a>NMI_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NMI_Handler
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NMI_Handler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[2]"></a>HardFault_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HardFault_Handler
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HardFault_Handler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[3]"></a>MemManage_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MemManage_Handler
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MemManage_Handler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[4]"></a>BusFault_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BusFault_Handler
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BusFault_Handler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[5]"></a>UsageFault_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UsageFault_Handler
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UsageFault_Handler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[7]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DebugMon_Handler
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DebugMon_Handler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[21]"></a>BOD_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BOD_IRQHandler
+</UL>
+<BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BOD_IRQHandler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[2c]"></a>CANActivity_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[23]"></a>CAN_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[1c]"></a>EINT0_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[1d]"></a>EINT1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[1e]"></a>EINT2_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[1f]"></a>EINT3_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[26]"></a>ENET_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[14]"></a>I2C0_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[15]"></a>I2C1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[16]"></a>I2C2_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[25]"></a>I2S_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[28]"></a>MCPWM_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[1a]"></a>PLL0_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[2a]"></a>PLL1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[13]"></a>PWM1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[29]"></a>QEI_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[27]"></a>RIT_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[1b]"></a>RTC_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[17]"></a>SPI_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[18]"></a>SSP0_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[c]"></a>TIMER1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[d]"></a>TIMER2_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[e]"></a>TIMER3_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[f]"></a>UART0_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[10]"></a>UART1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[11]"></a>UART2_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[12]"></a>UART3_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[2b]"></a>USBActivity_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[22]"></a>USB_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[a]"></a>WDT_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc17xx.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[64]"></a>__user_initial_stackheap</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup_lpc17xx.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
+</UL>
+
+<P><STRONG><a name="[121]"></a>__aeabi_memclr</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueNew
+</UL>
+
+<P><STRONG><a name="[153]"></a>__rt_memclr</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr.o(.text), UNUSED)
+
+<P><STRONG><a name="[5e]"></a>_memset</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, rt_memclr.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset_w
+</UL>
+
+<P><STRONG><a name="[154]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+
+<P><STRONG><a name="[155]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+
+<P><STRONG><a name="[156]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+
+<P><STRONG><a name="[55]"></a>exit</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, exit.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
+<LI>Call Chain = exit
+</UL>
+<BR>[Calls]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
+</UL>
+
+<P><STRONG><a name="[157]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+
+<P><STRONG><a name="[63]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
+</UL>
+
+<P><STRONG><a name="[7e]"></a>__aeabi_uldivmod</STRONG> (Thumb, 0 bytes, Stack size 48 bytes, lludivv7m.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = __aeabi_uldivmod
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
+</UL>
+
+<P><STRONG><a name="[158]"></a>_ll_udiv</STRONG> (Thumb, 240 bytes, Stack size 48 bytes, lludivv7m.o(.text), UNUSED)
+
+<P><STRONG><a name="[8c]"></a>__aeabi_memcpy</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rt_memcpy_v6.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueuePostProcess
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueueGet
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[61]"></a>__rt_memcpy</STRONG> (Thumb, 138 bytes, Stack size 0 bytes, rt_memcpy_v6.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+</UL>
+
+<P><STRONG><a name="[159]"></a>_memcpy_lastbytes</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_v6.o(.text), UNUSED)
+
+<P><STRONG><a name="[11a]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr_w.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelInitialize
+</UL>
+
+<P><STRONG><a name="[15a]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr_w.o(.text), UNUSED)
+
+<P><STRONG><a name="[15b]"></a>__rt_memclr_w</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr_w.o(.text), UNUSED)
+
+<P><STRONG><a name="[5f]"></a>_memset_w</STRONG> (Thumb, 74 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset
+</UL>
+
+<P><STRONG><a name="[62]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_memcpy
+</UL>
+
+<P><STRONG><a name="[15c]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
+
+<P><STRONG><a name="[15d]"></a>__rt_memcpy_w</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
+
+<P><STRONG><a name="[15e]"></a>_memcpy_lastbytes_aligned</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_w.o(.text), UNUSED)
+
+<P><STRONG><a name="[4e]"></a>__user_setup_stackheap</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, sys_stackheap_outer.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
+<LI>Call Chain = __user_setup_stackheap
+</UL>
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_initial_stackheap
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_sh
+</UL>
+
+<P><STRONG><a name="[59]"></a>_sys_exit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, sys_exit.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_exit
+</UL>
+
+<P><STRONG><a name="[15f]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+
+<P><STRONG><a name="[160]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+
+<P><STRONG><a name="[161]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
+
+<P><STRONG><a name="[20]"></a>ADC_IRQHandler</STRONG> (Thumb, 54 bytes, Stack size 4 bytes, adc_mcb1700.o(.text.ADC_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = ADC_IRQHandler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[12e]"></a>Action</STRONG> (Thumb, 152 bytes, Stack size 12 bytes, main.o(.text.Action))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Action
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;thread_motor
+</UL>
+
+<P><STRONG><a name="[65]"></a>Buttons_GetState</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, buttons_mcb1700.o(.text.Buttons_GetState))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Buttons_GetState &rArr; GPIO_PinRead
+</UL>
+<BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PinRead
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;thread_motor
+</UL>
+
+<P><STRONG><a name="[67]"></a>Buttons_Initialize</STRONG> (Thumb, 48 bytes, Stack size 24 bytes, buttons_mcb1700.o(.text.Buttons_Initialize))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Buttons_Initialize &rArr; PIN_Configure
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetDir
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PortClock
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIN_Configure
+</UL>
+<BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[24]"></a>DMA_IRQHandler</STRONG> (Thumb, 544 bytes, Stack size 24 bytes, gpdma_lpc17xx.o(.text.DMA_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = DMA_IRQHandler &rArr; Clear_Channel_active_flag
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Clear_Channel_active_flag
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[9f]"></a>EvrRtxDelay</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxDelay))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxDelay
+</UL>
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
+</UL>
+
+<P><STRONG><a name="[e8]"></a>EvrRtxDelayCompleted</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxDelayCompleted))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxDelayCompleted
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+</UL>
+
+<P><STRONG><a name="[a2]"></a>EvrRtxDelayError</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxDelayError))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxDelayError
+</UL>
+<BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxDelay
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
+</UL>
+
+<P><STRONG><a name="[116]"></a>EvrRtxDelayStarted</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxDelayStarted))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxDelayStarted
+</UL>
+<BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxDelay
+</UL>
+
+<P><STRONG><a name="[eb]"></a>EvrRtxEventFlagsWaitTimeout</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxEventFlagsWaitTimeout))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxEventFlagsWaitTimeout
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+</UL>
+
+<P><STRONG><a name="[a9]"></a>EvrRtxKernelError</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxKernelError))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxKernelError
+</UL>
+<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelStart
+<LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelInitialize
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelStart
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelInitialize
+</UL>
+
+<P><STRONG><a name="[b8]"></a>EvrRtxKernelErrorNotify</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxKernelErrorNotify))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxKernelErrorNotify
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxKernelErrorNotify
+</UL>
+
+<P><STRONG><a name="[118]"></a>EvrRtxKernelGetState</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxKernelGetState))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxKernelGetState
+</UL>
+<BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelGetState
+</UL>
+
+<P><STRONG><a name="[a8]"></a>EvrRtxKernelInitialize</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rtx_evr.o(.text.EvrRtxKernelInitialize))
+<BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelInitialize
+</UL>
+
+<P><STRONG><a name="[119]"></a>EvrRtxKernelInitialized</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rtx_evr.o(.text.EvrRtxKernelInitialized))
+<BR><BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelInitialize
+</UL>
+
+<P><STRONG><a name="[aa]"></a>EvrRtxKernelStart</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rtx_evr.o(.text.EvrRtxKernelStart))
+<BR><BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelStart
+</UL>
+
+<P><STRONG><a name="[11e]"></a>EvrRtxKernelStarted</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rtx_evr.o(.text.EvrRtxKernelStarted))
+<BR><BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelStart
+</UL>
+
+<P><STRONG><a name="[bb]"></a>EvrRtxMemoryAlloc</STRONG> (Thumb, 14 bytes, Stack size 16 bytes, rtx_evr.o(.text.EvrRtxMemoryAlloc))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = EvrRtxMemoryAlloc
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryAlloc
+</UL>
+
+<P><STRONG><a name="[c2]"></a>EvrRtxMemoryBlockAlloc</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxMemoryBlockAlloc))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxMemoryBlockAlloc
+</UL>
+<BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolAlloc
+</UL>
+
+<P><STRONG><a name="[c6]"></a>EvrRtxMemoryBlockFree</STRONG> (Thumb, 12 bytes, Stack size 12 bytes, rtx_evr.o(.text.EvrRtxMemoryBlockFree))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = EvrRtxMemoryBlockFree
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolFree
+</UL>
+
+<P><STRONG><a name="[ca]"></a>EvrRtxMemoryBlockInit</STRONG> (Thumb, 14 bytes, Stack size 16 bytes, rtx_evr.o(.text.EvrRtxMemoryBlockInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = EvrRtxMemoryBlockInit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolInit
+</UL>
+
+<P><STRONG><a name="[bf]"></a>EvrRtxMemoryFree</STRONG> (Thumb, 12 bytes, Stack size 12 bytes, rtx_evr.o(.text.EvrRtxMemoryFree))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = EvrRtxMemoryFree
+</UL>
+<BR>[Called By]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryFree
+</UL>
+
+<P><STRONG><a name="[c1]"></a>EvrRtxMemoryInit</STRONG> (Thumb, 12 bytes, Stack size 12 bytes, rtx_evr.o(.text.EvrRtxMemoryInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = EvrRtxMemoryInit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryInit
+</UL>
+
+<P><STRONG><a name="[f0]"></a>EvrRtxMemoryPoolAllocTimeout</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxMemoryPoolAllocTimeout))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxMemoryPoolAllocTimeout
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+</UL>
+
+<P><STRONG><a name="[122]"></a>EvrRtxMessageQueueCreated</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxMessageQueueCreated))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxMessageQueueCreated
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueNew
+</UL>
+
+<P><STRONG><a name="[8b]"></a>EvrRtxMessageQueueError</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxMessageQueueError))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxMessageQueueError
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueNew
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueueGet
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[ac]"></a>EvrRtxMessageQueueGet</STRONG> (Thumb, 14 bytes, Stack size 16 bytes, rtx_evr.o(.text.EvrRtxMessageQueueGet))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = EvrRtxMessageQueueGet
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMessageQueueGet
+</UL>
+
+<P><STRONG><a name="[11f]"></a>EvrRtxMessageQueueGetPending</STRONG> (Thumb, 12 bytes, Stack size 12 bytes, rtx_evr.o(.text.EvrRtxMessageQueueGetPending))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = EvrRtxMessageQueueGetPending
+</UL>
+<BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+</UL>
+
+<P><STRONG><a name="[f1]"></a>EvrRtxMessageQueueGetTimeout</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxMessageQueueGetTimeout))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxMessageQueueGetTimeout
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+</UL>
+
+<P><STRONG><a name="[93]"></a>EvrRtxMessageQueueInsertPending</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxMessageQueueInsertPending))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxMessageQueueInsertPending
+</UL>
+<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[cf]"></a>EvrRtxMessageQueueInserted</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxMessageQueueInserted))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxMessageQueueInserted
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueuePostProcess
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[94]"></a>EvrRtxMessageQueueNotInserted</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxMessageQueueNotInserted))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxMessageQueueNotInserted
+</UL>
+<BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[90]"></a>EvrRtxMessageQueueNotRetrieved</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxMessageQueueNotRetrieved))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxMessageQueueNotRetrieved
+</UL>
+<BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueueGet
+</UL>
+
+<P><STRONG><a name="[b0]"></a>EvrRtxMessageQueuePut</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, rtx_evr.o(.text.EvrRtxMessageQueuePut))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = EvrRtxMessageQueuePut
+</UL>
+<BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[123]"></a>EvrRtxMessageQueuePutPending</STRONG> (Thumb, 12 bytes, Stack size 12 bytes, rtx_evr.o(.text.EvrRtxMessageQueuePutPending))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = EvrRtxMessageQueuePutPending
+</UL>
+<BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[f2]"></a>EvrRtxMessageQueuePutTimeout</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxMessageQueuePutTimeout))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxMessageQueuePutTimeout
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[8f]"></a>EvrRtxMessageQueueRetrieved</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxMessageQueueRetrieved))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxMessageQueueRetrieved
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueuePostProcess
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueueGet
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[b1]"></a>EvrRtxMutexAcquire</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxMutexAcquire), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxMutexAcquire
+</UL>
+<BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexAcquire
+</UL>
+
+<P><STRONG><a name="[127]"></a>EvrRtxMutexAcquirePending</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxMutexAcquirePending))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxMutexAcquirePending
+</UL>
+<BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexAcquire
+</UL>
+
+<P><STRONG><a name="[ee]"></a>EvrRtxMutexAcquireTimeout</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxMutexAcquireTimeout))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxMutexAcquireTimeout
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexAcquire
+</UL>
+
+<P><STRONG><a name="[d7]"></a>EvrRtxMutexAcquired</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxMutexAcquired))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxMutexAcquired
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexOwnerRelease
+<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexRelease
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexAcquire
+</UL>
+
+<P><STRONG><a name="[129]"></a>EvrRtxMutexCreated</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxMutexCreated))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxMutexCreated
+</UL>
+<BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexNew
+</UL>
+
+<P><STRONG><a name="[b5]"></a>EvrRtxMutexDelete</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxMutexDelete), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxMutexDelete
+</UL>
+<BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexDelete
+</UL>
+
+<P><STRONG><a name="[d3]"></a>EvrRtxMutexDestroyed</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxMutexDestroyed))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxMutexDestroyed
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexDestroy
+</UL>
+
+<P><STRONG><a name="[b4]"></a>EvrRtxMutexError</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxMutexError))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxMutexError
+</UL>
+<BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexDelete
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexRelease
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexAcquire
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexNew
+<LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexDelete
+<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexRelease
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexAcquire
+<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexNew
+</UL>
+
+<P><STRONG><a name="[b6]"></a>EvrRtxMutexNew</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxMutexNew), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxMutexNew
+</UL>
+<BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexNew
+</UL>
+
+<P><STRONG><a name="[128]"></a>EvrRtxMutexNotAcquired</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxMutexNotAcquired))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxMutexNotAcquired
+</UL>
+<BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexAcquire
+</UL>
+
+<P><STRONG><a name="[b7]"></a>EvrRtxMutexRelease</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxMutexRelease), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxMutexRelease
+</UL>
+<BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexRelease
+</UL>
+
+<P><STRONG><a name="[d5]"></a>EvrRtxMutexReleased</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxMutexReleased))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxMutexReleased
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexOwnerRelease
+<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexRelease
+</UL>
+
+<P><STRONG><a name="[ef]"></a>EvrRtxSemaphoreAcquireTimeout</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxSemaphoreAcquireTimeout))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxSemaphoreAcquireTimeout
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+</UL>
+
+<P><STRONG><a name="[106]"></a>EvrRtxThreadBlocked</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxThreadBlocked))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxThreadBlocked
+</UL>
+<BR>[Called By]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitEnter
+</UL>
+
+<P><STRONG><a name="[12d]"></a>EvrRtxThreadCreated</STRONG> (Thumb, 12 bytes, Stack size 12 bytes, rtx_evr.o(.text.EvrRtxThreadCreated))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = EvrRtxThreadCreated
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadNew
+</UL>
+
+<P><STRONG><a name="[f8]"></a>EvrRtxThreadDestroyed</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxThreadDestroyed))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxThreadDestroyed
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDestroy
+</UL>
+
+<P><STRONG><a name="[112]"></a>EvrRtxThreadError</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxThreadError))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxThreadError
+</UL>
+<BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadNew
+<LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadExit
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadNew
+</UL>
+
+<P><STRONG><a name="[111]"></a>EvrRtxThreadExit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rtx_evr.o(.text.EvrRtxThreadExit))
+<BR><BR>[Called By]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadExit
+</UL>
+
+<P><STRONG><a name="[ff]"></a>EvrRtxThreadFlagsWaitCompleted</STRONG> (Thumb, 14 bytes, Stack size 16 bytes, rtx_evr.o(.text.EvrRtxThreadFlagsWaitCompleted))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = EvrRtxThreadFlagsWaitCompleted
+</UL>
+<BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadPostProcess
+</UL>
+
+<P><STRONG><a name="[e9]"></a>EvrRtxThreadFlagsWaitTimeout</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxThreadFlagsWaitTimeout))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxThreadFlagsWaitTimeout
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+</UL>
+
+<P><STRONG><a name="[fd]"></a>EvrRtxThreadJoined</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxThreadJoined))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxThreadJoined
+</UL>
+<BR>[Called By]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadJoinWakeup
+</UL>
+
+<P><STRONG><a name="[113]"></a>EvrRtxThreadNew</STRONG> (Thumb, 12 bytes, Stack size 12 bytes, rtx_evr.o(.text.EvrRtxThreadNew))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = EvrRtxThreadNew
+</UL>
+<BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadNew
+</UL>
+
+<P><STRONG><a name="[e6]"></a>EvrRtxThreadPreempted</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxThreadPreempted))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxThreadPreempted
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTick_Handler
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadBlock
+</UL>
+
+<P><STRONG><a name="[104]"></a>EvrRtxThreadSwitched</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_evr.o(.text.EvrRtxThreadSwitched))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxThreadSwitched
+</UL>
+<BR>[Called By]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadSwitch
+</UL>
+
+<P><STRONG><a name="[f3]"></a>EvrRtxThreadUnblocked</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxThreadUnblocked))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxThreadUnblocked
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitExit
+</UL>
+
+<P><STRONG><a name="[10b]"></a>EvrRtxTimerCallback</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, rtx_evr.o(.text.EvrRtxTimerCallback))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EvrRtxTimerCallback
+</UL>
+<BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTimerThread
+</UL>
+
+<P><STRONG><a name="[66]"></a>GPIO_PinRead</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, gpio_lpc17xx.o(.text.GPIO_PinRead))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = GPIO_PinRead
+</UL>
+<BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Joystick_GetState
+<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Buttons_GetState
+</UL>
+
+<P><STRONG><a name="[72]"></a>GPIO_PinWrite</STRONG> (Thumb, 62 bytes, Stack size 12 bytes, gpio_lpc17xx.o(.text.GPIO_PinWrite))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = GPIO_PinWrite
+</UL>
+<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Initialize
+</UL>
+
+<P><STRONG><a name="[68]"></a>GPIO_PortClock</STRONG> (Thumb, 50 bytes, Stack size 4 bytes, gpio_lpc17xx.o(.text.GPIO_PortClock))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = GPIO_PortClock
+</UL>
+<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Buttons_Initialize
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Initialize
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Joystick_Initialize
+</UL>
+
+<P><STRONG><a name="[6a]"></a>GPIO_SetDir</STRONG> (Thumb, 74 bytes, Stack size 12 bytes, gpio_lpc17xx.o(.text.GPIO_SetDir))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = GPIO_SetDir
+</UL>
+<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Buttons_Initialize
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Initialize
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Joystick_Initialize
+</UL>
+
+<P><STRONG><a name="[9b]"></a>Init_Motor</STRONG> (Thumb, 130 bytes, Stack size 0 bytes, main.o(.text.Init_Motor))
+<BR><BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[6c]"></a>Init_Servo_Timer</STRONG> (Thumb, 140 bytes, Stack size 16 bytes, main.o(.text.Init_Servo_Timer))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Init_Servo_Timer &rArr; __NVIC_SetPriority
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_EnableIRQ
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_SetPriority
+</UL>
+<BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[6f]"></a>Joystick_GetState</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, joystick_mcb1700.o(.text.Joystick_GetState))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Joystick_GetState &rArr; GPIO_PinRead
+</UL>
+<BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PinRead
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;thread_motor
+</UL>
+
+<P><STRONG><a name="[70]"></a>Joystick_Initialize</STRONG> (Thumb, 96 bytes, Stack size 24 bytes, joystick_mcb1700.o(.text.Joystick_Initialize))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Joystick_Initialize &rArr; PIN_Configure
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetDir
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PortClock
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIN_Configure
+</UL>
+<BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[71]"></a>LED_Initialize</STRONG> (Thumb, 116 bytes, Stack size 24 bytes, led_mcb1700.o(.text.LED_Initialize))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = LED_Initialize &rArr; PIN_Configure
+</UL>
+<BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PinWrite
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetDir
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PortClock
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIN_Configure
+</UL>
+<BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[109]"></a>OS_Tick_AcknowledgeIRQ</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, os_systick.o(.text.OS_Tick_AcknowledgeIRQ))
+<BR><BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTick_Handler
+</UL>
+
+<P><STRONG><a name="[11d]"></a>OS_Tick_Enable</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, os_systick.o(.text.OS_Tick_Enable))
+<BR><BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelStart
+</UL>
+
+<P><STRONG><a name="[11c]"></a>OS_Tick_GetIRQn</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, os_systick.o(.text.OS_Tick_GetIRQn))
+<BR><BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelStart
+</UL>
+
+<P><STRONG><a name="[11b]"></a>OS_Tick_Setup</STRONG> (Thumb, 126 bytes, Stack size 16 bytes, os_systick.o(.text.OS_Tick_Setup))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = OS_Tick_Setup
+</UL>
+<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelStart
+</UL>
+
+<P><STRONG><a name="[69]"></a>PIN_Configure</STRONG> (Thumb, 292 bytes, Stack size 24 bytes, pin_lpc17xx.o(.text.PIN_Configure))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = PIN_Configure
+</UL>
+<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Buttons_Initialize
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Initialize
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Joystick_Initialize
+</UL>
+
+<P><STRONG><a name="[44]"></a>SSP1_GPDMA_Rx_SignalEvent</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, ssp_lpc17xx.o(.text.SSP1_GPDMA_Rx_SignalEvent))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = SSP1_GPDMA_Rx_SignalEvent &rArr; SSPx_GPDMA_Rx_SignalEvent
+</UL>
+<BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSPx_GPDMA_Rx_SignalEvent
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> ssp_lpc17xx.o(.rodata.SSP1_Resources)
+</UL>
+<P><STRONG><a name="[43]"></a>SSP1_GPDMA_Tx_SignalEvent</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, ssp_lpc17xx.o(.text.SSP1_GPDMA_Tx_SignalEvent))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = SSP1_GPDMA_Tx_SignalEvent &rArr; SSPx_GPDMA_Tx_SignalEvent
+</UL>
+<BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSPx_GPDMA_Tx_SignalEvent
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> ssp_lpc17xx.o(.rodata.SSP1_Resources)
+</UL>
+<P><STRONG><a name="[19]"></a>SSP1_IRQHandler</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, ssp_lpc17xx.o(.text.SSP1_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = SSP1_IRQHandler &rArr; SSPx_IRQHandler
+</UL>
+<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSPx_IRQHandler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[78]"></a>SSPx_GPDMA_Rx_SignalEvent</STRONG> (Thumb, 74 bytes, Stack size 24 bytes, ssp_lpc17xx.o(.text.SSPx_GPDMA_Rx_SignalEvent))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = SSPx_GPDMA_Rx_SignalEvent
+</UL>
+<BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSP1_GPDMA_Rx_SignalEvent
+</UL>
+
+<P><STRONG><a name="[79]"></a>SSPx_GPDMA_Tx_SignalEvent</STRONG> (Thumb, 42 bytes, Stack size 12 bytes, ssp_lpc17xx.o(.text.SSPx_GPDMA_Tx_SignalEvent))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SSPx_GPDMA_Tx_SignalEvent
+</UL>
+<BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSP1_GPDMA_Tx_SignalEvent
+</UL>
+
+<P><STRONG><a name="[7d]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 428 bytes, Stack size 32 bytes, system_lpc17xx.o(.text.SystemCoreClockUpdate))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = SystemCoreClockUpdate &rArr; __aeabi_uldivmod
+</UL>
+<BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+</UL>
+<BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[2d]"></a>SystemInit</STRONG> (Thumb, 388 bytes, Stack size 0 bytes, system_lpc17xx.o(.text.SystemInit))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(.text)
+</UL>
+<P><STRONG><a name="[b]"></a>TIMER0_IRQHandler</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, main.o(.text.TIMER0_IRQHandler))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[46]"></a>_mutex_acquire</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, rtx_lib.o(.text._mutex_acquire), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = _mutex_acquire &rArr; osMutexAcquire &rArr; IsIrqMasked
+</UL>
+<BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexAcquire
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_kernel_is_active
+</UL>
+
+<P><STRONG><a name="[48]"></a>_mutex_free</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, rtx_lib.o(.text._mutex_free), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = _mutex_free &rArr; osMutexDelete &rArr; IsIrqMasked
+</UL>
+<BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexDelete
+</UL>
+
+<P><STRONG><a name="[45]"></a>_mutex_initialize</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, rtx_lib.o(.text._mutex_initialize), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = _mutex_initialize &rArr; osMutexNew &rArr; IsIrqMasked
+</UL>
+<BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexNew
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxKernelErrorNotify
+</UL>
+
+<P><STRONG><a name="[47]"></a>_mutex_release</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, rtx_lib.o(.text._mutex_release), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = _mutex_release &rArr; os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState &rArr; EvrRtxKernelGetState
+</UL>
+<BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexRelease
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_kernel_is_active
+</UL>
+
+<P><STRONG><a name="[50]"></a>_platform_post_stackheap_init</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, rtx_lib.o(.text._platform_post_stackheap_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = _platform_post_stackheap_init &rArr; osKernelInitialize &rArr; IsIrqMasked
+</UL>
+<BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelInitialize
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_postsh_1
+</UL>
+
+<P><STRONG><a name="[54]"></a>main</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, main.o(.text.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = main &rArr; SystemCoreClockUpdate &rArr; __aeabi_uldivmod
+</UL>
+<BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelStart
+<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadNew
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelInitialize
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Buttons_Initialize
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Initialize
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Joystick_Initialize
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Servo_Timer
+<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Motor
+</UL>
+<BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
+</UL>
+
+<P><STRONG><a name="[9e]"></a>osDelay</STRONG> (Thumb, 84 bytes, Stack size 32 bytes, rtx_delay.o(.text.osDelay))
+<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = osDelay &rArr; IsIrqMasked
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxDelayError
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxDelay
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsIrqMasked
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsException
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;thread_motor
+</UL>
+
+<P><STRONG><a name="[a3]"></a>osKernelGetState</STRONG> (Thumb, 66 bytes, Stack size 24 bytes, rtx_kernel.o(.text.osKernelGetState), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = osKernelGetState &rArr; svcRtxKernelGetState &rArr; EvrRtxKernelGetState
+</UL>
+<BR>[Calls]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelGetState
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsPrivileged
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsIrqMasked
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsException
+</UL>
+<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_kernel_is_active
+</UL>
+
+<P><STRONG><a name="[87]"></a>osKernelInitialize</STRONG> (Thumb, 74 bytes, Stack size 24 bytes, rtx_kernel.o(.text.osKernelInitialize))
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = osKernelInitialize &rArr; IsIrqMasked
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxKernelBeforeInit
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsIrqMasked
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsException
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxKernelInitialize
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxKernelError
+</UL>
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_platform_post_stackheap_init
+<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[9d]"></a>osKernelStart</STRONG> (Thumb, 70 bytes, Stack size 24 bytes, rtx_kernel.o(.text.osKernelStart))
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = osKernelStart &rArr; IsIrqMasked
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsIrqMasked
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsException
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxKernelStart
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxKernelError
+</UL>
+<BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[ab]"></a>osMessageQueueGet</STRONG> (Thumb, 126 bytes, Stack size 64 bytes, rtx_msgqueue.o(.text.osMessageQueueGet))
+<BR><BR>[Stack]<UL><LI>Max Depth = 188<LI>Call Chain = osMessageQueueGet &rArr; isrRtxMessageQueueGet &rArr; osRtxPostProcess &rArr; isr_queue_put &rArr; atomic_inc16_lt
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsIrqMasked
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsException
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueGet
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueueGet
+</UL>
+<BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTimerThread
+</UL>
+
+<P><STRONG><a name="[af]"></a>osMessageQueuePut</STRONG> (Thumb, 138 bytes, Stack size 64 bytes, rtx_msgqueue.o(.text.osMessageQueuePut))
+<BR><BR>[Stack]<UL><LI>Max Depth = 188<LI>Call Chain = osMessageQueuePut &rArr; isrRtxMessageQueuePut &rArr; osRtxPostProcess &rArr; isr_queue_put &rArr; atomic_inc16_lt
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsIrqMasked
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsException
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueuePut
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueuePut
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTimerTick
+</UL>
+
+<P><STRONG><a name="[83]"></a>osMutexAcquire</STRONG> (Thumb, 100 bytes, Stack size 48 bytes, rtx_mutex.o(.text.osMutexAcquire), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = osMutexAcquire &rArr; IsIrqMasked
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexAcquire
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexError
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsIrqMasked
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsException
+</UL>
+<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+</UL>
+
+<P><STRONG><a name="[84]"></a>osMutexDelete</STRONG> (Thumb, 86 bytes, Stack size 32 bytes, rtx_mutex.o(.text.osMutexDelete), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = osMutexDelete &rArr; IsIrqMasked
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexDelete
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexError
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsIrqMasked
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsException
+</UL>
+<BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_free
+</UL>
+
+<P><STRONG><a name="[85]"></a>osMutexNew</STRONG> (Thumb, 86 bytes, Stack size 32 bytes, rtx_mutex.o(.text.osMutexNew), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = osMutexNew &rArr; IsIrqMasked
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexNew
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexError
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsIrqMasked
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsException
+</UL>
+<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_initialize
+</UL>
+
+<P><STRONG><a name="[86]"></a>osMutexRelease</STRONG> (Thumb, 86 bytes, Stack size 32 bytes, rtx_mutex.o(.text.osMutexRelease), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = osMutexRelease &rArr; IsIrqMasked
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexRelease
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexError
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsIrqMasked
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsException
+</UL>
+<BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
+</UL>
+
+<P><STRONG><a name="[b9]"></a>osRtxErrorNotify</STRONG> (Thumb, 48 bytes, Stack size 12 bytes, rtx_config.o(.text.osRtxErrorNotify))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = osRtxErrorNotify
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxKernelErrorNotify
+</UL>
+
+<P><STRONG><a name="[3a]"></a>osRtxIdleThread</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, rtx_config.o(.text.osRtxIdleThread))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxIdleThread
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_thread.o(.text.osRtxThreadStartup)
+</UL>
+<P><STRONG><a name="[a7]"></a>osRtxKernelBeforeInit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rtx_kernel.o(.text.osRtxKernelBeforeInit))
+<BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelInitialize
+</UL>
+
+<P><STRONG><a name="[5b]"></a>osRtxKernelErrorNotify</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, rtx_kernel.o(.text.osRtxKernelErrorNotify))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = osRtxKernelErrorNotify &rArr; osRtxErrorNotify
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxErrorNotify
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxKernelErrorNotify
+</UL>
+<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_initialize
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxPostProcess
+<LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SVC_Handler
+<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTimerTick
+<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadExit
+</UL>
+
+<P><STRONG><a name="[ba]"></a>osRtxMemoryAlloc</STRONG> (Thumb, 332 bytes, Stack size 64 bytes, rtx_memory.o(.text.osRtxMemoryAlloc))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = osRtxMemoryAlloc &rArr; MemBlockPtr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MemBlockPtr
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MemHeadPtr
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMemoryAlloc
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueNew
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadNew
+<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexNew
+</UL>
+
+<P><STRONG><a name="[be]"></a>osRtxMemoryFree</STRONG> (Thumb, 194 bytes, Stack size 56 bytes, rtx_memory.o(.text.osRtxMemoryFree))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = osRtxMemoryFree &rArr; MemBlockPtr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MemBlockPtr
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MemHeadPtr
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMemoryFree
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueNew
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadNew
+<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadFree
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexDestroy
+</UL>
+
+<P><STRONG><a name="[c0]"></a>osRtxMemoryInit</STRONG> (Thumb, 150 bytes, Stack size 40 bytes, rtx_memory.o(.text.osRtxMemoryInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = osRtxMemoryInit &rArr; MemBlockPtr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MemBlockPtr
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MemHeadPtr
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMemoryInit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelInitialize
+</UL>
+
+<P><STRONG><a name="[92]"></a>osRtxMemoryPoolAlloc</STRONG> (Thumb, 74 bytes, Stack size 24 bytes, rtx_mempool.o(.text.osRtxMemoryPoolAlloc))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = osRtxMemoryPoolAlloc &rArr; atomic_inc32
+</UL>
+<BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_inc32
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_link_get
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMemoryBlockAlloc
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueuePostProcess
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueNew
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadNew
+<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexNew
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[c5]"></a>osRtxMemoryPoolFree</STRONG> (Thumb, 100 bytes, Stack size 32 bytes, rtx_mempool.o(.text.osRtxMemoryPoolFree))
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = osRtxMemoryPoolFree &rArr; atomic_link_put
+</UL>
+<BR>[Calls]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_dec32
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_link_put
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMemoryBlockFree
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueuePostProcess
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueNew
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadNew
+<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadFree
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexDestroy
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+</UL>
+
+<P><STRONG><a name="[c9]"></a>osRtxMemoryPoolInit</STRONG> (Thumb, 152 bytes, Stack size 40 bytes, rtx_mempool.o(.text.osRtxMemoryPoolInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = osRtxMemoryPoolInit &rArr; EvrRtxMemoryBlockInit
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMemoryBlockInit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueNew
+<LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelInitialize
+</UL>
+
+<P><STRONG><a name="[d0]"></a>osRtxMessageQueueTimerSetup</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, rtx_msgqueue.o(.text.osRtxMessageQueueTimerSetup))
+<BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
+<LI>Call Chain = osRtxMessageQueueTimerSetup &rArr; svcRtxMessageQueueNew &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueueId
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueNew
+</UL>
+<BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTimerSetup
+</UL>
+
+<P><STRONG><a name="[d4]"></a>osRtxMutexOwnerRelease</STRONG> (Thumb, 152 bytes, Stack size 32 bytes, rtx_mutex.o(.text.osRtxMutexOwnerRelease))
+<BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = osRtxMutexOwnerRelease &rArr; osRtxThreadWaitExit &rArr; osRtxThreadDispatch &rArr; osRtxThreadReadyPut &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexReleased
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexAcquired
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListGet
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitExit
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadExit
+</UL>
+
+<P><STRONG><a name="[d8]"></a>osRtxMutexOwnerRestore</STRONG> (Thumb, 172 bytes, Stack size 32 bytes, rtx_mutex.o(.text.osRtxMutexOwnerRestore))
+<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = osRtxMutexOwnerRestore &rArr; osRtxThreadListSort &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListSort
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+</UL>
+
+<P><STRONG><a name="[5c]"></a>osRtxPendSV_Handler</STRONG> (Thumb, 184 bytes, Stack size 40 bytes, rtx_system.o(.text.osRtxPendSV_Handler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = osRtxPendSV_Handler &rArr; osRtxThreadDispatch &rArr; osRtxThreadReadyPut &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDispatch
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageObject
+<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolObject
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxSemaphoreObject
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxEventFlagsObject
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadObject
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isr_queue_get
+</UL>
+<BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PendSV_Handler
+</UL>
+
+<P><STRONG><a name="[8e]"></a>osRtxPostProcess</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, rtx_system.o(.text.osRtxPostProcess))
+<BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = osRtxPostProcess &rArr; isr_queue_put &rArr; atomic_inc16_lt
+</UL>
+<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxKernelErrorNotify
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetPendSV
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isr_queue_put
+</UL>
+<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueueGet
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[e2]"></a>osRtxThreadBeforeFree</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, rtx_lib.o(.text.osRtxThreadBeforeFree))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = osRtxThreadBeforeFree &rArr; user_perthread_libspace_free
+</UL>
+<BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_perthread_libspace_free
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadFree
+</UL>
+
+<P><STRONG><a name="[108]"></a>osRtxThreadDelayRemove</STRONG> (Thumb, 156 bytes, Stack size 4 bytes, rtx_thread.o(.text.osRtxThreadDelayRemove))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxThreadDelayRemove
+</UL>
+<BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitExit
+</UL>
+
+<P><STRONG><a name="[e7]"></a>osRtxThreadDelayTick</STRONG> (Thumb, 336 bytes, Stack size 32 bytes, rtx_thread.o(.text.osRtxThreadDelayTick))
+<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = osRtxThreadDelayTick &rArr; osRtxMutexOwnerRestore &rArr; osRtxThreadListSort &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueGetTimeout
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueuePutTimeout
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMemoryPoolAllocTimeout
+<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxSemaphoreAcquireTimeout
+<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexAcquireTimeout
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxDelayCompleted
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadFlagsWaitTimeout
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadUnblocked
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxEventFlagsWaitTimeout
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListRemove
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexObject
+<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListRoot
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxObject
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadReadyPut
+<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexOwnerRestore
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadRegPtr
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTick_Handler
+</UL>
+
+<P><STRONG><a name="[f6]"></a>osRtxThreadDestroy</STRONG> (Thumb, 96 bytes, Stack size 16 bytes, rtx_thread.o(.text.osRtxThreadDestroy))
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = osRtxThreadDestroy &rArr; osRtxThreadFree &rArr; osRtxMemoryFree &rArr; MemBlockPtr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadDestroyed
+<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadFree
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadExit
+</UL>
+
+<P><STRONG><a name="[e0]"></a>osRtxThreadDispatch</STRONG> (Thumb, 150 bytes, Stack size 24 bytes, rtx_thread.o(.text.osRtxThreadDispatch))
+<BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = osRtxThreadDispatch &rArr; osRtxThreadReadyPut &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadSwitch
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListRemove
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadBlock
+<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadGetRunning
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxKernelGetState
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadReadyPut
+</UL>
+<BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitExit
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTick_Handler
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxPendSV_Handler
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadNew
+<LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexDelete
+<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexRelease
+</UL>
+
+<P><STRONG><a name="[fc]"></a>osRtxThreadJoinWakeup</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, rtx_thread.o(.text.osRtxThreadJoinWakeup))
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = osRtxThreadJoinWakeup &rArr; osRtxThreadWaitExit &rArr; osRtxThreadDispatch &rArr; osRtxThreadReadyPut &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadJoined
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitExit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadExit
+</UL>
+
+<P><STRONG><a name="[cc]"></a>osRtxThreadListGet</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, rtx_thread.o(.text.osRtxThreadListGet))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = osRtxThreadListGet &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueuePostProcess
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelStart
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitEnter
+<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadExit
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexOwnerRelease
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexOwnerUnlock
+<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexRelease
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[fe]"></a>osRtxThreadListPut</STRONG> (Thumb, 118 bytes, Stack size 32 bytes, rtx_thread.o(.text.osRtxThreadListPut))
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadReadyPut
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListSort
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexAcquire
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[f4]"></a>osRtxThreadListRemove</STRONG> (Thumb, 50 bytes, Stack size 4 bytes, rtx_thread.o(.text.osRtxThreadListRemove))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxThreadListRemove
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDispatch
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTick_Handler
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListSort
+</UL>
+
+<P><STRONG><a name="[d9]"></a>osRtxThreadListSort</STRONG> (Thumb, 88 bytes, Stack size 24 bytes, rtx_thread.o(.text.osRtxThreadListSort))
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = osRtxThreadListSort &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListPut
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListRemove
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexOwnerRestore
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexOwnerUnlock
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexAcquire
+</UL>
+
+<P><STRONG><a name="[f5]"></a>osRtxThreadReadyPut</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, rtx_thread.o(.text.osRtxThreadReadyPut))
+<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = osRtxThreadReadyPut &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListPut
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDispatch
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitExit
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTick_Handler
+</UL>
+
+<P><STRONG><a name="[ce]"></a>osRtxThreadRegPtr</STRONG> (Thumb, 34 bytes, Stack size 24 bytes, rtx_thread.o(.text.osRtxThreadRegPtr))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = osRtxThreadRegPtr &rArr; StackOffsetR0
+</UL>
+<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StackOffsetR0
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueuePostProcess
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitExit
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[5a]"></a>osRtxThreadStackCheck</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, rtx_thread.o(.text.osRtxThreadStackCheck))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = osRtxThreadStackCheck
+</UL>
+<BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SVC_Handler
+<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadExit
+</UL>
+
+<P><STRONG><a name="[101]"></a>osRtxThreadStartup</STRONG> (Thumb, 150 bytes, Stack size 24 bytes, rtx_thread.o(.text.osRtxThreadStartup))
+<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = osRtxThreadStartup &rArr; svcRtxThreadNew &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadId
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadNew
+</UL>
+<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelStart
+</UL>
+
+<P><STRONG><a name="[fb]"></a>osRtxThreadSwitch</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, rtx_thread.o(.text.osRtxThreadSwitch))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = osRtxThreadSwitch &rArr; SetPrivileged
+</UL>
+<BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadSwitched
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetPrivileged
+</UL>
+<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelStart
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDispatch
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitEnter
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTick_Handler
+<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadExit
+</UL>
+
+<P><STRONG><a name="[105]"></a>osRtxThreadWaitEnter</STRONG> (Thumb, 118 bytes, Stack size 24 bytes, rtx_thread.o(.text.osRtxThreadWaitEnter))
+<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = osRtxThreadWaitEnter &rArr; osRtxThreadSwitch &rArr; SetPrivileged
+</UL>
+<BR>[Calls]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadSwitch
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadBlocked
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListGet
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayInsert
+<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadGetRunning
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxKernelGetState
+</UL>
+<BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxDelay
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexAcquire
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[cd]"></a>osRtxThreadWaitExit</STRONG> (Thumb, 70 bytes, Stack size 24 bytes, rtx_thread.o(.text.osRtxThreadWaitExit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = osRtxThreadWaitExit &rArr; osRtxThreadDispatch &rArr; osRtxThreadReadyPut &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadUnblocked
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDispatch
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayRemove
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadReadyPut
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadRegPtr
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueuePostProcess
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadJoinWakeup
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadPostProcess
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexOwnerRelease
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexOwnerUnlock
+<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexRelease
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[5d]"></a>osRtxTick_Handler</STRONG> (Thumb, 272 bytes, Stack size 24 bytes, rtx_system.o(.text.osRtxTick_Handler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = osRtxTick_Handler &rArr; osRtxThreadDelayTick &rArr; osRtxMutexOwnerRestore &rArr; osRtxThreadListSort &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadSwitch
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadPreempted
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDispatch
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListRemove
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadReadyPut
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_Tick_AcknowledgeIRQ
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxKernelGetState
+</UL>
+<BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
+</UL>
+
+<P><STRONG><a name="[42]"></a>osRtxTimerSetup</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, rtx_timer.o(.text.osRtxTimerSetup))
+<BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
+<LI>Call Chain = osRtxTimerSetup &rArr; osRtxMessageQueueTimerSetup &rArr; svcRtxMessageQueueNew &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueueTimerSetup
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_lib.o(.rodata)
+</UL>
+<P><STRONG><a name="[41]"></a>osRtxTimerThread</STRONG> (Thumb, 50 bytes, Stack size 24 bytes, rtx_timer.o(.text.osRtxTimerThread))
+<BR><BR>[Stack]<UL><LI>Max Depth = 212<LI>Call Chain = osRtxTimerThread &rArr; osMessageQueueGet &rArr; isrRtxMessageQueueGet &rArr; osRtxPostProcess &rArr; isr_queue_put &rArr; atomic_inc16_lt
+</UL>
+<BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxTimerCallback
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMessageQueueGet
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_lib.o(.rodata)
+</UL>
+<P><STRONG><a name="[110]"></a>osThreadExit</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, rtx_thread.o(.text.osThreadExit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = osThreadExit &rArr; EvrRtxThreadError
+</UL>
+<BR>[Calls]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadExit
+<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadError
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadEntry
+</UL>
+
+<P><STRONG><a name="[9c]"></a>osThreadNew</STRONG> (Thumb, 114 bytes, Stack size 56 bytes, rtx_thread.o(.text.osThreadNew))
+<BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = osThreadNew &rArr; EvrRtxThreadNew
+</UL>
+<BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadNew
+<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadError
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsIrqMasked
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsException
+</UL>
+<BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[2f]"></a>thread_motor</STRONG> (Thumb, 204 bytes, Stack size 24 bytes, main.o(.text.thread_motor))
+<BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = thread_motor &rArr; osDelay &rArr; IsIrqMasked
+</UL>
+<BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Joystick_GetState
+<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Buttons_GetState
+<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Action
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> main.o(.text.main)
+</UL><P>
+<H3>
+Local Symbols
+</H3>
+<P><STRONG><a name="[6d]"></a>__NVIC_SetPriority</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, main.o(.text.__NVIC_SetPriority))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __NVIC_SetPriority
+</UL>
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Servo_Timer
+</UL>
+
+<P><STRONG><a name="[6e]"></a>__NVIC_EnableIRQ</STRONG> (Thumb, 48 bytes, Stack size 4 bytes, main.o(.text.__NVIC_EnableIRQ))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = __NVIC_EnableIRQ
+</UL>
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Servo_Timer
+</UL>
+
+<P><STRONG><a name="[a0]"></a>IsException</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, rtx_delay.o(.text.IsException))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = IsException
+</UL>
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
+</UL>
+
+<P><STRONG><a name="[a1]"></a>IsIrqMasked</STRONG> (Thumb, 46 bytes, Stack size 12 bytes, rtx_delay.o(.text.IsIrqMasked))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = IsIrqMasked
+</UL>
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
+</UL>
+
+<P><STRONG><a name="[30]"></a>svcRtxDelay</STRONG> (Thumb, 80 bytes, Stack size 32 bytes, rtx_delay.o(.text.svcRtxDelay))
+<BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = svcRtxDelay &rArr; osRtxThreadWaitEnter &rArr; osRtxThreadSwitch &rArr; SetPrivileged
+</UL>
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxDelayStarted
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitEnter
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxDelayError
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_delay.o(.text.osDelay)
+</UL>
+<P><STRONG><a name="[a4]"></a>IsException</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, rtx_kernel.o(.text.IsException))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = IsException
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetState
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelStart
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelInitialize
+</UL>
+
+<P><STRONG><a name="[a5]"></a>IsIrqMasked</STRONG> (Thumb, 46 bytes, Stack size 12 bytes, rtx_kernel.o(.text.IsIrqMasked))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = IsIrqMasked
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetState
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelStart
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelInitialize
+</UL>
+
+<P><STRONG><a name="[32]"></a>svcRtxKernelInitialize</STRONG> (Thumb, 772 bytes, Stack size 56 bytes, rtx_kernel.o(.text.svcRtxKernelInitialize))
+<BR><BR>[Stack]<UL><LI>Max Depth = 112 + Unknown Stack Size
+<LI>Call Chain = svcRtxKernelInitialize &rArr; osRtxMemoryPoolInit &rArr; EvrRtxMemoryBlockInit
+</UL>
+<BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolInit
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryInit
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxKernelInitialized
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxKernelError
+<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_kernel.o(.text.osKernelInitialize)
+</UL>
+<P><STRONG><a name="[a6]"></a>IsPrivileged</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, rtx_kernel.o(.text.IsPrivileged), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = IsPrivileged
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetState
+</UL>
+
+<P><STRONG><a name="[31]"></a>svcRtxKernelGetState</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, rtx_kernel.o(.text.svcRtxKernelGetState))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = svcRtxKernelGetState &rArr; EvrRtxKernelGetState
+</UL>
+<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxKernelState
+<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxKernelGetState
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetState
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_kernel.o(.text.osKernelGetState)
+</UL>
+<P><STRONG><a name="[117]"></a>osRtxKernelState</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, rtx_kernel.o(.text.osRtxKernelState))
+<BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelGetState
+</UL>
+
+<P><STRONG><a name="[33]"></a>svcRtxKernelStart</STRONG> (Thumb, 164 bytes, Stack size 32 bytes, rtx_kernel.o(.text.svcRtxKernelStart))
+<BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = svcRtxKernelStart &rArr; osRtxThreadStartup &rArr; svcRtxThreadNew &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadSwitch
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_Tick_Enable
+<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_Tick_GetIRQn
+<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_Tick_Setup
+<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadStartup
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SVC_Setup
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxKernelStarted
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxKernelError
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListGet
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_kernel.o(.text.osKernelStart)
+</UL>
+<P><STRONG><a name="[7b]"></a>SVC_Setup</STRONG> (Thumb, 80 bytes, Stack size 24 bytes, rtx_kernel.o(.text.SVC_Setup))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = SVC_Setup
+</UL>
+<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_GetPriorityGrouping
+</UL>
+<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxKernelStart
+</UL>
+
+<P><STRONG><a name="[7c]"></a>__NVIC_GetPriorityGrouping</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, rtx_kernel.o(.text.__NVIC_GetPriorityGrouping))
+<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SVC_Setup
+</UL>
+
+<P><STRONG><a name="[82]"></a>os_kernel_is_active</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, rtx_lib.o(.text.os_kernel_is_active), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState &rArr; EvrRtxKernelGetState
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetState
+</UL>
+<BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+</UL>
+
+<P><STRONG><a name="[e3]"></a>user_perthread_libspace_free</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, rtx_lib.o(.text.user_perthread_libspace_free))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = user_perthread_libspace_free
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadBeforeFree
+</UL>
+
+<P><STRONG><a name="[bd]"></a>MemHeadPtr</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, rtx_memory.o(.text.MemHeadPtr))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = MemHeadPtr
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryInit
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryFree
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryAlloc
+</UL>
+
+<P><STRONG><a name="[bc]"></a>MemBlockPtr</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, rtx_memory.o(.text.MemBlockPtr))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = MemBlockPtr
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryInit
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryFree
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryAlloc
+</UL>
+
+<P><STRONG><a name="[c3]"></a>atomic_link_get</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, rtx_mempool.o(.text.atomic_link_get))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = atomic_link_get
+</UL>
+<BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolAlloc
+</UL>
+
+<P><STRONG><a name="[c4]"></a>atomic_inc32</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, rtx_mempool.o(.text.atomic_inc32))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = atomic_inc32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolAlloc
+</UL>
+
+<P><STRONG><a name="[c7]"></a>atomic_link_put</STRONG> (Thumb, 48 bytes, Stack size 28 bytes, rtx_mempool.o(.text.atomic_link_put))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = atomic_link_put
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolFree
+</UL>
+
+<P><STRONG><a name="[c8]"></a>atomic_dec32</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, rtx_mempool.o(.text.atomic_dec32))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = atomic_dec32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolFree
+</UL>
+
+<P><STRONG><a name="[d1]"></a>svcRtxMessageQueueNew</STRONG> (Thumb, 656 bytes, Stack size 88 bytes, rtx_msgqueue.o(.text.svcRtxMessageQueueNew))
+<BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
+<LI>Call Chain = svcRtxMessageQueueNew &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsMessageQueuePtrValid
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolInit
+<LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueCreated
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueError
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryFree
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolFree
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryAlloc
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolAlloc
+<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueueTimerSetup
+</UL>
+
+<P><STRONG><a name="[89]"></a>osRtxMessageQueueId</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, rtx_msgqueue.o(.text.osRtxMessageQueueId))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxMessageQueueId
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueueTimerSetup
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueueGet
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[8a]"></a>IsMessageQueuePtrValid</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, rtx_msgqueue.o(.text.IsMessageQueuePtrValid))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = IsMessageQueuePtrValid
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueNew
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueueGet
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[3e]"></a>osRtxMessageQueuePostProcess</STRONG> (Thumb, 324 bytes, Stack size 40 bytes, rtx_msgqueue.o(.text.osRtxMessageQueuePostProcess))
+<BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = osRtxMessageQueuePostProcess &rArr; osRtxThreadWaitExit &rArr; osRtxThreadDispatch &rArr; osRtxThreadReadyPut &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueRetrieved
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueInserted
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolFree
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListGet
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitExit
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolAlloc
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadRegPtr
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MessageQueuePut
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MessageQueueRemove
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxObject
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_msgqueue.o(.text.svcRtxMessageQueueNew)
+</UL>
+<P><STRONG><a name="[ad]"></a>IsException</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, rtx_msgqueue.o(.text.IsException))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = IsException
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMessageQueueGet
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[ae]"></a>IsIrqMasked</STRONG> (Thumb, 46 bytes, Stack size 12 bytes, rtx_msgqueue.o(.text.IsIrqMasked))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = IsIrqMasked
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMessageQueueGet
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[91]"></a>isrRtxMessageQueuePut</STRONG> (Thumb, 188 bytes, Stack size 48 bytes, rtx_msgqueue.o(.text.isrRtxMessageQueuePut))
+<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = isrRtxMessageQueuePut &rArr; osRtxPostProcess &rArr; isr_queue_put &rArr; atomic_inc16_lt
+</UL>
+<BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsMessageQueuePtrValid
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueueId
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueNotInserted
+<LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueInsertPending
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueError
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolAlloc
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxPostProcess
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[35]"></a>svcRtxMessageQueuePut</STRONG> (Thumb, 348 bytes, Stack size 64 bytes, rtx_msgqueue.o(.text.svcRtxMessageQueuePut))
+<BR><BR>[Stack]<UL><LI>Max Depth = 164<LI>Call Chain = svcRtxMessageQueuePut &rArr; osRtxThreadWaitExit &rArr; osRtxThreadDispatch &rArr; osRtxThreadReadyPut &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsMessageQueuePtrValid
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueueId
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueRetrieved
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueNotInserted
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueInserted
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueuePutTimeout
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueuePutPending
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueError
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListGet
+<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListPut
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitExit
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolAlloc
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitEnter
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadRegPtr
+<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadGetRunning
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MessageQueuePut
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxObject
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_msgqueue.o(.text.osMessageQueuePut)
+</UL>
+<P><STRONG><a name="[8d]"></a>osRtxObject</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, rtx_msgqueue.o(.text.osRtxObject))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueuePostProcess
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueueGet
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[88]"></a>isrRtxMessageQueueGet</STRONG> (Thumb, 172 bytes, Stack size 48 bytes, rtx_msgqueue.o(.text.isrRtxMessageQueueGet))
+<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = isrRtxMessageQueueGet &rArr; osRtxPostProcess &rArr; isr_queue_put &rArr; atomic_inc16_lt
+</UL>
+<BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsMessageQueuePtrValid
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueueId
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueNotRetrieved
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueRetrieved
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueError
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxPostProcess
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MessageQueueGet
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMessageQueueGet
+</UL>
+
+<P><STRONG><a name="[34]"></a>svcRtxMessageQueueGet</STRONG> (Thumb, 360 bytes, Stack size 64 bytes, rtx_msgqueue.o(.text.svcRtxMessageQueueGet))
+<BR><BR>[Stack]<UL><LI>Max Depth = 164<LI>Call Chain = svcRtxMessageQueueGet &rArr; osRtxThreadWaitExit &rArr; osRtxThreadDispatch &rArr; osRtxThreadReadyPut &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsMessageQueuePtrValid
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueueId
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueNotRetrieved
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueRetrieved
+<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueGetTimeout
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueGetPending
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueInserted
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMessageQueueError
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolFree
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListGet
+<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListPut
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitExit
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolAlloc
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitEnter
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadRegPtr
+<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadGetRunning
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MessageQueuePut
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MessageQueueRemove
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MessageQueueGet
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxObject
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_msgqueue.o(.text.osMessageQueueGet)
+</UL>
+<P><STRONG><a name="[73]"></a>MessageQueueGet</STRONG> (Thumb, 82 bytes, Stack size 24 bytes, rtx_msgqueue.o(.text.MessageQueueGet))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = MessageQueueGet &rArr; atomic_wr8
+</UL>
+<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_wr8
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_dec32_nz
+</UL>
+<BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrRtxMessageQueueGet
+</UL>
+
+<P><STRONG><a name="[cb]"></a>MessageQueueRemove</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, rtx_msgqueue.o(.text.MessageQueueRemove))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = MessageQueueRemove
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueuePostProcess
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+</UL>
+
+<P><STRONG><a name="[76]"></a>MessageQueuePut</STRONG> (Thumb, 172 bytes, Stack size 32 bytes, rtx_msgqueue.o(.text.MessageQueuePut))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = MessageQueuePut &rArr; atomic_inc32
+</UL>
+<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_inc32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMessageQueuePostProcess
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[77]"></a>atomic_inc32</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, rtx_msgqueue.o(.text.atomic_inc32))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = atomic_inc32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MessageQueuePut
+</UL>
+
+<P><STRONG><a name="[120]"></a>osRtxThreadGetRunning</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, rtx_msgqueue.o(.text.osRtxThreadGetRunning))
+<BR><BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueueGet
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMessageQueuePut
+</UL>
+
+<P><STRONG><a name="[74]"></a>atomic_dec32_nz</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, rtx_msgqueue.o(.text.atomic_dec32_nz))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = atomic_dec32_nz
+</UL>
+<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MessageQueueGet
+</UL>
+
+<P><STRONG><a name="[75]"></a>atomic_wr8</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, rtx_msgqueue.o(.text.atomic_wr8))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = atomic_wr8
+</UL>
+<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MessageQueueGet
+</UL>
+
+<P><STRONG><a name="[d6]"></a>osRtxObject</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, rtx_mutex.o(.text.osRtxObject))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexOwnerRelease
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexOwnerUnlock
+<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexRelease
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexAcquire
+</UL>
+
+<P><STRONG><a name="[b2]"></a>IsException</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, rtx_mutex.o(.text.IsException), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = IsException
+</UL>
+<BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexDelete
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexRelease
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexAcquire
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexNew
+</UL>
+
+<P><STRONG><a name="[b3]"></a>IsIrqMasked</STRONG> (Thumb, 46 bytes, Stack size 12 bytes, rtx_mutex.o(.text.IsIrqMasked), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = IsIrqMasked
+</UL>
+<BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexDelete
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexRelease
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexAcquire
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexNew
+</UL>
+
+<P><STRONG><a name="[38]"></a>svcRtxMutexNew</STRONG> (Thumb, 322 bytes, Stack size 48 bytes, rtx_mutex.o(.text.svcRtxMutexNew))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = svcRtxMutexNew &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexCreated
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexError
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryAlloc
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolAlloc
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsMutexPtrValid
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_mutex.o(.text.osMutexNew)
+</UL>
+<P><STRONG><a name="[124]"></a>osRtxMutexId</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, rtx_mutex.o(.text.osRtxMutexId))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxMutexId
+</UL>
+<BR>[Called By]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexDelete
+<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexRelease
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexAcquire
+</UL>
+
+<P><STRONG><a name="[126]"></a>IsMutexPtrValid</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, rtx_mutex.o(.text.IsMutexPtrValid))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = IsMutexPtrValid
+</UL>
+<BR>[Called By]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexDelete
+<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexRelease
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexAcquire
+<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexNew
+</UL>
+
+<P><STRONG><a name="[36]"></a>svcRtxMutexAcquire</STRONG> (Thumb, 374 bytes, Stack size 40 bytes, rtx_mutex.o(.text.svcRtxMutexAcquire))
+<BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = svcRtxMutexAcquire &rArr; osRtxThreadListSort &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexNotAcquired
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexAcquired
+<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexAcquireTimeout
+<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexAcquirePending
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexError
+<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListPut
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitEnter
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListSort
+<LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadGetRunning
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsMutexPtrValid
+<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexId
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxObject
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_mutex.o(.text.osMutexAcquire)
+</UL>
+<P><STRONG><a name="[39]"></a>svcRtxMutexRelease</STRONG> (Thumb, 416 bytes, Stack size 40 bytes, rtx_mutex.o(.text.svcRtxMutexRelease))
+<BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = svcRtxMutexRelease &rArr; osRtxThreadWaitExit &rArr; osRtxThreadDispatch &rArr; osRtxThreadReadyPut &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexReleased
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexAcquired
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexError
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListGet
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDispatch
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitExit
+<LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadGetRunning
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsMutexPtrValid
+<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexId
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxObject
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_mutex.o(.text.osMutexRelease)
+</UL>
+<P><STRONG><a name="[37]"></a>svcRtxMutexDelete</STRONG> (Thumb, 88 bytes, Stack size 24 bytes, rtx_mutex.o(.text.svcRtxMutexDelete))
+<BR><BR>[Stack]<UL><LI>Max Depth = 156<LI>Call Chain = svcRtxMutexDelete &rArr; osRtxMutexOwnerUnlock &rArr; osRtxThreadWaitExit &rArr; osRtxThreadDispatch &rArr; osRtxThreadReadyPut &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexError
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDispatch
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexDestroy
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexOwnerUnlock
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsMutexPtrValid
+<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexId
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_mutex.o(.text.osMutexDelete)
+</UL>
+<P><STRONG><a name="[125]"></a>osRtxThreadGetRunning</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, rtx_mutex.o(.text.osRtxThreadGetRunning))
+<BR><BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexRelease
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexAcquire
+</UL>
+
+<P><STRONG><a name="[da]"></a>osRtxMutexOwnerUnlock</STRONG> (Thumb, 252 bytes, Stack size 32 bytes, rtx_mutex.o(.text.osRtxMutexOwnerUnlock))
+<BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = osRtxMutexOwnerUnlock &rArr; osRtxThreadWaitExit &rArr; osRtxThreadDispatch &rArr; osRtxThreadReadyPut &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListGet
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitExit
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListSort
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexDelete
+</UL>
+
+<P><STRONG><a name="[d2]"></a>osRtxMutexDestroy</STRONG> (Thumb, 90 bytes, Stack size 16 bytes, rtx_mutex.o(.text.osRtxMutexDestroy))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = osRtxMutexDestroy &rArr; osRtxMemoryFree &rArr; MemBlockPtr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxMutexDestroyed
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryFree
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolFree
+</UL>
+<BR>[Called By]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxMutexDelete
+</UL>
+
+<P><STRONG><a name="[10a]"></a>osRtxKernelGetState</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, rtx_system.o(.text.osRtxKernelGetState))
+<BR><BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTick_Handler
+</UL>
+
+<P><STRONG><a name="[95]"></a>isr_queue_get</STRONG> (Thumb, 84 bytes, Stack size 24 bytes, rtx_system.o(.text.isr_queue_get))
+<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = isr_queue_get &rArr; atomic_inc16_lim
+</UL>
+<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxObject
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_inc16_lim
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_dec16_nz
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxPendSV_Handler
+</UL>
+
+<P><STRONG><a name="[db]"></a>osRtxThreadObject</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, rtx_system.o(.text.osRtxThreadObject))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxThreadObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxPendSV_Handler
+</UL>
+
+<P><STRONG><a name="[dc]"></a>osRtxEventFlagsObject</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, rtx_system.o(.text.osRtxEventFlagsObject))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxEventFlagsObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxPendSV_Handler
+</UL>
+
+<P><STRONG><a name="[dd]"></a>osRtxSemaphoreObject</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, rtx_system.o(.text.osRtxSemaphoreObject))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxSemaphoreObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxPendSV_Handler
+</UL>
+
+<P><STRONG><a name="[de]"></a>osRtxMemoryPoolObject</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, rtx_system.o(.text.osRtxMemoryPoolObject))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxMemoryPoolObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxPendSV_Handler
+</UL>
+
+<P><STRONG><a name="[df]"></a>osRtxMessageObject</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, rtx_system.o(.text.osRtxMessageObject))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxMessageObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxPendSV_Handler
+</UL>
+
+<P><STRONG><a name="[96]"></a>atomic_dec16_nz</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, rtx_system.o(.text.atomic_dec16_nz))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = atomic_dec16_nz
+</UL>
+<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isr_queue_get
+</UL>
+
+<P><STRONG><a name="[97]"></a>atomic_inc16_lim</STRONG> (Thumb, 52 bytes, Stack size 28 bytes, rtx_system.o(.text.atomic_inc16_lim))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = atomic_inc16_lim
+</UL>
+<BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isr_queue_put
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isr_queue_get
+</UL>
+
+<P><STRONG><a name="[98]"></a>osRtxObject</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, rtx_system.o(.text.osRtxObject))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isr_queue_get
+</UL>
+
+<P><STRONG><a name="[99]"></a>isr_queue_put</STRONG> (Thumb, 94 bytes, Stack size 32 bytes, rtx_system.o(.text.isr_queue_put))
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = isr_queue_put &rArr; atomic_inc16_lt
+</UL>
+<BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_inc16_lt
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_inc16_lim
+</UL>
+<BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxPostProcess
+</UL>
+
+<P><STRONG><a name="[e1]"></a>SetPendSV</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, rtx_system.o(.text.SetPendSV))
+<BR><BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxPostProcess
+</UL>
+
+<P><STRONG><a name="[9a]"></a>atomic_inc16_lt</STRONG> (Thumb, 56 bytes, Stack size 28 bytes, rtx_system.o(.text.atomic_inc16_lt))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = atomic_inc16_lt
+</UL>
+<BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isr_queue_put
+</UL>
+
+<P><STRONG><a name="[e5]"></a>osRtxThreadObject</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, rtx_thread.o(.text.osRtxThreadObject))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxThreadObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListGet
+<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListPut
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadBlock
+</UL>
+
+<P><STRONG><a name="[ec]"></a>osRtxObject</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, rtx_thread.o(.text.osRtxObject))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListSort
+</UL>
+
+<P><STRONG><a name="[ea]"></a>osRtxThreadListRoot</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, rtx_thread.o(.text.osRtxThreadListRoot))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = osRtxThreadListRoot
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+</UL>
+
+<P><STRONG><a name="[ed]"></a>osRtxMutexObject</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, rtx_thread.o(.text.osRtxMutexObject))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxMutexObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
+</UL>
+
+<P><STRONG><a name="[100]"></a>StackOffsetR0</STRONG> (Thumb, 12 bytes, Stack size 4 bytes, rtx_thread.o(.text.StackOffsetR0))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = StackOffsetR0
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadRegPtr
+</UL>
+
+<P><STRONG><a name="[103]"></a>SetPrivileged</STRONG> (Thumb, 52 bytes, Stack size 12 bytes, rtx_thread.o(.text.SetPrivileged))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SetPrivileged
+</UL>
+<BR>[Called By]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadSwitch
+</UL>
+
+<P><STRONG><a name="[f9]"></a>osRtxKernelGetState</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, rtx_thread.o(.text.osRtxKernelGetState))
+<BR><BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDispatch
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitEnter
+<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadExit
+</UL>
+
+<P><STRONG><a name="[fa]"></a>osRtxThreadGetRunning</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, rtx_thread.o(.text.osRtxThreadGetRunning))
+<BR><BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDispatch
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitEnter
+<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadExit
+</UL>
+
+<P><STRONG><a name="[e4]"></a>osRtxThreadBlock</STRONG> (Thumb, 136 bytes, Stack size 32 bytes, rtx_thread.o(.text.osRtxThreadBlock))
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = osRtxThreadBlock &rArr; EvrRtxThreadPreempted
+</UL>
+<BR>[Calls]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadPreempted
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadObject
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDispatch
+</UL>
+
+<P><STRONG><a name="[107]"></a>osRtxThreadDelayInsert</STRONG> (Thumb, 250 bytes, Stack size 20 bytes, rtx_thread.o(.text.osRtxThreadDelayInsert))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = osRtxThreadDelayInsert
+</UL>
+<BR>[Called By]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitEnter
+</UL>
+
+<P><STRONG><a name="[f7]"></a>osRtxThreadFree</STRONG> (Thumb, 162 bytes, Stack size 16 bytes, rtx_thread.o(.text.osRtxThreadFree))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = osRtxThreadFree &rArr; osRtxMemoryFree &rArr; MemBlockPtr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadBeforeFree
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryFree
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolFree
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDestroy
+</UL>
+
+<P><STRONG><a name="[3d]"></a>svcRtxThreadNew</STRONG> (Thumb, 1130 bytes, Stack size 96 bytes, rtx_thread.o(.text.svcRtxThreadNew))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = svcRtxThreadNew &rArr; osRtxMemoryAlloc &rArr; MemBlockPtr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadCreated
+<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadError
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryFree
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolFree
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDispatch
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryAlloc
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMemoryPoolAlloc
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xPSR_InitVal
+<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsThreadPtrValid
+</UL>
+<BR>[Called By]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadStartup
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_thread.o(.text.osThreadNew)
+</UL>
+<P><STRONG><a name="[102]"></a>osRtxThreadId</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, rtx_thread.o(.text.osRtxThreadId))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxThreadId
+</UL>
+<BR>[Called By]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadStartup
+</UL>
+
+<P><STRONG><a name="[12b]"></a>IsThreadPtrValid</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, rtx_thread.o(.text.IsThreadPtrValid))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = IsThreadPtrValid
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadNew
+</UL>
+
+<P><STRONG><a name="[3f]"></a>osThreadEntry</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, rtx_thread.o(.text.osThreadEntry))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = osThreadEntry &rArr; osThreadExit &rArr; EvrRtxThreadError
+</UL>
+<BR>[Calls]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadExit
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_thread.o(.text.svcRtxThreadNew)
+</UL>
+<P><STRONG><a name="[12c]"></a>xPSR_InitVal</STRONG> (Thumb, 18 bytes, Stack size 4 bytes, rtx_thread.o(.text.xPSR_InitVal))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = xPSR_InitVal
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadNew
+</UL>
+
+<P><STRONG><a name="[40]"></a>osRtxThreadPostProcess</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, rtx_thread.o(.text.osRtxThreadPostProcess))
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = osRtxThreadPostProcess &rArr; osRtxThreadWaitExit &rArr; osRtxThreadDispatch &rArr; osRtxThreadReadyPut &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxThreadFlagsWaitCompleted
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitExit
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThreadFlagsCheck
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_thread.o(.text.svcRtxThreadNew)
+</UL>
+<P><STRONG><a name="[114]"></a>IsException</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, rtx_thread.o(.text.IsException))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = IsException
+</UL>
+<BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadNew
+</UL>
+
+<P><STRONG><a name="[115]"></a>IsIrqMasked</STRONG> (Thumb, 46 bytes, Stack size 12 bytes, rtx_thread.o(.text.IsIrqMasked))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = IsIrqMasked
+</UL>
+<BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadNew
+</UL>
+
+<P><STRONG><a name="[3c]"></a>svcRtxThreadExit</STRONG> (Thumb, 132 bytes, Stack size 16 bytes, rtx_thread.o(.text.svcRtxThreadExit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = svcRtxThreadExit &rArr; osRtxMutexOwnerRelease &rArr; osRtxThreadWaitExit &rArr; osRtxThreadDispatch &rArr; osRtxThreadReadyPut &rArr; osRtxThreadListPut &rArr; osRtxThreadObject
+</UL>
+<BR>[Calls]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadSwitch
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadListGet
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxKernelErrorNotify
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadStackCheck
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDestroy
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadJoinWakeup
+<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadSetRunning
+<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadGetRunning
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxKernelGetState
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxMutexOwnerRelease
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_thread.o(.text.osThreadExit)
+</UL>
+<P><STRONG><a name="[7f]"></a>ThreadFlagsCheck</STRONG> (Thumb, 124 bytes, Stack size 24 bytes, rtx_thread.o(.text.ThreadFlagsCheck))
+<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = ThreadFlagsCheck &rArr; atomic_chk32_any
+</UL>
+<BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_chk32_any
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_chk32_all
+</UL>
+<BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadPostProcess
+</UL>
+
+<P><STRONG><a name="[80]"></a>atomic_chk32_all</STRONG> (Thumb, 56 bytes, Stack size 28 bytes, rtx_thread.o(.text.atomic_chk32_all))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = atomic_chk32_all
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThreadFlagsCheck
+</UL>
+
+<P><STRONG><a name="[81]"></a>atomic_chk32_any</STRONG> (Thumb, 52 bytes, Stack size 28 bytes, rtx_thread.o(.text.atomic_chk32_any))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = atomic_chk32_any
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThreadFlagsCheck
+</UL>
+
+<P><STRONG><a name="[12a]"></a>osRtxThreadSetRunning</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, rtx_thread.o(.text.osRtxThreadSetRunning))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxThreadSetRunning
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcRtxThreadExit
+</UL>
+
+<P><STRONG><a name="[3b]"></a>osRtxTimerTick</STRONG> (Thumb, 220 bytes, Stack size 32 bytes, rtx_timer.o(.text.osRtxTimerTick))
+<BR><BR>[Stack]<UL><LI>Max Depth = 220<LI>Call Chain = osRtxTimerTick &rArr; osMessageQueuePut &rArr; isrRtxMessageQueuePut &rArr; osRtxPostProcess &rArr; isr_queue_put &rArr; atomic_inc16_lt
+</UL>
+<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxKernelErrorNotify
+<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerInsert
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadSetRunning
+<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerUnlink
+<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadGetRunning
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMessageQueuePut
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> rtx_timer.o(.text.osRtxTimerSetup)
+</UL>
+<P><STRONG><a name="[10c]"></a>osRtxThreadGetRunning</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, rtx_timer.o(.text.osRtxThreadGetRunning))
+<BR><BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTimerTick
+</UL>
+
+<P><STRONG><a name="[10d]"></a>TimerUnlink</STRONG> (Thumb, 40 bytes, Stack size 4 bytes, rtx_timer.o(.text.TimerUnlink))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = TimerUnlink
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTimerTick
+</UL>
+
+<P><STRONG><a name="[10e]"></a>osRtxThreadSetRunning</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, rtx_timer.o(.text.osRtxThreadSetRunning))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxThreadSetRunning
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTimerTick
+</UL>
+
+<P><STRONG><a name="[10f]"></a>TimerInsert</STRONG> (Thumb, 158 bytes, Stack size 20 bytes, rtx_timer.o(.text.TimerInsert))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = TimerInsert
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTimerTick
+</UL>
+
+<P><STRONG><a name="[7a]"></a>SSPx_IRQHandler</STRONG> (Thumb, 376 bytes, Stack size 24 bytes, ssp_lpc17xx.o(.text.SSPx_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = SSPx_IRQHandler
+</UL>
+<BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSP1_IRQHandler
+</UL>
+
+<P><STRONG><a name="[6b]"></a>Clear_Channel_active_flag</STRONG> (Thumb, 46 bytes, Stack size 4 bytes, gpdma_lpc17xx.o(.text.Clear_Channel_active_flag))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = Clear_Channel_active_flag
+</UL>
+<BR>[Called By]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_IRQHandler
+</UL>
+<P>
+<H3>
+Undefined Global Symbols
+</H3><HR></body></html>
