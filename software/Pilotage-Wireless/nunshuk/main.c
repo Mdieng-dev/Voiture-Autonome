@@ -137,7 +137,8 @@ void tache2(void *arg) {
                 if (r.z) {
                     GLCD_SetForegroundColor(GLCD_COLOR_RED);
                     GLCD_DrawString(10, 180, "Z APPUYE "); 
-                } else {
+                } 
+								else {
                     GLCD_DrawString(10, 180, "         "); // Remplace par du vide
                 }
                 last_z = r.z;
@@ -148,7 +149,8 @@ void tache2(void *arg) {
                 if (r.c) {
                     GLCD_SetForegroundColor(GLCD_COLOR_RED);
                     GLCD_DrawString(10, 210, "C APPUYE "); 
-                } else {
+                } 
+								else {
                     GLCD_DrawString(10, 210, "         "); 
                 }
                 last_c = r.c;
@@ -162,7 +164,7 @@ void tache2(void *arg) {
 // main
 int main(void) {
     SystemInit();
-    SystemCoreClockUpdate();
+    
 
     // Allume et configure l'écran
     GLCD_Initialize();
