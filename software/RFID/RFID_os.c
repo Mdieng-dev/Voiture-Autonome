@@ -3,14 +3,14 @@
 #include "string.h"
 #include "cmsis_os2.h"
 
-extern ARM_DRIVER_USART Driver_USART2;
+extern ARM_DRIVER_USART Driver_USART3;
 
 // ==========================================================
 // VARIABLES GLOBALES
 // ==========================================================
 // La liste blanche (stockée en mémoire Flash)
 const uint8_t badge1[14] = {0x02 ,0x30 ,0x38 ,0x30 ,0x30 ,0x38 ,0x43 ,0x32 ,0x33 ,0x45 ,0x39 ,0x34 ,0x45 ,0x03}; 
-
+const uint8_t badge2[14] = {0x02 ,0x30 ,0x38 ,0x30 ,0x30 ,0x38 ,0x43 ,0x32 ,0x33 ,0x45 ,0x39 ,0x34 ,0x45 ,0x03}; 
 // L'identifiant de la file de messages
 osMessageQueueId_t badgeQueue;
 
@@ -35,24 +35,24 @@ void Init_GPIO_LEDs(void) {
 void Thread_UART(void *argument) {
     uint8_t tab_local[15]; 
     
-    //Initialisation de l'USART2
-    Driver_USART2.Initialize(NULL); 
-    Driver_USART2.PowerControl(ARM_POWER_FULL); 
-    Driver_USART2.Control(ARM_USART_MODE_ASYNCHRONOUS | 
+    //Initialisation de l'USART3
+    Driver_USART3.Initialize(NULL); 
+    Driver_USART3.PowerControl(ARM_POWER_FULL); 
+    Driver_USART3.Control(ARM_USART_MODE_ASYNCHRONOUS | 
                           ARM_USART_DATA_BITS_8 | 
                           ARM_USART_STOP_BITS_1 | 
                           ARM_USART_PARITY_NONE | 
                           ARM_USART_FLOW_CONTROL_NONE, 9600);
-    Driver_USART2.Control(ARM_USART_CONTROL_TX, 1); 
-    Driver_USART2.Control(ARM_USART_CONTROL_RX, 1); 
+    Driver_USART3.Control(ARM_USART_CONTROL_TX, 1); 
+    Driver_USART3.Control(ARM_USART_CONTROL_RX, 1); 
 
     while (1) {
         memset(tab_local, 0, sizeof(tab_local)); // "Nettoyage" du buffer
-        Driver_USART2.Control(ARM_USART_ABORT_RECEIVE, 0);
+        Driver_USART3.Control(ARM_USART_ABORT_RECEIVE, 0);
 
         //lecture de 14 octets
-        Driver_USART2.Receive(tab_local, 14);
-        while(Driver_USART2.GetStatus().rx_busy == 1) {
+        Driver_USART3.Receive(tab_local, 14);
+        while(Driver_USART3.GetStatus().rx_busy == 1) {
             osDelay(10); 
         }
 
