@@ -1,0 +1,424 @@
+#include "Driver_USART.h"                // CMSIS Driver:USART
+#include "LPC17xx.h"                    // Device header
+#include "RTE_Components.h"
+#include  CMSIS_device_header
+#include "cmsis_os2.h"
+#include "GLCD_Config.h"                // Board Support:Graphic LCD
+#include "GLCD_Fonts.h"                 // Board Support:Graphic LCD
+#include "Board_GLCD.h"                 // Board Support:Graphic LCD
+#include "Driver_SPI.h"
+#include "stdio.h"
+#include "Board_ADC.h"                  // Board Support:A/D Converter
+#include "Driver_CAN.h"                 // CMSIS Driver:CAN
+#include <math.h>
+
+#define PI 3.14159265f
+#define CENTRE_X 160
+#define CENTRE_Y 120  
+#define ECHELLE 0.6     // car (120 pixels/200cm = 0.6)
+#define DISTANCE_MIN_CM   1 // Distance minimale valide en cm
+#define DISTANCE_MAX_CM   200  // Portée max LiDAR
+#define DISTANCE_AFFICHAGE_CM 100 // N'affiche que ce qui est à moins d'1m
+
+
+
+osThreadId_t ID_Tache1,ID_Tache2,ID_tache_recup,ID_tache_traitement,ID_tache_fonction,ID_tache_vitesse,ID_tache_2D,ID_tache_alerte;
+osMutexId_t ID_mut_GLCD;
+osMessageQueueId_t ID_BAL_LCD,ID_BAL_2D,ID_BAL_ALERTE;
+
+uint8_t lidar_buffer0[7];// Taille du buffer sur 7 octets de réponse de confirmation du mode "Flux continu" (Voir S.P.D page 5,e)
+uint8_t lidar_buffer1[5]; // Tableau du buffer sur 5 octets (Voir S.P.D page 5,e)
+int packet_count = 0;
+
+float distance = 0.0f; // On stocke la distance ici
+float angle = 0.0f;    // On stocke l'angle ici
+uint8_t qualite = 0;   // On stocke la qualité ici (fiabilité du signal renvoyée par le LiDAR)
+
+extern ARM_DRIVER_USART Driver_USART1; 
+extern GLCD_FONT GLCD_Font_6x8;
+extern GLCD_FONT GLCD_Font_16x24;
+extern ARM_DRIVER_CAN Driver_CAN1;
+
+	typedef struct {
+			float M_distance;
+			float M_angle;
+			float M_qualite;
+	} MaLettre;
+
+	
+//Fonction d'interruption utilisée, pour activer la tâche de traitement dès qu'on reçoit un octet
+void myUART_Callback(uint32_t event) 
+{
+    if (event & ARM_USART_EVENT_RECEIVE_COMPLETE) 
+    {
+			osThreadFlagsSet(ID_tache_traitement,2); //Mise à 1 du flag n°1 de la tâche traitement
+		}
+}
+	
+void tache_traitement(void const*argument) // Acquisition Données LiDAR
+{
+			(void)argument;
+			
+			MaLettre msgE;
+			
+				while(1)
+				{
+				
+				osThreadFlagsWait(2, osFlagsWaitAny, osWaitForever);// Attente mise à 1 Flag n°1
+				
+				//Détail sur position lidar_buffer1 page 16 	
+				
+        // Calcul de la distance par rapport au centre du LiDAR avec lidar_buffer1.
+        uint16_t distance_brute = (lidar_buffer1[4] << 8) | lidar_buffer1[3]; // Découpage car l'UART ne peut envoyer que 8 bits à la fois
+        distance = ((float)distance_brute / 40.0f); // Division par 40 pour obtenir des cm (Voir S.P.D page 5,g)
+
+        // Calcul de l'angle par rapport au centre avec lidar_buffer1
+        uint16_t angle_brut = (lidar_buffer1[2] << 8) | lidar_buffer1[1]; // Découpage car l'UART ne peut envoyer que 8 bits à la fois
+        angle = (float)(angle_brut >> 1) / 64.0f;// Décalage (Voir S.P.D page 5,e) + Division par 64 pour obtenir des degrés (Voir S.P.D page 5,g)			
+			
+        // Extraction de la qualité
+        uint16_t qualite_brute = (lidar_buffer1[0] >> 2);
+				qualite = ((float)qualite_brute*100.0f ) / 63.0f; // On décale car les deux premiers bits de cet octet sont des signaux de synchronisation (A ignorer) ((Voir S.P.D page 5,e)					
+				
+				// Relance de la réception sur le buffer des mesures (5 octets)
+        Driver_USART1.Receive(lidar_buffer1, 5);	
+		
+				msgE.M_distance = distance;
+				msgE.M_angle = angle;
+				msgE.M_qualite = qualite;	
+				
+				osMessageQueuePut(ID_BAL_LCD, &msgE, 0, 0);
+				osMessageQueuePut(ID_BAL_2D, &msgE, 0, 0);
+				if (distance_brute != 0 && distance > 0.5f)
+					{
+							osMessageQueuePut(ID_BAL_ALERTE, &msgE, 0, 0);
+					}
+				}
+		}
+
+
+void tache_recup (void const*argument) // Tache récupération & Affichage LCD 
+{
+			(void)argument;
+			
+  MaLettre msgR;
+	float d;
+	float a;
+	float q;
+	char tab[30];
+	
+	int seuil = 10;
+	osStatus_t status;
+	
+				while(1)
+				{			
+				status = osMessageQueueGet(ID_BAL_LCD, &msgR, NULL, osWaitForever); // attente mail
+             if (status == osOK) 
+               {
+									 osMutexAcquire(ID_mut_GLCD, osWaitForever);				
+									 GLCD_DrawString(0,0,"Valeurs recuperees !:"); 
+									 osMutexRelease(ID_mut_GLCD); 
+									 
+										d = msgR.M_distance;
+									  a = msgR.M_angle;
+										q = msgR.M_qualite;
+						
+									 if ((d < seuil))
+									 {
+									 osMutexAcquire(ID_mut_GLCD, osWaitForever);				 
+									 GLCD_DrawString(0,72,"Obstacle proche !:"); 							 
+									 sprintf(tab,"distance : %.2f cm",d);
+									 GLCD_DrawString(0,96,tab);
+										 
+									 osMutexRelease(ID_mut_GLCD); 
+									 }
+									 
+									 else 
+									 {
+									 
+									 }
+
+							}
+		}
+	}
+
+void tache_vitesse (void const*argument) // Variation vitesse d'acquisition
+{
+		(void)argument;
+		
+		char etat23,etat25;
+		LPC_GPIO1 -> FIODIR2 &= 0x7F; //Mise en entrée de 1.23
+		LPC_GPIO1 -> FIODIR3 &= 0xFD; //Mise en entrée de 1.25
+
+	
+		while(1)
+		{
+		etat23 = LPC_GPIO1 -> FIOPIN2;
+		etat25 = LPC_GPIO1 -> FIOPIN3;
+		
+			if((etat23 & 0x80)==0x00)
+			{
+//				osMutexAcquire(ID_mut_GLCD, osWaitForever);
+//				GLCD_DrawString(0,24,"Vitesse +"); 
+//				osMutexRelease(ID_mut_GLCD); 
+				
+				if(LPC_PWM1->MR5 < 2400) 
+				{ // Sécurité pour ne pas dépasser MR0
+                LPC_PWM1->MR5 += 100;
+                LPC_PWM1->LER |= (1 << 5); // Applique le changement
+        }
+				osDelay(300);
+			}
+			
+			if((etat25 & 0x02)==0x00)
+			{
+//				osMutexAcquire(ID_mut_GLCD, osWaitForever);
+//				GLCD_DrawString(0,48,"Vitesse -"); 
+//				osMutexRelease(ID_mut_GLCD); 
+				
+				if(LPC_PWM1->MR5 > 500) 
+				{ // Sécurité pour baisser que si > 200, sinon calé
+                LPC_PWM1->MR5 -= 100;
+                LPC_PWM1->LER |= (1 << 5); // Applique le changement
+        }
+				osDelay(300);
+			}
+			
+
+		
+		}	
+}
+
+void tache_2D(void const* argument)
+{
+    (void)argument;
+    MaLettre msgR;
+    osStatus_t status;
+
+    float angle_rad_corrige;
+    float rayon_px;
+    int x_px, y_px;
+    float ancien_angle = -1.0f;  // Init à -1 pour forcer le premier dessin de croix
+		int nouveau_tour;
+
+
+
+    while(1)
+    {
+        status = osMessageQueueGet(ID_BAL_2D, &msgR, NULL, osWaitForever);
+
+        if (status == osOK)
+				{
+
+					// Validation data
+					if (msgR.M_distance < DISTANCE_MIN_CM || msgR.M_distance > DISTANCE_MAX_CM)     // Si ce qu'on détecte est entre 50mm ou > 5m
+					{
+							ancien_angle = msgR.M_angle; //On remet juste l'angle à jour pour ne pas rester sur celui de des distances invalides
+
+					}
+					
+					else
+					{
+						//Détecttion d'un nouveau tour avec une marge de 10°
+						// On détecte le passage 360°->0° 
+						if (ancien_angle > 300.0f && msgR.M_angle < 10.0f) 
+							{
+									nouveau_tour = 1;  // VRAI : On vient de passer le 0°
+							} 
+						else 
+							{
+									nouveau_tour = 0;  // FAUX : On est encore dans le même tour
+							}
+
+						if (nouveau_tour || ancien_angle < 0.0f) // Pour premier passsage : force l'affichage de la croix
+							{
+									// Clear + Croix dans un SEUL bloc mutex ? pas de fenêtre entre les deux
+									osMutexAcquire(ID_mut_GLCD, osWaitForever);
+									GLCD_ClearScreen();
+									// Croix centrale (LiDAR) redessinée immédiatement après le clear
+									GLCD_SetForegroundColor(GLCD_COLOR_BLACK);
+									//Ligne horizontale et verticale de la croix centrale
+									GLCD_DrawHLine(CENTRE_X - 5, CENTRE_Y,     11); // 11 : 5pixels gauche + 5 picels droie + 1 central
+									GLCD_DrawVLine(CENTRE_X,     CENTRE_Y - 5, 11);
+									osMutexRelease(ID_mut_GLCD);
+							}
+
+						ancien_angle = msgR.M_angle; // Mise à jour de l'angle pour ne plus être à -1
+
+						// Calcul positions
+						angle_rad_corrige = (PI / 2.0f) - (msgR.M_angle * (PI / 180.0f)); //Conversion angle en radians et place le 0° en haut de l'écran au lieu d'être à droite
+						rayon_px = msgR.M_distance / (float)ECHELLE; // Distance convertie en pixels 
+
+						// On se place aux centres respectifs de X et Y
+						x_px = CENTRE_X + (int)(rayon_px * cosf(angle_rad_corrige));
+						y_px = CENTRE_Y - (int)(rayon_px * sinf(angle_rad_corrige)); // Signe moins car ici, sur le LCD Y diminiue quand on monte
+
+						// affichage des points (obstacles) uniquement si <= Ditance affichage
+						if (msgR.M_distance <= DISTANCE_AFFICHAGE_CM)
+						{
+							if (x_px >= 1 && x_px < 319 && y_px >= 1 && y_px < 239) //Vérification pour ne pas dépasser les bords de l'écran
+							{
+									osMutexAcquire(ID_mut_GLCD, osWaitForever);
+									GLCD_SetForegroundColor(GLCD_COLOR_RED);
+									GLCD_DrawPixel(x_px,     y_px);
+									GLCD_DrawPixel(x_px + 1, y_px);
+									GLCD_DrawPixel(x_px,     y_px + 1);
+									GLCD_DrawPixel(x_px + 1, y_px + 1);
+									osMutexRelease(ID_mut_GLCD);
+							}
+						}
+					}
+
+			}
+    }
+}
+
+
+
+void tache_alerte(void const* argument)
+{
+    (void)argument;
+    MaLettre msgR;
+    float d = 100.0f; // valeur par défaut : pas d'obstacle
+    osStatus_t status;
+
+    LPC_GPIO2->FIODIR0 |= 0xFC;
+    LPC_GPIO1->FIODIR3 |= 0xF0;
+    LPC_GPIO2->FIOPIN0 &= ~(0xFC);
+    LPC_GPIO1->FIOPIN3 &= ~(0xF0);
+
+    while(1)
+    {
+        // Attente bloquante d'un nouveau message
+        status = osMessageQueueGet(ID_BAL_ALERTE, &msgR, NULL, osWaitForever);
+
+        if (status == osOK)
+        {
+            // Vider la BAL pour avoir la valeur la plus récente
+            while(osMessageQueueGet(ID_BAL_ALERTE, &msgR, NULL, 0) == osOK);
+
+            d = msgR.M_distance;
+
+            if (d < 3.0f)
+            {
+                LPC_GPIO2->FIOPIN0 |= 0xFC;
+                LPC_GPIO1->FIOPIN3 |= 0xF0;
+                osDelay(500);
+                LPC_GPIO2->FIOPIN0 &= ~(0xFC);
+                LPC_GPIO1->FIOPIN3 &= ~(0xF0);
+                osDelay(500);
+            }
+            else
+            {
+                LPC_GPIO2->FIOPIN0 &= ~(0xFC);
+                LPC_GPIO1->FIOPIN3 &= ~(0xF0);
+            }
+        }
+    }
+}
+void Init_UART(void)
+{
+	Driver_USART1.Initialize(myUART_Callback); // Mode interruption, passage dans myUART_Callback quand un octet arrive
+	Driver_USART1.PowerControl(ARM_POWER_FULL);
+	Driver_USART1.Control(	ARM_USART_MODE_ASYNCHRONOUS |
+							ARM_USART_DATA_BITS_8		|
+							ARM_USART_STOP_BITS_1		|
+							ARM_USART_PARITY_NONE		|
+							ARM_USART_FLOW_CONTROL_NONE,
+							115200);
+	Driver_USART1.Control(ARM_USART_CONTROL_TX,1);
+	Driver_USART1.Control(ARM_USART_CONTROL_RX,1);
+}
+
+
+
+//Configuration Timer
+void init_PWM_Lidar(void) 
+{
+    LPC_SC->PCONP |= (1 << 6); //Activer le périphérique PWM1(table 46, page 65)
+    
+		//Config de la broche 2.4 donc bits [1:0] pour le moteur PWM1.1 (table 83, page 120)
+		LPC_PINCON->PINSEL4 &= ~(1 << 9 ); 
+    LPC_PINCON->PINSEL4 |=  (1 << 8);
+
+    //Réglage de la fréquence à 10kHz (Avec horloge à 25MHz)
+    LPC_PWM1->PR = 0; 
+		LPC_PWM1->MR0 = 2500; // MR0 = Période complète
+    
+    //Réglage de la vitesse (Duty Cycle)
+    LPC_PWM1->MR5 = 1200;  
+     
+    
+    //Lancement du PWM
+    LPC_PWM1->PCR |= (1 << 13); // Activer sortie PWM1.5 -> PWMENA5 (table 451, page 519)
+    LPC_PWM1->TCR = 9;          // Activer PWM + Counter (table 448, page 527)
+		LPC_PWM1->LER |= (1 << 0) | (1 << 5); // Validation des changements pour MR0 et MR5
+}
+
+
+//Configuration Envoi des commandes
+void Lidar_Start_Scan(void) 
+{
+    uint8_t cmd_scan[] = {0xA5, 0x20}; //  0xA5 (= Start Flag) + 0x20(= Scan) (Voir S.P.D page 4,d)
+    Driver_USART1.Send(cmd_scan, 2); //Envoi des 2 octets
+}
+
+
+osThreadAttr_t configT1 = {.priority=osPriorityNormal};
+osThreadAttr_t configT2 = {.priority=osPriorityNormal};
+osThreadAttr_t configT3 = {.priority=osPriorityNormal};
+osThreadAttr_t configT4 = {.priority=osPriorityNormal};
+osThreadAttr_t configT5 = {.priority=osPriorityNormal};
+
+
+
+
+int main (void)
+{
+	//Utilisation LED en test
+	LPC_GPIO1->FIODIR3 |= 0x10;//Config LED P1.28 en sortie
+	LPC_GPIO1->FIOPIN3 &= 0x00;
+	
+	//Partie Initialisation
+	SystemInit(); // Configuration des horloges systèmes
+	Init_UART();
+	init_PWM_Lidar();
+	SystemCoreClockUpdate();
+	
+	osKernelInitialize() ; // début création tâche(s), main prend priorité max
+	ADC_Initialize();
+	GLCD_Initialize();
+	GLCD_ClearScreen();
+	GLCD_SetFont(&GLCD_Font_16x24);
+	
+
+	ID_tache_traitement = osThreadNew ( (osThreadFunc_t )tache_traitement, NULL, &configT1);
+	//ID_tache_recup = osThreadNew ( (osThreadFunc_t )tache_recup, NULL, &configT2);
+	ID_tache_vitesse = osThreadNew ( (osThreadFunc_t )tache_vitesse, NULL, &configT3);
+	ID_tache_2D = osThreadNew ( (osThreadFunc_t )tache_2D, NULL, &configT4);
+	ID_tache_alerte = osThreadNew ( (osThreadFunc_t )tache_alerte, NULL, &configT5);
+
+	ID_mut_GLCD = osMutexNew(NULL) ;
+	ID_BAL_LCD = osMessageQueueNew(10, sizeof(MaLettre), NULL);
+	ID_BAL_2D = osMessageQueueNew(10, sizeof(MaLettre), NULL);
+	ID_BAL_ALERTE = osMessageQueueNew(10, sizeof(MaLettre), NULL);
+	
+	packet_count = 0;
+	
+	Lidar_Start_Scan();//Commande de démarrage
+	
+	Driver_USART1.Receive(lidar_buffer0, 7);// Réception 7 octets de confirmation 
+	while(Driver_USART1.GetStatus().rx_busy); //Attendre que les 7 octets de confirmation soient traités
+	Driver_USART1.Receive(lidar_buffer1, 5);//Réception 5 octets de données
+
+	
+	osKernelStart() ; // lancement horloge TR, main retrouve sa priorité.
+  
+	while(1)
+		{
+			osDelay(osWaitForever) ; // main passe en sommeil... infini !
+		}
+	
+	return 0 ;
+	
+}
