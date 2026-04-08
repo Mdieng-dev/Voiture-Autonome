@@ -1,0 +1,337 @@
+#include "stm32f4xx_hal.h"
+#include "stm32f4xx.h"
+#include "cmsis_os2.h"
+#include "Driver_USART.h"
+#include <stdio.h>   
+#include <string.h>  // Pour strncmp
+#include "stm32f4xx.h"                  // Device header
+#include "Driver_CAN.h"                 // CMSIS Driver:CAN
+#include "Driver_SPI.h"
+
+// Définition des paramètres pour les LEDs
+#define LUMINOSITE_ROUGE 5
+#define NB_LEDS_PAR_COTE 6
+#define TOTAL_LEDS 12
+#define SPI_BUFFER_SIZE (4 + (TOTAL_LEDS * 4) + 4)
+
+
+
+
+extern ARM_DRIVER_CAN Driver_CAN2;
+extern ARM_DRIVER_USART Driver_USART3;
+extern ARM_DRIVER_USART Driver_USART2;
+
+osThreadId_t tid_GPS;
+osThreadId_t envoi_GPS;
+osMessageQueueId_t ID_BAL;
+
+osStatus_t status;
+int32_t stat;                      
+int octet_recu;             
+float latitude_recup, longitude_recup;
+int fix_quality; 
+volatile float latitude, longitude;
+volatile float cbon=0.0;
+
+extern ARM_DRIVER_SPI Driver_SPI1;
+
+volatile int action_manette = 0;
+osThreadId_t id_bouton;
+osThreadId_t id_can;
+osThreadId_t id_leds;
+uint8_t spi_buffer[SPI_BUFFER_SIZE];
+uint32_t spi_idx = 0;
+
+
+
+
+
+//FONCTION CALLBACK 
+void GPS_callback(uint32_t event) {
+		static char trame_gps[100],idx=0;
+    if (event & ARM_USART_EVENT_RECEIVE_COMPLETE) {
+		
+				if ((octet_recu == '$' && (idx < 99))|| idx > 0) {
+								trame_gps[idx++] = (char)octet_recu;}
+        else;
+            // Si on reçoit la fin de ligne
+        if (octet_recu == '\n') {
+								osMessageQueuePut (ID_BAL, &trame_gps, 0, 0);
+                //osThreadFlagsSet(tid_GPS, 0x01); // On réveille la tâche de traitement
+								idx = 0;}
+        else;
+        }
+    
+		Driver_USART3.Receive(&octet_recu, 1);          // On relance la réception de l'octet suivant
+		}
+
+//FONCTION CALLBACK 
+/*void ENVOI_GPS_callback (uint32_t obj_idx, uint32_t event) {
+    if (event & ARM_CAN_EVENT_SEND_COMPLETE) {
+        osThreadFlagsSet(envoi_GPS, 0x02);
+        Anes = 1.0; 
+    }
+}*/
+//traitement de la trame 
+void Thread_Traitement_GPS(void *argument) {
+		int deg_lat,deg_lon;
+		float min_lat,min_lon;
+		char trame_recu[100];
+		unsigned char D_GPS_CAN[8];
+		ARM_CAN_MSG_INFO tx_msg_info;
+		tx_msg_info.id = ARM_CAN_STANDARD_ID (0x170);
+//		tx_msg_info.rtr = 0; // 0 = trame DATA
+//		tx_msg_info.dlc = 8;
+    while (1) {
+				status = osMessageQueueGet (ID_BAL, trame_recu, NULL, osWaitForever);
+			  //Anes = 0.0;
+        // La tâche s'endort ici et attend le flag 0x01 envoyé par la Callback
+        //osThreadFlagsWait(0x01, osFlagsWaitAny, osWaitForever);
+				if ( status == osOK){
+						// analyse de la trame
+						if (strncmp(trame_recu, "$GPGGA", 6) == 0) {
+								sscanf(trame_recu, "$GPGGA,%*f,%f,%*c,%f,%*c,%d", &latitude_recup, &longitude_recup, &fix_quality); }
+						else;
+						if (fix_quality > 0) {
+								// Latitude
+								deg_lat = (int)(latitude_recup / 100);             // Récupère la partie entiere 48,75058
+								min_lat = latitude_recup - (deg_lat * 100);        // Récupère le reste 
+								latitude = (float)deg_lat + (min_lat / 60.0);      // on calcule la vrai valeur
+
+								// Longitude
+								deg_lon = (int)(longitude_recup / 100);            
+								min_lon = longitude_recup - (deg_lon * 100);       
+								longitude = (float)deg_lon + (min_lon / 60.0);
+								osThreadFlagsSet(envoi_GPS, 0x02); }
+							
+							  /*//On copie la mémoire des floats directement dans le tab CAN
+                memcpy(&D_GPS_CAN[0], &latitude, 4);
+                memcpy(&D_GPS_CAN[4], &longitude, 4);
+								// reveil tache 
+								stat = Driver_CAN2.MessageSend(1, &tx_msg_info, D_GPS_CAN, 8); // 
+								Anes += 1.0;}
+						else;
+						if (stat == 0.0) {
+										}
+						else;*/
+
+					}
+								
+								        
+}
+}
+void envoi_donnes_GPS(void *argument){
+	
+		typedef struct {
+			float latitude;
+			float longitude;
+		} donnees;
+		
+		donnees data_recues;
+    ARM_CAN_MSG_INFO tx_msg_info;
+    tx_msg_info.id = ARM_CAN_STANDARD_ID(0x170);
+    tx_msg_info.rtr = 0;
+    tx_msg_info.dlc = 8;
+
+    while (1) {
+        // Attend le signal de la tâche traitement
+        osThreadFlagsWait(0x02, osFlagsWaitAny, osWaitForever);
+			
+			  data_recues.latitude = latitude;
+			  data_recues.longitude = longitude;
+
+        // Préparation du buffer CAN
+        //memcpy(&D_GPS_CAN[0], (const void*)&latitude, 4);
+        //memcpy(&D_GPS_CAN[4], (const void*)&longitude, 4);
+
+        // Envoi sur le bus CAN
+        Driver_CAN2.MessageSend(2, &tx_msg_info, &data_recues, 8);
+				cbon += 1.0;
+					
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// Ajoute un octet dans le tableau qui sera envoyé par SPI
+void SPI_Send(uint8_t data) {
+    if (spi_idx < SPI_BUFFER_SIZE) {
+        spi_buffer[spi_idx++] = data;
+    }
+}
+
+// Prépare les 4 octets de couleur pour une seule LED
+void Send_LED(uint8_t br, uint8_t r, uint8_t g, uint8_t b) {
+    SPI_Send(0xE0 | br);
+    SPI_Send(b);
+    SPI_Send(g);
+    SPI_Send(r);
+}
+
+// Calcule et envoie l'état de toutes les LEDs selon l'action demandée
+void Update_LEDs(uint8_t mode, uint8_t etape) {
+    spi_idx = 0;
+    
+    // Trame de début obligatoire pour les LEDs
+    for(int i=0; i<4; i++) SPI_Send(0x00);
+
+    for(int i=0; i<TOTAL_LEDS; i++) {
+        // Mode 0 : pas d'action, on allume tout en rouge faible
+        if (mode == 0) {
+            Send_LED(LUMINOSITE_ROUGE, 255, 0, 0);
+        }
+        else {
+            int est_cligno = 0;
+            
+            // On détermine si la LED actuelle fait partie des clignotants
+            if (mode == 1 && i < NB_LEDS_PAR_COTE) est_cligno = 1;
+            if (mode == 2 && i >= NB_LEDS_PAR_COTE) est_cligno = 1;
+            if (mode == 3) est_cligno = 1;
+
+            if (est_cligno) {
+                // Calcule la position de la LED sur son côté
+                uint8_t pos = (i < NB_LEDS_PAR_COTE) ? i : (i - NB_LEDS_PAR_COTE);
+                
+                // Animation : allume la LED en orange selon l'étape en cours
+                if (pos == etape) {
+                    Send_LED(31, 255, 120, 0);
+                } else if (pos < etape) {
+                    Send_LED(5, 255, 60, 0);
+                } else {
+                    Send_LED(0, 0, 0, 0);
+                }
+            } else {
+                // Les autres LEDs restent en rouge faible
+                Send_LED(LUMINOSITE_ROUGE, 255, 0, 0);
+            }
+        }
+    }
+    
+    // Trame de fin pour valider l'envoi
+    for(int i=0; i<4; i++) SPI_Send(0xFF);
+
+    // Envoi des données préparées sur le bus SPI
+    Driver_SPI1.Send(spi_buffer, spi_idx);
+}
+
+// Fonction appelée automatiquement par le matériel quand un message CAN arrive
+void CAN_Callback(uint32_t obj_idx, uint32_t event) {
+    // On vérifie que c'est bien un événement de réception
+    if (event & ARM_CAN_EVENT_RECEIVE) {
+        ARM_CAN_MSG_INFO rx_msg_info;
+        uint8_t data_rx[8];
+
+        // On lit le message qui vient d'arriver
+        if (Driver_CAN2.MessageRead(obj_idx, &rx_msg_info, data_rx, 8) > 0) {
+            // Si l'identifiant correspond à la manette
+            if (rx_msg_info.id == ARM_CAN_STANDARD_ID(0x128)) {
+                // On met à jour l'action demandée
+                action_manette = data_rx[4]; 
+            }
+        }
+    }
+}
+
+// Tâche gérant exclusivement l'animation visuelle
+void Thread_LEDs(void *argument) {
+    while(1) {
+        // On lit la variable une seule fois pour garder le même mode pendant tout le cycle
+        int mode_actuel = action_manette;
+        
+        if (mode_actuel > 0) {
+            // Boucle d'animation en 8 étapes
+            for (uint8_t e = 0; e < 8; e++) {
+                Update_LEDs(mode_actuel, e);
+                osDelay(40);
+            }
+        } else {
+            // Affichage fixe quand il n'y a pas d'action
+            Update_LEDs(0, 0);
+            osDelay(20);
+        }
+    }
+}
+
+
+
+
+//MAIN
+int main (void) {
+    HAL_Init();
+		SystemCoreClockUpdate();
+    //	Init UART3
+    Driver_USART3.Initialize(GPS_callback);
+    Driver_USART3.PowerControl(ARM_POWER_FULL);
+    Driver_USART3.Control(ARM_USART_MODE_ASYNCHRONOUS |
+                          ARM_USART_DATA_BITS_8       |
+                          ARM_USART_PARITY_NONE       |
+                          ARM_USART_STOP_BITS_1       |
+                          ARM_USART_FLOW_CONTROL_NONE , 9600);
+    
+    Driver_USART3.Control(ARM_USART_CONTROL_RX, 1); // Active la réception
+		
+		//	Init CAN2 envoi donnés GPS
+
+//		Driver_CAN2.Initialize(NULL,NULL);
+//		Driver_CAN2.PowerControl(ARM_POWER_FULL);
+//		Driver_CAN2.SetMode(ARM_CAN_MODE_INITIALIZATION);
+//		Driver_CAN2.SetBitrate(
+//													ARM_CAN_BITRATE_NOMINAL, // débit fixe
+//													125000, // 125 kbits/s (LS)
+//													ARM_CAN_BIT_PROP_SEG(3U)	 | // prop. seg = 5 TQ
+//													ARM_CAN_BIT_PHASE_SEG1(1U) | // phase seg1 = 1 TQ
+//													ARM_CAN_BIT_PHASE_SEG2(1U) | // phase seg2 = 1 TQ
+//													ARM_CAN_BIT_SJW(1U) // Resync. Seg = 1 TQ
+//													);
+//		
+
+//		
+//		Driver_CAN2.SetMode(ARM_CAN_MODE_NORMAL); // fin initialisation
+		
+		
+		    // Initialisation du SPI
+    Driver_SPI1.Initialize(NULL);
+    Driver_SPI1.PowerControl(ARM_POWER_FULL);
+    Driver_SPI1.Control(ARM_SPI_MODE_MASTER | ARM_SPI_CPOL1_CPHA1 | ARM_SPI_MSB_LSB | ARM_SPI_SS_MASTER_UNUSED | ARM_SPI_DATA_BITS(8), 1000000);
+    Driver_SPI1.Control(ARM_SPI_CONTROL_SS, ARM_SPI_SS_INACTIVE);
+
+    //	Init CAN2 Reception LEDs
+    Driver_CAN2.Initialize(NULL,CAN_Callback);
+    Driver_CAN2.PowerControl(ARM_POWER_FULL);  
+    Driver_CAN2.SetMode(ARM_CAN_MODE_INITIALIZATION);
+    Driver_CAN2.SetBitrate(ARM_CAN_BITRATE_NOMINAL, 125000, ARM_CAN_BIT_PROP_SEG(5U) | ARM_CAN_BIT_PHASE_SEG1(1U) | ARM_CAN_BIT_PHASE_SEG2(1U) | ARM_CAN_BIT_SJW(1U));
+    
+    // Configuration pour ne recevoir que l'ID 0x128 dans la boîte de réception 0
+    Driver_CAN2.ObjectSetFilter(0, ARM_CAN_FILTER_ID_EXACT_ADD, ARM_CAN_STANDARD_ID(0x128), 0);
+    Driver_CAN2.ObjectConfigure(0, ARM_CAN_OBJ_RX);
+		Driver_CAN2.ObjectConfigure(2,ARM_CAN_OBJ_TX); // Objet 2 pour émission
+    Driver_CAN2.SetMode(ARM_CAN_MODE_NORMAL);
+		
+		
+		
+		
+		
+    osKernelInitialize();  
+    // Création de la tâche
+		ID_BAL = osMessageQueueNew(4, 100,NULL);
+    tid_GPS = osThreadNew(Thread_Traitement_GPS, NULL, NULL);
+		envoi_GPS= osThreadNew(envoi_donnes_GPS, NULL, NULL);
+    
+
+    id_leds   = osThreadNew(Thread_LEDs,   NULL, NULL);
+	
+    osKernelStart();
+    while(1);
+}
+
