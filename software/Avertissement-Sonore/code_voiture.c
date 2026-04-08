@@ -12,6 +12,20 @@ osThreadDef(tache_uart,   osPriorityNormal, 1, 0);   // priorité normale
 
 extern ARM_DRIVER_USART Driver_USART2;   // driver uart2
 
+/* 0001.mp3 = klaxon
+   0002.mp3 = demarrage voiture
+   0003.mp3 = clignotant
+   0004.mp3 = bip digicode
+*/
+
+#define TRACK_KLAXON       1
+#define TRACK_MOTEUR       2
+#define TRACK_CLIGNOTANT   3
+#define TRACK_BIP          4
+
+// variable globale pour choisir le son
+int son_courant = 0;
+
 void uart_init(void)
 {
     Driver_USART2.Initialize(NULL);          // initialisation uart
@@ -25,7 +39,9 @@ void uart_init(void)
         9600                                 // débit 9600 bauds
     );
     Driver_USART2.Control(ARM_USART_CONTROL_TX, 1);   
+}
 
+// fonction pour envoyer une trame au dfplayer
 void df_send(uint8_t cmd, uint16_t param)
 {
     uint8_t t[10] = { 				//creation d un tableau de 10 octets avec les trame 
@@ -45,14 +61,39 @@ void df_send(uint8_t cmd, uint16_t param)
     Driver_USART2.Send(t, 10);                        // envoi de la trame
 }
 
-void EXTI0_IRQHandler(void)
+// fonction pour jouer le son en fonction du compteur
+void jouer_son(void)
 {
-    {
-        osSignalSet(ID_TacheBouton, 0x0001); // réveille tâche bouton
-        EXTI->PR = (1 << 0);                 // remise à zéro du drapeau
-    }
+    if (son_courant == 0)
+        df_send(0x08, TRACK_KLAXON);        // klaxon
+
+    else if (son_courant == 1)
+        df_send(0x08, TRACK_CLIGNOTANT);    // clignotant
+
+    else if (son_courant == 2)
+        df_send(0x08, TRACK_MOTEUR);        // moteur
+
+    else
+        df_send(0x08, TRACK_BIP);           // bip
 }
 
+// fonction pour passer au son suivant
+void son_suivant(void)
+{
+    son_courant++;
+
+    if (son_courant > 3)
+        son_courant = 0;
+}
+
+// interruption bouton
+void EXTI0_IRQHandler(void)
+{
+    osSignalSet(ID_TacheBouton, 0x0001); // réveille tâche bouton
+    EXTI->PR = (1 << 0);                 // remise à zéro du drapeau
+}
+
+// tâche bouton
 void tache_bouton(void const *argument)
 {
     while (1)
@@ -72,6 +113,7 @@ void tache_bouton(void const *argument)
     }
 }
 
+// tâche led
 void tache_led(void const *argument)
 {
     while (1)
@@ -87,6 +129,7 @@ void tache_led(void const *argument)
     }
 }
 
+// tâche uart
 void tache_uart(void const *argument)
 {
     while (1)
@@ -95,10 +138,15 @@ void tache_uart(void const *argument)
         int flags = result.value.signals;                  // récupération du signal
 
         if (flags & 0x0001)
-            df_send(0x03, 1);   // jouer son 
+        {
+            jouer_son();          // jouer son courant
+        }
 
         if (flags & 0x0002)
-            df_send(0x16, 0);   //  stop
+        {
+            df_send(0x16, 0);     // stop
+            son_suivant();        // passer au son suivant
+        }
     }
 }
 
@@ -110,14 +158,15 @@ int main(void)
 
     RCC->AHB1ENR |= (1 << 0);               // activation horloge port A
     GPIOA->MODER &= ~(3 << 0);              // PA0 en entrée
-    GPIOA->PUPDR &= ~(3 << 0);              // remise à zéro pull-up/pull-down					//tout sur la datasheet
-    GPIOA->PUPDR |=  (2 << 0);              
+    GPIOA->PUPDR &= ~(3 << 0);              // remise à zéro pull-up/pull-down
+    GPIOA->PUPDR |=  (2 << 0);              // pull-down
 
     RCC->APB2ENR |= (1 << 14);           
     EXTI->IMR  |= (1 << 0);                 
     EXTI->RTSR |= (1 << 0);                 
     EXTI->FTSR |= (1 << 0);                 
     NVIC_EnableIRQ(EXTI0_IRQn);             
+
     uart_init();                            // initialisation uart dfplayer
 
     osKernelInitialize();                   // initialisation noyau RTOS
@@ -128,7 +177,7 @@ int main(void)
 
     osKernelStart();                        // démarrage RTOS
 
-    df_send(0x06, 20);                     
+    df_send(0x06, 20);                      // volume
 
     osDelay(osWaitForever);                 // main en attente infinie
     return 0;
