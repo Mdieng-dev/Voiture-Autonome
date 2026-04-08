@@ -1,0 +1,165 @@
+import sensor, image, lcd, time
+import KPU as kpu
+from machine import UART
+import gc, sys
+from fpioa_manager import fm
+
+labels = ['priority', 'stop', '110', '30', '50', 'cedez']
+anchors = [5.38, 5.19, 3.97, 3.78, 2.44, 2.34, 1.66, 1.59, 3.12, 3.0]
+
+CONFIRM_MS = 2500
+STOP_CONFIRM_MS = 1000
+
+def lcd_show_except(e):
+    import uio
+    err_str = uio.StringIO()
+    sys.print_exception(e, err_str)
+    err_str = err_str.getvalue()
+    img = image.Image(size=(224, 224))
+    img.draw_string(0, 10, err_str, scale=1, color=(255, 0, 0))
+    lcd.display(img)
+
+class Comm:
+    def __init__(self, uart):
+        self.uart = uart
+
+    def send_detect_result(self, objects, labels):
+        msg = ""
+        for obj in objects:
+            pos = obj.rect()
+            p = obj.value()
+            idx = obj.classid()
+            label = labels[idx]
+            msg += "{}:{}:{}:{}:{}:{:.2f}:{}, ".format(
+                pos[0], pos[1], pos[2], pos[3], idx, p, label
+            )
+        if msg:
+            msg = msg[:-2] + "\n"
+        try:
+            self.uart.write(msg)
+        except:
+            pass
+
+def init_uart():
+    fm.register(10, fm.fpioa.UART1_TX, force=True)
+    fm.register(11, fm.fpioa.UART1_RX, force=True)
+    uart = UART(UART.UART1, 115200, 8, 0, 0, timeout=1000, read_buf_len=256)
+    return uart
+
+def main():
+    sensor.reset()
+    sensor.set_pixformat(sensor.RGB565)
+    sensor.set_framesize(sensor.QVGA)
+    sensor.set_windowing((224, 224))
+    sensor.set_hmirror(False)
+    sensor.set_vflip(False)
+    sensor.run(1)
+    sensor.skip_frames(time=2000)
+
+    lcd.init(type=1)
+    lcd.clear(lcd.WHITE)
+
+    uart = init_uart()
+    comm = Comm(uart)
+
+    # Etats validés
+    last_speed = "--"
+    has_priority = False
+    has_stop = False
+
+    # Candidats + temps
+    speed_candidate = None
+    speed_candidate_start = 0
+
+    priority_candidate = None
+    priority_candidate_start = 0
+
+    stop_seen_start = 0
+
+    task = None
+    try:
+        task = kpu.load(0x300000)
+        kpu.init_yolo2(task, 0.6, 0.3, 5, anchors)
+
+        while True:
+            gc.collect()
+            img = sensor.snapshot()
+            now = time.ticks_ms()
+
+            t = time.ticks_ms()
+            objects = kpu.run_yolo2(task, img)
+            t = time.ticks_ms() - t
+
+            detected_speed = None
+            detected_priority = None
+            detected_stop = False
+
+            if objects:
+                for obj in objects:
+                    pos = obj.rect()
+                    label = labels[obj.classid()]
+
+                    img.draw_rectangle(pos, color=(255, 0, 0))
+
+                    if label == "30" or label == "50" or label == "110":
+                        detected_speed = label
+
+                    if label == "priority":
+                        detected_priority = True
+                    elif label == "cedez" or label == "stop":
+                        detected_priority = False
+
+                    if label == "stop":
+                        detected_stop = True
+
+                comm.send_detect_result(objects, labels)
+
+            # -------- Validation vitesse (2,5 s) --------
+            if detected_speed is not None:
+                if speed_candidate != detected_speed:
+                    speed_candidate = detected_speed
+                    speed_candidate_start = now
+                elif time.ticks_diff(now, speed_candidate_start) >= CONFIRM_MS:
+                    last_speed = speed_candidate
+
+            # -------- Validation priorité (2,5 s) --------
+            if detected_priority is not None:
+                if priority_candidate != detected_priority:
+                    priority_candidate = detected_priority
+                    priority_candidate_start = now
+                elif time.ticks_diff(now, priority_candidate_start) >= CONFIRM_MS:
+                    has_priority = priority_candidate
+
+            # -------- Validation stop (1 s max, retour à 0 dès disparition) --------
+            if detected_stop:
+                if stop_seen_start == 0:
+                    stop_seen_start = now
+                elif time.ticks_diff(now, stop_seen_start) >= STOP_CONFIRM_MS:
+                    has_stop = True
+            else:
+                stop_seen_start = 0
+                has_stop = False
+
+            # -------- Barre IHM en bas --------
+            img.draw_rectangle(0, 208, 224, 16, color=(0, 0, 0), fill=True)
+
+            speed_txt = "VIT:" + str(last_speed)
+            prio_txt = "PRIO:1" if has_priority else "PRIO:0"
+            stop_txt = "STOP:1" if has_stop else "STOP:0"
+
+            img.draw_string(2, 210, speed_txt, scale=1, color=(255, 255, 255))
+            img.draw_string(74, 210, prio_txt, scale=1, color=(255, 255, 0))
+            img.draw_string(148, 210, stop_txt, scale=1, color=(255, 0, 0))
+
+            lcd.display(img)
+
+    except Exception as e:
+        sys.print_exception(e)
+        lcd_show_except(e)
+    finally:
+        if task is not None:
+            kpu.deinit(task)
+        gc.collect()
+
+if __name__ == "__main__":
+    main()
