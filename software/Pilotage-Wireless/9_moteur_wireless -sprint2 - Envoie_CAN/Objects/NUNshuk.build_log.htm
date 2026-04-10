@@ -1,0 +1,236 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.43.1.0
+Copyright (C) 2025 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: iut cachan iut cachan Flex license: MDK Professional 5.43 (Flex) (mdk_pro) Operation stops: 11 Apr 2027
+ 
+Tool Versions:
+Toolchain:       MDK Professional 5.43 (Flex)  Version: 5.43.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.24
+Assembler:       Armasm.exe V6.24
+Linker/Locator:  ArmLink.exe V6.24
+Library Manager: ArmAr.exe V6.24
+Hex Converter:   FromElf.exe V6.24
+CPU DLL:         SARMCM3.DLL V5.43.0.0
+Dialog DLL:      DARMP1.DLL V1.28.1.0
+Target DLL:      UL2CM3.DLL V1.164.16.0
+Dialog DLL:      TARMP1.DLL V1.27.1.0
+ 
+<h2>Project:</h2>
+U:\Piloter\9_moteur_wireless -sprint2 - Envoie_CAN\NUNshuk.uvprojx
+Project File Date:  04/07/2026
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.24', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+Rebuild target 'Target_1'
+compiling GLCD_MCB1700.c...
+compiling rtx_msgqueue.c...
+compiling rtx_memory.c...
+compiling rtx_delay.c...
+compiling rtx_thread.c...
+compiling rtx_system.c...
+compiling os_systick.c...
+compiling GLCD_Fonts.c...
+C:/Keil_v5/ARM/PACK/Keil/LPC1700_DFP/3.0.0/Boards/Keil/MCB1700/Common/ADC_MCB1700.c(155): warning: variable 'adstat' set but not used [-Wunused-but-set-variable]
+  155 |   volatile uint32_t adstat;
+      |                     ^
+1 warning generated.
+compiling ADC_MCB1700.c...
+compiling rtx_kernel.c...
+compiling rtx_evr.c...
+assembling irq_armv7m.S...
+compiling rtx_lib.c...
+compiling rtx_mutex.c...
+compiling rtx_timer.c...
+compiling rtx_evflags.c...
+compiling rtx_semaphore.c...
+compiling rtx_mempool.c...
+main.c(152): warning: unused parameter 'argument' [-Wunused-parameter]
+  152 | void thread_bluetooth(void const * argument) {
+      |                                    ^
+main.c(184): warning: unused parameter 'arg' [-Wunused-parameter]
+  184 | void thread_motor(void const * arg) {
+      |                                ^
+main.c(343): warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  343 |         float a;
+      |               ^
+main.c(344): warning: variable 'q' set but not used [-Wunused-but-set-variable]
+  344 |         float q;
+      |               ^
+4 warnings generated.
+compiling main.c...
+compiling RTX_Config.c...
+compiling GPIO_LPC17xx.c...
+compiling I2C_LPC17xx.c...
+compiling PIN_LPC17xx.c...
+compiling CAN_LPC17xx.c...
+compiling GPDMA_LPC17xx.c...
+assembling startup_LPC17xx.s...
+compiling SSP_LPC17xx.c...
+compiling UART_LPC17xx.c...
+compiling system_LPC17xx.c...
+linking...
+Program Size: Code=63296 RO-data=7448 RW-data=272 ZI-data=23080  
+".\Objects\NUNshuk.axf" - 0 Error(s), 5 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                https://www.keil.com/pack/ARM.CMSIS.6.3.0.pack
+                ARM::CMSIS@6.3.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 6.2.0
+   * Component: SysTick Version: 1.0.5
+   * Component: CAN Version: 1.3.0
+   * Component: I2C Version: 2.4.0
+   * Component: SPI Version: 2.3.0
+   * Component: USART Version: 2.4.0
+   * Component: OS Tick Version: 1.0.1
+   * Component: RTOS2 Version: 2.3.0
+
+Package Vendor: ARM
+                https://www.keil.com/pack/ARM.CMSIS-RTX.5.9.0.pack
+                ARM::CMSIS-RTX@5.9.0
+                RTX RTOS implementation of CMSIS-RTOS2 API
+   * Component: Keil RTX5 Variant: Source Version: 5.9.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.LPC1700_DFP.3.0.0.pack
+                Keil::LPC1700_DFP@3.0.0
+                NXP LPC1700 Series Device Support, Drivers and Examples for MCB1700 and LPC1788-32
+   * Component: A/D Converter Version: 1.0.0
+   * Component: Graphic LCD Version: 1.0.0
+   * Component: CAN Version: 1.6.0
+   * Component: I2C Version: 2.8.0
+   * Component: SSP Version: 2.10.0
+   * Component: USART Version: 2.13.0
+   * Component: GPDMA Version: 1.4.0
+   * Component: GPIO Version: 1.1.0
+   * Component: PIN Version: 1.0.0
+   * Component: Startup Version: 1.0.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.MDK-Middleware.7.17.0.pack
+                Keil::MDK-Middleware@7.17.0
+                Middleware for Keil MDK-Professional and MDK-Plus
+   * Component: A/D Converter Version: 1.0.0
+   * Component: Graphic LCD Version: 1.0.0
+
+<h2>Collection of Component include folders:</h2>
+  ./RTE/CMSIS
+  ./RTE/Device/LPC1768
+  ./RTE/_Target_1
+  C:/Keil_v5/ARM/PACK/ARM/CMSIS-RTX/5.9.0/Include
+  C:/Keil_v5/ARM/PACK/ARM/CMSIS/6.3.0/CMSIS/Core/Include
+  C:/Keil_v5/ARM/PACK/ARM/CMSIS/6.3.0/CMSIS/Driver/Include
+  C:/Keil_v5/ARM/PACK/ARM/CMSIS/6.3.0/CMSIS/RTOS2/Include
+  C:/Keil_v5/ARM/PACK/Keil/LPC1700_DFP/3.0.0/Boards/Keil/MCB1700/Common
+  C:/Keil_v5/ARM/PACK/Keil/LPC1700_DFP/3.0.0/Device/Include
+  C:/Keil_v5/ARM/PACK/Keil/LPC1700_DFP/3.0.0/RTE_Driver
+  C:/Keil_v5/ARM/PACK/Keil/MDK-Middleware/7.17.0/Board
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE@6.2.0
+
+   * Component: ARM::CMSIS:OS Tick:SysTick@1.0.5
+      Source file:   CMSIS/RTOS2/Source/os_systick.c
+
+   * Component: ARM::CMSIS:RTOS2:Keil RTX5&Source@5.9.0
+      Include file:  Include/rtx_os.h
+      Include file:  Config/RTX_Config.h
+      Source file:   Config/RTX_Config.c
+      Source file:   Template/main.c
+      Source file:   Template/Events.c
+      Source file:   Template/MemPool.c
+      Source file:   Template/svc_user.c
+      Source file:   Source/rtx_timer.c
+      Source file:   Template/Timer.c
+      Source file:   Source/rtx_kernel.c
+      Source file:   Source/rtx_thread.c
+      Source file:   Source/rtx_semaphore.c
+      Source file:   Source/rtx_msgqueue.c
+      Source file:   Template/MsgQueue.c
+      Source file:   Source/rtx_lib.c
+      Source file:   Source/rtx_evflags.c
+      Source file:   Source/GCC/irq_armv7m.S
+      Source file:   Template/Thread.c
+      Source file:   Source/rtx_memory.c
+      Source file:   Source/rtx_delay.c
+      Source file:   Template/Mutex.c
+      Source file:   Source/rtx_mempool.c
+      Source file:   Source/rtx_system.c
+      Source file:   Template/Semaphore.c
+      Source file:   Source/rtx_mutex.c
+      Source file:   Source/rtx_evr.c
+
+   * Component: Board Support:A/D Converter(API)@1.0.0
+      Include file:  Board/Board_ADC.h
+
+   * Component: Board Support:Graphic LCD(API)@1.0.0
+      Include file:  Board/Board_GLCD.h
+
+   * Component: CMSIS Driver:CAN(API)@1.3.0
+      Include file:  CMSIS/Driver/Include/Driver_CAN.h
+
+   * Component: CMSIS Driver:I2C(API)@2.4.0
+      Include file:  CMSIS/Driver/Include/Driver_I2C.h
+
+   * Component: CMSIS Driver:SPI(API)@2.3.0
+      Include file:  CMSIS/Driver/Include/Driver_SPI.h
+
+   * Component: CMSIS Driver:USART(API)@2.4.0
+      Include file:  CMSIS/Driver/Include/Driver_USART.h
+
+   * Component: CMSIS:OS Tick(API)@1.0.1
+      Include file:  CMSIS/RTOS2/Include/os_tick.h
+
+   * Component: CMSIS:RTOS2(API)@2.3.0
+      Include file:  CMSIS/RTOS2/Include/cmsis_os2.h
+
+   * Component: Keil::Board Support&MCB1700:A/D Converter@1.0.0
+      Source file:   Boards/Keil/MCB1700/Common/ADC_MCB1700.c
+
+   * Component: Keil::Board Support&MCB1700:Graphic LCD@1.0.0
+      Include file:  Boards/Keil/MCB1700/Common/GLCD_Config.h
+      Source file:   Boards/Keil/MCB1700/Common/GLCD_Fonts.c
+      Include file:  Boards/Keil/MCB1700/Common/GLCD_Fonts.h
+      Source file:   Boards/Keil/MCB1700/Common/GLCD_MCB1700.c
+
+   * Component: Keil::CMSIS Driver:CAN@1.6.0
+      Source file:   RTE_Driver/CAN_LPC17xx.c
+
+   * Component: Keil::CMSIS Driver:I2C@2.8.0
+      Source file:   RTE_Driver/I2C_LPC17xx.c
+
+   * Component: Keil::CMSIS Driver:SPI:SSP@2.10.0
+      Source file:   RTE_Driver/SSP_LPC17xx.c
+
+   * Component: Keil::CMSIS Driver:USART@2.13.0
+      Source file:   RTE_Driver/UART_LPC17xx.c
+
+   * Component: Keil::Device:GPDMA@1.4.0
+      Source file:   RTE_Driver/GPDMA_LPC17xx.c
+      Include file:  RTE_Driver/GPDMA_LPC17xx.h
+
+   * Component: Keil::Device:GPIO@1.1.0
+      Source file:   RTE_Driver/GPIO_LPC17xx.c
+      Include file:  RTE_Driver/GPIO_LPC17xx.h
+
+   * Component: Keil::Device:PIN@1.0.0
+      Include file:  RTE_Driver/PIN_LPC17xx.h
+      Source file:   RTE_Driver/PIN_LPC17xx.c
+
+   * Component: Keil::Device:Startup@1.0.0
+      Include file:  Device/Include/LPC17xx.h
+      Source file:   Device/Source/system_LPC17xx.c
+      Source file:   Device/Source/ARM/startup_LPC17xx.s
+      Include file:  RTE_Driver/Config/RTE_Device.h
+Build Time Elapsed:  00:00:02
+</pre>
+</body>
+</html>
