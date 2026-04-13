@@ -62,7 +62,8 @@ void Thread_UART(void *argument) {
         Driver_USART3.Control(ARM_USART_ABORT_RECEIVE, 0);
 
         Driver_USART3.Receive(tab_local, 14);
-				osThreadFlagsWait(1<<0,osFlagsWaitAll,osWaitForever);
+			
+				osThreadFlagsWait(1<<0,osFlagsWaitAll,osWaitForever); // Flag de la CallBack remplacant les lignes en commentaire en dessous
 				
 //        while(Driver_USART3.GetStatus().rx_busy == 1) {
 //            osDelay(10); 
@@ -88,7 +89,10 @@ void InitCan2(void) {
                             ARM_CAN_BIT_SJW(1U));                
 
 		Driver_CAN2.ObjectConfigure(2, ARM_CAN_OBJ_TX); // Objet 2: émission pour la STM32F4               
-    Driver_CAN2.SetMode(ARM_CAN_MODE_NORMAL); 
+    Driver_CAN2.ObjectConfigure(0, ARM_CAN_OBJ_RX); // Objet 0: émission pour la STM32F4
+		Driver_CAN2.SetMode(ARM_CAN_MODE_NORMAL);
+	
+	//Driver_CAN2.SetMode(ARM_CAN_MODE_LOOPBACK_EXTERNAL); Test fonction CAN sans une autre carte
 }
 
 
@@ -99,21 +103,16 @@ void Thread_Logic(void *argument) {
     uint8_t data_buf[8];
     
     while (1) {
-        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET); 
-        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
 
         osMessageQueueGet(badgeQueue, buffer_reception, NULL, osWaitForever);
-        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
         
-				
-			
         if (memcmp(buffer_reception, badge1, 14) == 0) 
         {
 						tx_msg_info.id = ARM_CAN_STANDARD_ID (0x140);
 						tx_msg_info.rtr = 0;
             data_buf [0] = 0x01;
             Driver_CAN2.MessageSend(2, &tx_msg_info, data_buf, 1);
-						osThreadFlagsWait(1<<0,osFlagsWaitAll,osWaitForever);
+						osThreadFlagsWait(1<<0,osFlagsWaitAll,osWaitForever); // Attention : sans ACK, l'envoi se fait en continue
         } 
         else 
         {
