@@ -92,7 +92,7 @@ void InitCan2(void) {
     Driver_CAN2.ObjectConfigure(0, ARM_CAN_OBJ_RX); // Objet 0: émission pour la STM32F4
 		Driver_CAN2.SetMode(ARM_CAN_MODE_NORMAL);
 	
-	//Driver_CAN2.SetMode(ARM_CAN_MODE_LOOPBACK_EXTERNAL); Test fonction CAN sans une autre carte
+	//Driver_CAN2.SetMode(ARM_CAN_MODE_LOOPBACK_EXTERNAL); //Test fonction CAN sans une autre carte
 }
 
 
@@ -110,7 +110,7 @@ void Thread_Logic(void *argument) {
         {
 						tx_msg_info.id = ARM_CAN_STANDARD_ID (0x140);
 						tx_msg_info.rtr = 0;
-            data_buf [0] = 0x01;
+            data_buf [0] = 0x55; 
             Driver_CAN2.MessageSend(2, &tx_msg_info, data_buf, 1);
 						osThreadFlagsWait(1<<0,osFlagsWaitAll,osWaitForever); // Attention : sans ACK, l'envoi se fait en continue
         } 
@@ -118,7 +118,7 @@ void Thread_Logic(void *argument) {
         {
 						tx_msg_info.id = ARM_CAN_STANDARD_ID (0x140);
 						tx_msg_info.rtr = 0;
-            data_buf [0] = 0x0B;     
+            data_buf [0] = 0x2B;     
             Driver_CAN2.MessageSend(2, &tx_msg_info, data_buf, 1); 
 						osThreadFlagsWait(1<<0,osFlagsWaitAll,osWaitForever);	
         }
