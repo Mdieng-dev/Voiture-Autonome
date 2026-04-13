@@ -1,0 +1,150 @@
+#include "stm32f4xx_hal.h"
+#include "Driver_USART.h"
+#include "string.h"
+#include "cmsis_os2.h"
+#include <stdio.h>
+#include "Driver_CAN.h"                  
+#include "rtx_os.h"                      
+
+extern ARM_DRIVER_USART Driver_USART3;
+extern ARM_DRIVER_CAN   Driver_CAN2;
+
+osThreadId_t id_CANthreadT;
+osThreadId_t id_USARTthreadT;
+
+const uint8_t badge1[14] = {0x02 ,0x30 ,0x38 ,0x30 ,0x30 ,0x38 ,0x43 ,0x32 ,0x33 ,0x45 ,0x39 ,0x34 ,0x45 ,0x03}; 
+
+osMessageQueueId_t badgeQueue;
+void myCAN2_callback(uint32_t obj_idx, uint32_t event)
+{
+    if (event & ARM_CAN_EVENT_SEND_COMPLETE)
+    {
+        /* 	Message was sent successfully by the obj_idx object.  */
+        osThreadFlagsSet(id_CANthreadT, 1<<0);
+    }
+}
+
+void myUSART3_callback(uint32_t event)
+{
+    if (event & ARM_USART_EVENT_RECEIVE_COMPLETE)
+    {
+        /* 	Message was sent successfully by the obj_idx object.  */
+        osThreadFlagsSet(id_USARTthreadT, 1<<0);
+    }
+}
+void Init_GPIO_LEDs(void) {
+    __HAL_RCC_GPIOD_CLK_ENABLE(); 
+    
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    GPIO_InitStruct.Pin = GPIO_PIN_12 | GPIO_PIN_14 | GPIO_PIN_15; 
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;   
+    GPIO_InitStruct.Pull = GPIO_NOPULL;           
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;  
+    
+    HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+}
+
+
+void Thread_UART(void *argument) {
+    uint8_t tab_local[15];
+    Driver_USART3.Initialize(myUSART3_callback); 
+    Driver_USART3.PowerControl(ARM_POWER_FULL); 
+    Driver_USART3.Control(ARM_USART_MODE_ASYNCHRONOUS | 
+                          ARM_USART_DATA_BITS_8 | 
+                          ARM_USART_STOP_BITS_1 | 
+                          ARM_USART_PARITY_NONE | 
+                          ARM_USART_FLOW_CONTROL_NONE, 9600);
+    Driver_USART3.Control(ARM_USART_CONTROL_TX, 1); 
+    Driver_USART3.Control(ARM_USART_CONTROL_RX, 1); 
+
+    while (1) {
+        memset(tab_local, 0, sizeof(tab_local)); 
+        Driver_USART3.Control(ARM_USART_ABORT_RECEIVE, 0);
+
+        Driver_USART3.Receive(tab_local, 14);
+				osThreadFlagsWait(1<<0,osFlagsWaitAll,osWaitForever);
+				
+//        while(Driver_USART3.GetStatus().rx_busy == 1) {
+//            osDelay(10); 
+//        }
+
+        if (tab_local[0] == 0x02 && tab_local[13] == 0x03) {
+            osMessageQueuePut(badgeQueue, tab_local, 0, 0);
+						osDelay(100);
+				}
+    }
+}
+
+
+void InitCan2(void) {
+    Driver_CAN2.Initialize(NULL, myCAN2_callback);
+    Driver_CAN2.PowerControl(ARM_POWER_FULL);
+    Driver_CAN2.SetMode(ARM_CAN_MODE_INITIALIZATION);
+    Driver_CAN2.SetBitrate( ARM_CAN_BITRATE_NOMINAL,
+                            125000,
+                            ARM_CAN_BIT_PROP_SEG(5U)   |         
+                            ARM_CAN_BIT_PHASE_SEG1(1U) |         
+                            ARM_CAN_BIT_PHASE_SEG2(1U) |         
+                            ARM_CAN_BIT_SJW(1U));                
+
+		Driver_CAN2.ObjectConfigure(2, ARM_CAN_OBJ_TX); // Objet 2: émission pour la STM32F4               
+    Driver_CAN2.SetMode(ARM_CAN_MODE_NORMAL); 
+}
+
+
+
+void Thread_Logic(void *argument) {
+    uint8_t buffer_reception[14]; 
+    ARM_CAN_MSG_INFO tx_msg_info;
+    uint8_t data_buf[8];
+    
+    while (1) {
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET); 
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
+
+        osMessageQueueGet(badgeQueue, buffer_reception, NULL, osWaitForever);
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
+        
+				
+			
+        if (memcmp(buffer_reception, badge1, 14) == 0) 
+        {
+						tx_msg_info.id = ARM_CAN_STANDARD_ID (0x140);
+						tx_msg_info.rtr = 0;
+            data_buf [0] = 0x01;
+            Driver_CAN2.MessageSend(2, &tx_msg_info, data_buf, 1);
+						osThreadFlagsWait(1<<0,osFlagsWaitAll,osWaitForever);
+        } 
+        else 
+        {
+						tx_msg_info.id = ARM_CAN_STANDARD_ID (0x140);
+						tx_msg_info.rtr = 0;
+            data_buf [0] = 0x0B;     
+            Driver_CAN2.MessageSend(2, &tx_msg_info, data_buf, 1); 
+						osThreadFlagsWait(1<<0,osFlagsWaitAll,osWaitForever);	
+        }
+//						tx_msg_info.id = ARM_CAN_STANDARD_ID (0x140);
+//						tx_msg_info.rtr = 0;
+//            data_buf [0] = 0x01;
+//            Driver_CAN2.MessageSend(2, &tx_msg_info, data_buf, 1);
+//						osThreadFlagsWait(1<<0,osFlagsWaitAll,osWaitForever);
+//						osDelay(100);
+    }
+}
+
+int main(void) {
+    HAL_Init(); 
+    SystemCoreClockUpdate(); 
+    Init_GPIO_LEDs();
+    InitCan2();
+
+    osKernelInitialize();
+        
+    badgeQueue = osMessageQueueNew(4, 14, NULL); 
+    
+		id_USARTthreadT = osThreadNew(Thread_UART, NULL, NULL);        
+    id_CANthreadT = osThreadNew(Thread_Logic, NULL, NULL);
+    osKernelStart();
+    
+    while (1) {}
+}
