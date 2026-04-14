@@ -1,0 +1,26 @@
+switch (rx_msg_info.id)
+            {
+                case 0x112: // Avant Gauche
+                    dist_avg = distance_actuelle;
+                    sprintf(val_dist, "AVG: %03d", dist_avg);
+                    GLCD_DrawString(10, 20, val_dist); // En haut à gauche
+                    break;
+                    
+                case 0x113: // Avant Droit
+                    dist_avd = distance_actuelle;
+                    sprintf(val_dist, "AVD: %03d", dist_avd);
+                    GLCD_DrawString(200, 20, val_dist); // En haut à droite
+                    break;
+                    
+                case 0x110: // Arrière Gauche
+                    dist_arg = distance_actuelle;
+                    sprintf(val_dist, "ARG: %03d", dist_arg);
+                    GLCD_DrawString(10, 200, val_dist); // En bas à gauche
+                    break;
+                    
+                case 0x111: // Arrière Droit (Correction supposée)
+                    dist_ard = distance_actuelle;
+                    sprintf(val_dist, "ARD: %03d", dist_ard);
+                    GLCD_DrawString(200, 200, val_dist); // En bas à droite
+                    break;
+            }
