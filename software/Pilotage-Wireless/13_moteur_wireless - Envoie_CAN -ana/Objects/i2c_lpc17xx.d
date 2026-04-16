@@ -1,0 +1,10 @@
+./objects/i2c_lpc17xx.o: \
+  C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\3.0.0\RTE_Driver\I2C_LPC17xx.c \
+  C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\3.0.0\RTE_Driver\I2C_LPC17xx.h \
+  C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\3.0.0\Device\Include\LPC17xx.h \
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm3.h \
+  C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\3.0.0\Device\Include\system_LPC17xx.h \
+  C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\3.0.0\RTE_Driver\PIN_LPC17xx.h \
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\6.3.0\CMSIS\Driver\Include\Driver_I2C.h \
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\6.3.0\CMSIS\Driver\Include\Driver_Common.h \
+  RTE\Device\LPC1768\RTE_Device.h RTE\_Target_1\RTE_Components.h
