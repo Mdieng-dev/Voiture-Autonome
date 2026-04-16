@@ -114,16 +114,15 @@ static void tache_I2C_1(void *argument) {
         Driver_I2C1.MasterReceive(addr, &vLSB, 1, false);
         osThreadFlagsWait(I2C_EVENT_DONE, osFlagsWaitAny, osWaitForever);
 
-        /* Libérer le bus I2C */
-        osMutexRelease(ID_mutex_I2C);
-
         dist = ((uint16_t)vMSB << 8) | vLSB;
 
         /* Publier la mesure */
         osMessageQueuePut(ID_mailbox_dist1, &dist, NULL, 0);
 
-        /* Céder le CPU pour laisser la chance au capteur 2 de prendre le Mutex */
-        osThreadYield(); 
+        
+        osMutexRelease(ID_mutex_I2C);
+				
+				osDelay(250);
     }
 }
 
@@ -158,17 +157,15 @@ static void tache_I2C_2(void *argument) {
         osThreadFlagsWait(I2C_EVENT_DONE, osFlagsWaitAny, osWaitForever);
         Driver_I2C1.MasterReceive(addr, &vLSB, 1, false);
         osThreadFlagsWait(I2C_EVENT_DONE, osFlagsWaitAny, osWaitForever);
-
-        /* Libérer le bus I2C */
-        osMutexRelease(ID_mutex_I2C);
-
+				
         dist = ((uint16_t)vMSB << 8) | vLSB;
-
+				
         /* Publier la mesure */
         osMessageQueuePut(ID_mailbox_dist2, &dist, NULL, 0);
-
-        /* Céder le CPU pour laisser la chance au capteur 1 de prendre le Mutex */
-        osThreadYield();
+				
+        osMutexRelease(ID_mutex_I2C);
+				
+				osDelay(250);
     }
 }
 
@@ -187,13 +184,12 @@ static void tache_CAN_1(void *argument) {
         /* Attendre qu'une mesure soit disponible (bloquant) */
         osMessageQueueGet(ID_mailbox_dist1, &dist, NULL, osWaitForever);
 
-        data[0] = (uint8_t)(dist >> 8);
-        data[1] = (uint8_t)(dist & 0xFF);
+        data[0] = dist ;
 
         /* Bloquer le contrôleur CAN avant d'envoyer */
         osMutexAcquire(ID_mutex_CAN, osWaitForever);
 
-        Driver_CAN2.MessageSend(2, &tx_msg_info, data, 2);
+        Driver_CAN2.MessageSend(2, &tx_msg_info, &dist, 1);
         osThreadFlagsWait(CAN_EVENT_DONE, osFlagsWaitAny, osWaitForever);
 
         /* Libérer le contrôleur CAN */
@@ -216,13 +212,12 @@ static void tache_CAN_2(void *argument) {
         /* Attendre qu'une mesure soit disponible (bloquant) */
         osMessageQueueGet(ID_mailbox_dist2, &dist, NULL, osWaitForever);
 
-        data[0] = (uint8_t)(dist >> 8);
-        data[1] = (uint8_t)(dist & 0xFF);
-
+        data[0] = dist ;
+				
         /* Bloquer le contrôleur CAN avant d'envoyer */
         osMutexAcquire(ID_mutex_CAN, osWaitForever);
 
-        Driver_CAN2.MessageSend(2, &tx_msg_info, data, 2);
+        Driver_CAN2.MessageSend(2, &tx_msg_info, &dist, 2);
         osThreadFlagsWait(CAN_EVENT_DONE, osFlagsWaitAny, osWaitForever);
 
         /* Libérer le contrôleur CAN */
