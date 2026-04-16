@@ -27,54 +27,54 @@ Project File Date:  04/07/2026
 <h2>Output:</h2>
 *** Using Compiler 'V6.24', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target_1'
-compiling GLCD_MCB1700.c...
-compiling rtx_msgqueue.c...
-compiling rtx_memory.c...
-compiling rtx_delay.c...
-compiling rtx_thread.c...
-compiling rtx_system.c...
-compiling os_systick.c...
 compiling GLCD_Fonts.c...
+compiling os_systick.c...
+compiling rtx_lib.c...
+compiling rtx_delay.c...
+compiling GLCD_MCB1700.c...
+assembling irq_armv7m.S...
+compiling rtx_evflags.c...
 C:/Keil_v5/ARM/PACK/Keil/LPC1700_DFP/3.0.0/Boards/Keil/MCB1700/Common/ADC_MCB1700.c(155): warning: variable 'adstat' set but not used [-Wunused-but-set-variable]
   155 |   volatile uint32_t adstat;
       |                     ^
 1 warning generated.
 compiling ADC_MCB1700.c...
-compiling rtx_kernel.c...
-compiling rtx_evr.c...
-assembling irq_armv7m.S...
-compiling rtx_lib.c...
-compiling rtx_mutex.c...
-compiling rtx_timer.c...
-compiling rtx_evflags.c...
 compiling rtx_semaphore.c...
-compiling rtx_mempool.c...
-main.c(152): warning: unused parameter 'argument' [-Wunused-parameter]
-  152 | void thread_bluetooth(void const * argument) {
+main.c(156): warning: unused parameter 'argument' [-Wunused-parameter]
+  156 | void thread_bluetooth(void const * argument) {
       |                                    ^
-main.c(184): warning: unused parameter 'arg' [-Wunused-parameter]
-  184 | void thread_motor(void const * arg) {
+main.c(188): warning: unused parameter 'arg' [-Wunused-parameter]
+  188 | void thread_motor(void const * arg) {
       |                                ^
-main.c(343): warning: variable 'a' set but not used [-Wunused-but-set-variable]
-  343 |         float a;
+main.c(361): warning: variable 'a' set but not used [-Wunused-but-set-variable]
+  361 |         float a;
       |               ^
-main.c(344): warning: variable 'q' set but not used [-Wunused-but-set-variable]
-  344 |         float q;
+main.c(362): warning: variable 'q' set but not used [-Wunused-but-set-variable]
+  362 |         float q;
       |               ^
 4 warnings generated.
 compiling main.c...
-compiling RTX_Config.c...
+compiling rtx_timer.c...
+compiling rtx_mutex.c...
+compiling rtx_mempool.c...
+compiling rtx_evr.c...
+compiling rtx_memory.c...
+compiling rtx_system.c...
+compiling rtx_msgqueue.c...
+compiling rtx_kernel.c...
+compiling rtx_thread.c...
 compiling GPIO_LPC17xx.c...
-compiling I2C_LPC17xx.c...
-compiling PIN_LPC17xx.c...
-compiling CAN_LPC17xx.c...
 compiling GPDMA_LPC17xx.c...
+compiling RTX_Config.c...
+compiling PIN_LPC17xx.c...
+compiling I2C_LPC17xx.c...
 assembling startup_LPC17xx.s...
 compiling SSP_LPC17xx.c...
+compiling CAN_LPC17xx.c...
 compiling UART_LPC17xx.c...
 compiling system_LPC17xx.c...
 linking...
-Program Size: Code=63296 RO-data=7448 RW-data=272 ZI-data=23080  
+Program Size: Code=63488 RO-data=7448 RW-data=272 ZI-data=23080  
 ".\Objects\NUNshuk.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -141,32 +141,32 @@ Package Vendor: Keil
       Source file:   CMSIS/RTOS2/Source/os_systick.c
 
    * Component: ARM::CMSIS:RTOS2:Keil RTX5&Source@5.9.0
-      Include file:  Include/rtx_os.h
-      Include file:  Config/RTX_Config.h
-      Source file:   Config/RTX_Config.c
       Source file:   Template/main.c
       Source file:   Template/Events.c
-      Source file:   Template/MemPool.c
-      Source file:   Template/svc_user.c
-      Source file:   Source/rtx_timer.c
-      Source file:   Template/Timer.c
-      Source file:   Source/rtx_kernel.c
-      Source file:   Source/rtx_thread.c
+      Include file:  Config/RTX_Config.h
+      Include file:  Include/rtx_os.h
+      Source file:   Config/RTX_Config.c
       Source file:   Source/rtx_semaphore.c
       Source file:   Source/rtx_msgqueue.c
-      Source file:   Template/MsgQueue.c
-      Source file:   Source/rtx_lib.c
-      Source file:   Source/rtx_evflags.c
-      Source file:   Source/GCC/irq_armv7m.S
-      Source file:   Template/Thread.c
-      Source file:   Source/rtx_memory.c
-      Source file:   Source/rtx_delay.c
+      Source file:   Template/MemPool.c
+      Source file:   Source/rtx_thread.c
+      Source file:   Source/rtx_evr.c
+      Source file:   Source/rtx_mutex.c
+      Source file:   Template/svc_user.c
       Source file:   Template/Mutex.c
+      Source file:   Template/Timer.c
+      Source file:   Source/rtx_delay.c
+      Source file:   Template/MsgQueue.c
+      Source file:   Template/Semaphore.c
+      Source file:   Source/rtx_kernel.c
+      Source file:   Source/rtx_timer.c
+      Source file:   Source/rtx_memory.c
+      Source file:   Source/GCC/irq_armv7m.S
       Source file:   Source/rtx_mempool.c
       Source file:   Source/rtx_system.c
-      Source file:   Template/Semaphore.c
-      Source file:   Source/rtx_mutex.c
-      Source file:   Source/rtx_evr.c
+      Source file:   Template/Thread.c
+      Source file:   Source/rtx_lib.c
+      Source file:   Source/rtx_evflags.c
 
    * Component: Board Support:A/D Converter(API)@1.0.0
       Include file:  Board/Board_ADC.h
@@ -196,9 +196,9 @@ Package Vendor: Keil
       Source file:   Boards/Keil/MCB1700/Common/ADC_MCB1700.c
 
    * Component: Keil::Board Support&MCB1700:Graphic LCD@1.0.0
-      Include file:  Boards/Keil/MCB1700/Common/GLCD_Config.h
       Source file:   Boards/Keil/MCB1700/Common/GLCD_Fonts.c
       Include file:  Boards/Keil/MCB1700/Common/GLCD_Fonts.h
+      Include file:  Boards/Keil/MCB1700/Common/GLCD_Config.h
       Source file:   Boards/Keil/MCB1700/Common/GLCD_MCB1700.c
 
    * Component: Keil::CMSIS Driver:CAN@1.6.0
@@ -218,16 +218,16 @@ Package Vendor: Keil
       Include file:  RTE_Driver/GPDMA_LPC17xx.h
 
    * Component: Keil::Device:GPIO@1.1.0
-      Source file:   RTE_Driver/GPIO_LPC17xx.c
       Include file:  RTE_Driver/GPIO_LPC17xx.h
+      Source file:   RTE_Driver/GPIO_LPC17xx.c
 
    * Component: Keil::Device:PIN@1.0.0
-      Include file:  RTE_Driver/PIN_LPC17xx.h
       Source file:   RTE_Driver/PIN_LPC17xx.c
+      Include file:  RTE_Driver/PIN_LPC17xx.h
 
    * Component: Keil::Device:Startup@1.0.0
-      Include file:  Device/Include/LPC17xx.h
       Source file:   Device/Source/system_LPC17xx.c
+      Include file:  Device/Include/LPC17xx.h
       Source file:   Device/Source/ARM/startup_LPC17xx.s
       Include file:  RTE_Driver/Config/RTE_Device.h
 Build Time Elapsed:  00:00:02

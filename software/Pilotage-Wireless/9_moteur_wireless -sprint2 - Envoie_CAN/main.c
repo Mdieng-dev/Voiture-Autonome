@@ -73,6 +73,10 @@ float angle = 0.0f;    // On stocke l'angle ici
 uint8_t qualite = 0;   // On stocke la qualité ici (fiabilité du signal renvoyée par le LiDAR)
 donnees vitesse;
 
+long map(long x, long in_min, long in_max, long out_min, long out_max) {
+    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+	
 void Init_Motor(void) {
   // Activation du périphérique PWM1
     LPC_SC->PCONP |= (1 << 6);
@@ -184,27 +188,34 @@ void thread_bluetooth(void const * argument) {
 void thread_motor(void const * arg) {
     Msg_t m;
     int vitesse_actuelle = 0, sens_actuel = 0, vitesse_can;
-		float kmh;
+    float kmh;
     uint32_t angle_actuel = CENTRE;
 
     while (1) {
-        
-        // Attente des donnees Bluetooth 
-        if (osMessageQueueGet(q_id, &m, NULL, 500) == osOK) {
-            
+       
+        // Attente des donnees Bluetooth
+        if (osMessageQueueGet(q_id, &m, NULL, 2000) == osOK) {
+           
+            int x_val = m.x;
+            int y_val = m.y;
+            if (x_val > 225) x_val = 225;
+            if (x_val < 30)  x_val = 30;
+            if (y_val > 225) y_val = 225;
+            if (y_val < 30)  y_val = 30;
+
             // Axe X (Direction)
-            if (m.x > 160) {
-                angle_actuel = GAUCHE;
-            } else if (m.x < 90) {
-                angle_actuel = DROITE;
-            } else {
+            if (x_val == 127) {
                 angle_actuel = CENTRE;
+            } else if (x_val > 127) {
+                angle_actuel = map(x_val, 127, 225, CENTRE, GAUCHE);
+            } else {
+                angle_actuel = map(x_val, 30, 127, DROITE, CENTRE);
             }
 
             // Axe Y (Sens de marche)
-            if (m.y > 160) {
+            if (y_val > 127) {
                 sens_actuel = 1; // Avance
-            } else if (m.y < 90) {
+            } else if (y_val < 127) {
                 sens_actuel = 2; // Recule
             } else {
                 sens_actuel = 0; // Stop (centre)
@@ -212,31 +223,37 @@ void thread_motor(void const * arg) {
 
             // Gestion de la vitesse
             if (sens_actuel != 0) {
-                if (m.z) { // Si le bouton Z est appuye 
-                    vitesse_actuelle = VITESSE_MAX; // Mode TURBO
+                int vitesse_plafond;
+                if (m.z) { // Si le bouton Z est appuye
+                    vitesse_plafond = VITESSE_MAX; // Mode TURBO
                 } else {
-                    vitesse_actuelle = VITESSE_MOY; // Mode Normal
+                    vitesse_plafond = VITESSE_MOY; // Mode Normal
                 }
-           }else {
+
+                if (sens_actuel == 1) {
+                    vitesse_actuelle = map(y_val, 127, 225, 0, vitesse_plafond);
+                } else {
+                    vitesse_actuelle = map(y_val, 30, 127, vitesse_plafond, 0);
+                }
+           } else {
                 vitesse_actuelle = 0;
             }
-			
+
             // ENVOI DES COMMANDES AU MOTEUR
             Action(vitesse_actuelle, sens_actuel, angle_actuel);
-						
-						kmh = ((float)vitesse_actuelle * V_MAX_REELLE_KMH) / 2500.0;
-            vitesse_can = (int)(kmh * 100.0); 
-						vitesse.vitesse=vitesse_can;
-						
+
+            kmh = ((float)vitesse_actuelle * V_MAX_REELLE_KMH) / 2500.0;
+            vitesse_can = (int)(kmh * 100.0);
+            vitesse.vitesse=vitesse_can;
+
         } else {
             // Failsafe : si perte de connexion Bluetooth pendant 500ms, tout s arrete
             Action(0, 0, CENTRE);
         }
-				osThreadFlagsSet (ID_CANthreadT, 0x01);
-
+        osThreadFlagsSet (ID_CANthreadT, 0x01);
+// ARRET SI GPIO12 à 1
     }
 }
-
 
 // CAN2 utilisé pour émission
 void InitCan1 (void) 
@@ -250,6 +267,7 @@ void InitCan1 (void)
 		Driver_CAN1.SetBitrate( ARM_CAN_BITRATE_NOMINAL,
 														125000,
 														ARM_CAN_BIT_PROP_SEG(3U)   |         // Set propagation segment to 5 time quanta
+	
 														ARM_CAN_BIT_PHASE_SEG1(1U) |         // Set phase segment 1 to 1 time quantum (sample point at 87.5% of bit time)
 														ARM_CAN_BIT_PHASE_SEG2(1U) |         // Set phase segment 2 to 1 time quantum (total bit is 8 time quanta long)
 														ARM_CAN_BIT_SJW(1U));                // Resynchronization jump width is same as phase segment 2
