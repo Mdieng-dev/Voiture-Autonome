@@ -1,0 +1,248 @@
+#include "stm32f7xx.h"                  // Device header
+#include "AppWizard.h"
+#include "Driver_CAN.h"
+#include "rtx_os.h"                     // CMSIS:RTOS2:Keil RTX5&&Source
+#include "appwizard/Source/Generated/Resource.h"
+
+
+extern void configuration_overclock(void);
+extern int Init_GUIThread (void);
+extern ARM_DRIVER_CAN Driver_CAN1;
+
+//--------------- Définition des variables ---------------//
+
+// ----- Volatile ----- //
+volatile int ID_donnees;
+volatile int distance = 0;
+volatile float lat = 0;
+volatile float longi = 0;
+volatile float speed = 0.0;
+volatile float oil = 0.0;
+volatile int rfid = 0;
+volatile int clignotant = 0;
+volatile short usleft = 200;
+volatile short usright = 0;
+
+
+
+// ----- Static ----- //
+static ARM_CAN_MSG_INFO rx_msg_info;
+static char data_buf[8];
+
+
+//--------------- Définition des Structures ---------------//
+typedef struct {
+    float latitude;
+    float longitude;
+} DonneesGPS;
+typedef struct {
+    short distance_E0;
+    short distance_E2;
+} DonneesUS;
+typedef struct {
+    float niveau;
+} DonneesOIL;
+
+DonneesUS datarecu_US;
+DonneesGPS datarecu_GPS;
+
+//--------------- ID RTOS ---------------//
+
+// ----- ID_Mutex ----- //
+osMutexId_t ID_mut_dist;
+
+// ----- ID_TACHES ----- // 
+ osThreadId_t ID_test ;
+ osThreadId_t ID_gps;
+ osThreadId_t ID_clignotant ;
+ osThreadId_t ID_vitesse ;
+ osThreadId_t ID_oil ; 
+ osThreadId_t ID_rfid ;
+ osThreadId_t ID_US;
+ osThreadId_t ID_US_ar;
+
+
+
+//--------------- Définition des Fonctions ---------------//
+
+int DistanceTotalizer(char data[8]) {
+    // Votre logique de calcul ici
+    return (int)data[0]; 
+}
+
+
+
+
+void donnee_US_ar (void const* arg){
+	while(1){
+	osThreadFlagsWait ( 0x01, osFlagsWaitAny, osWaitForever );
+		//Driver_CAN1.MessageRead(0, &rx_msg_info, &datarecu, 4);
+		
+	  APPW_SetVarData(ID_VAR_US_AR_LEFT,datarecu_US.distance_E0);
+		APPW_SetVarData(ID_VAR_US_AR_RIGHT,datarecu_US.distance_E2);
+	}
+}
+
+void donnee_US (void const* arg){
+	
+	while(1){
+		osThreadFlagsWait ( 0x01, osFlagsWaitAny, osWaitForever );
+		//Driver_CAN1.MessageRead(0, &rx_msg_info, &datarecu, 4);
+		
+	  APPW_SetVarData(ID_VAR_US_AV_LEFT,datarecu_US.distance_E0);
+		APPW_SetVarData(ID_VAR_US_AV_RIGHT,datarecu_US.distance_E2);	
+		
+	}
+}
+void donnee_rfid (void const* arg){
+	while(1){
+		osThreadFlagsWait ( 0x01, osFlagsWaitAny, osWaitForever );
+		APPW_SetVarData(ID_VAR_Unlock,data_buf[0]);		
+	}
+}
+void donnee_oil (void const* arg){
+	DonneesOIL dataoil;
+	while(1){
+		osThreadFlagsWait ( 0x01, osFlagsWaitAny, osWaitForever );
+		Driver_CAN1.MessageRead(0, &rx_msg_info, &dataoil, 8);
+		oil = dataoil.niveau;
+	}
+}
+void donnee_vitesse (void const* arg){	
+	while (1){
+		osThreadFlagsWait ( 0x01, osFlagsWaitAny, osWaitForever );
+		speed = data_buf[3] <<24 | data_buf[2] <<16 | data_buf[1] <<8 | data_buf[0] <<0;
+		clignotant = data_buf[4];	
+	}
+
+}
+void donnee_gps (void const* arg){
+	
+	while(1){
+		osThreadFlagsWait ( 0x01, osFlagsWaitAny, osWaitForever );
+		//Driver_CAN1.MessageRead(0, &rx_msg_info, &datarecu, 8);
+		lat = datarecu_GPS.latitude;
+		longi = datarecu_GPS.longitude;
+	}	
+}
+void donnee_test(void const* arg){
+	 while (1){
+		  osThreadFlagsWait ( 0x01, osFlagsWaitAny, osWaitForever );
+//				osMutexAcquire(ID_mut_dist, osWaitForever); // verrouillage SC
+				distance = DistanceTotalizer(data_buf);// section critique
+//				osMutexRelease(ID_mut_dist); // libération SC
+  }
+}
+
+// La fonction de callback (Interruption)
+void CAN_callback(uint32_t obj_idx, uint32_t event) {
+	  
+		char *ptr_US;
+	  char *ptr_GPS;
+		ptr_US = (char *) &datarecu_US;
+	  ptr_GPS = (char *) &datarecu_GPS;
+    if (event & ARM_CAN_EVENT_RECEIVE) {	
+        Driver_CAN1.MessageRead(0, &rx_msg_info, data_buf, 8);
+			  ID_donnees = rx_msg_info.id;
+        switch(rx_msg_info.id){
+					case 0x5D7 : // test 
+							osThreadFlagsSet (ID_test, 0x01);
+						break;			
+					case 0x110 : // ultrasons avant
+						*ptr_US = data_buf[0];
+						*(ptr_US+1) = data_buf[1];
+						*(ptr_US+2) = data_buf[2];
+						*(ptr_US+3) = data_buf[3];
+						
+						osThreadFlagsSet (ID_US, 0x01);
+						break;
+					case 0x111 : // ultrasons avant
+						*ptr_US = data_buf[0];
+						*(ptr_US+1) = data_buf[1];
+						*(ptr_US+2) = data_buf[2];
+						*(ptr_US+3) = data_buf[3];
+						
+						osThreadFlagsSet (ID_US_ar, 0x01);
+						break;
+					case 0x131: // Phares
+						break;
+					case 0x140 : // RFID
+							osThreadFlagsSet (ID_rfid, 0x01);
+						break;
+					case 0x170 : // gps
+						*ptr_US = data_buf[0];
+						*(ptr_GPS+1) = data_buf[1];
+						*(ptr_GPS+2) = data_buf[2];
+						*(ptr_GPS+3) = data_buf[3];
+					  *(ptr_GPS+4) = data_buf[4];
+					  *(ptr_GPS+5) = data_buf[5];
+					  *(ptr_GPS+6) = data_buf[6];
+					  *(ptr_GPS+7) = data_buf[7];
+					
+							osThreadFlagsSet (ID_gps, 0x01);
+						break;
+					case 0x132: // 0x200 vitesse (normalement) from 0x0f6 to 0x132 puisqu'on a mixé vitesse et clignotant
+						osThreadFlagsSet (ID_vitesse, 0x01);
+						break;
+					case 0x250 : // capteur liquide
+							osThreadFlagsSet (ID_oil, 0x01);
+						break;
+
+					default: break;
+				}
+     }
+	 }
+
+void Initialisation_CAN(void) {
+    Driver_CAN1.Initialize(NULL, CAN_callback);
+    Driver_CAN1.PowerControl(ARM_POWER_FULL);
+    Driver_CAN1.SetMode(ARM_CAN_MODE_INITIALIZATION);
+    Driver_CAN1.SetBitrate(ARM_CAN_BITRATE_NOMINAL, 
+													125000, 
+                          ARM_CAN_BIT_PROP_SEG(3U) | 
+													ARM_CAN_BIT_PHASE_SEG1(1U) | 
+                          ARM_CAN_BIT_PHASE_SEG2(1U) | 
+													ARM_CAN_BIT_SJW(1U));
+    
+    // Configurer le filtre et l'objet de réception
+    Driver_CAN1.ObjectConfigure(0, ARM_CAN_OBJ_RX); 
+	  Driver_CAN1.ObjectSetFilter( 0, ARM_CAN_FILTER_ID_MASKABLE_ADD , ARM_CAN_STANDARD_ID(0x170),0x000);
+	
+    Driver_CAN1.SetMode(ARM_CAN_MODE_NORMAL);
+}
+
+int main(void){
+  
+	configuration_overclock(); //pour pouvoir utiliser l'écran LCD
+	/**********************************
+	Début Initialisation périphérique
+	**********************************/
+	
+	//Initialiser vos périphériques ici
+	Initialisation_CAN();
+	
+	/**********************************
+	Fin Initialisation périphérique
+	**********************************/
+	
+	/**********************************
+	Utilisation RTOS (Keil RTX5)
+	**********************************/
+	#ifdef RTE_CMSIS_RTOS2
+	  /* Initialize CMSIS-RTOS2 */
+	  osKernelInitialize ();
+		
+	  /* Create thread functions that start executing */
+		Init_GUIThread();
+		
+		ID_test = osThreadNew ( (osThreadFunc_t) donnee_test , NULL , NULL) ;	
+		ID_gps  = osThreadNew ( (osThreadFunc_t) donnee_gps , NULL , NULL) ;
+		ID_vitesse = osThreadNew ( (osThreadFunc_t) donnee_vitesse , NULL , NULL) ;
+		ID_oil = osThreadNew ( (osThreadFunc_t) donnee_oil , NULL , NULL) ;
+		ID_rfid = osThreadNew ( (osThreadFunc_t) donnee_rfid , NULL , NULL) ;
+		ID_US = osThreadNew ( (osThreadFunc_t) donnee_US , NULL , NULL) ;
+		ID_US_ar = osThreadNew ( (osThreadFunc_t) donnee_US_ar , NULL , NULL) ;
+	  /* Start thread execution */
+	  osKernelStart();
+	#endif
+}
