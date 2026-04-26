@@ -1,0 +1,90 @@
+#include "Driver_CAN.h"                 // ::CMSIS Driver:CAN
+#include "LPC17xx.h"                    // Device header
+#include "GLCD_Config.h"                // Board Support:Graphic LCD
+#include "Board_GLCD.h"                 // Board Support:Graphic LCD
+#include "Board_ADC.h"                  // Board Support:A/D Converter
+#include "Board_Buttons.h"              // Board Support:Buttons
+#include <stdio.h>
+
+// SEND MESSAGE - mode normal
+ 
+extern ARM_DRIVER_CAN Driver_CAN1;
+extern GLCD_FONT GLCD_Font_16x24;
+
+
+
+//----- Définition et Déclaration fonction
+
+void InitCan1 (void) {
+					Driver_CAN1.Initialize(NULL,NULL);
+					Driver_CAN1.PowerControl(ARM_POWER_FULL);
+
+
+					Driver_CAN1.SetMode(ARM_CAN_MODE_INITIALIZATION);
+					Driver_CAN1.SetBitrate( ARM_CAN_BITRATE_NOMINAL,
+																	125000,//1.6
+																	ARM_CAN_BIT_PROP_SEG(3U) | //5U
+																	ARM_CAN_BIT_PHASE_SEG1(1U) | //
+																	ARM_CAN_BIT_PHASE_SEG2(1U) | //
+																	ARM_CAN_BIT_SJW(1U)); // Resynchronisation
+
+					Driver_CAN1.ObjectConfigure(1,ARM_CAN_OBJ_TX); //
+	        Driver_CAN1.ObjectConfigure(0,ARM_CAN_OBJ_RX); // Objet 0 pour réception
+	
+					Driver_CAN1.SetMode(ARM_CAN_MODE_NORMAL); // fin init
+}
+
+//----- Fonction principale
+
+int main (void) {
+	
+	GLCD_Initialize();
+	GLCD_SetBackgroundColor(GLCD_COLOR_BLACK);
+	GLCD_SetForegroundColor (GLCD_COLOR_OLIVE);
+	GLCD_SetFont(&GLCD_Font_16x24);
+  GLCD_ClearScreen();
+	
+	Buttons_Initialize   ();
+
+//--variable 
+
+	char data_buf[8], verif[15],val ;
+	int i, into;
+	ARM_CAN_MSG_INFO tx_msg_info;
+	
+//--Initialisation
+	
+	ADC_Initialize      ();
+	InitCan1() ;
+	
+	
+
+	tx_msg_info.id = ARM_CAN_STANDARD_ID(0x5D7); // creation de l'id
+	tx_msg_info.rtr = 0;
+	
+	//for ( i = 0; i < 8; i++) data_buf[i] = 0; //
+	data_buf[0] = 0xAA; // donnéé 0
+	data_buf[1] = 0xBB; //
+	data_buf[2] = 0xCC; //
+	data_buf[3] = 0xDD; //
+	
+	sprintf(verif,"data[0] = %2x",data_buf[0]);	
+	GLCD_DrawString(50,50, verif);
+		
+	while (1) { 
+	
+
+		ADC_StartConversion ();
+		val =  ADC_GetValue        ();
+		data_buf[0] = val;
+		sprintf(verif,"data[0] = %2x",data_buf[0]);	
+	  GLCD_DrawString(50,50, verif);
+		into = Buttons_GetState();
+		if (into == 1)		Driver_CAN1.MessageSend(1, &tx_msg_info, data_buf, 4); // envoi du message
+		into = 0;
+		for(i=0;i<10000;i++);
+		
+	}
+
+	return 0 ;
+}
