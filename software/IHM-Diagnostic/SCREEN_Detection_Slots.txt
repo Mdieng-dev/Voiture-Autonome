@@ -1,0 +1,273 @@
+/*********************************************************************
+*                     SEGGER Microcontroller GmbH                    *
+*        Solutions for real time microcontroller applications        *
+**********************************************************************
+*                                                                    *
+*        (c) 1996 - 2026  SEGGER Microcontroller GmbH                *
+*                                                                    *
+*        Internet: www.segger.com    Support:  support@segger.com    *
+*                                                                    *
+**********************************************************************
+----------------------------------------------------------------------
+File        : SCREEN_Detection_Slots.c
+Purpose     : AppWizard managed file, function content could be changed
+---------------------------END-OF-HEADER------------------------------
+*/
+
+#include "Application.h"
+#include "../Generated/Resource.h"
+#include "../Generated/SCREEN_Detection.h"
+
+/*** Begin of user code area ***/
+//extern volatile int ID_donnees;
+//extern volatile short usleft;
+//extern volatile short usright;
+//extern volatile int rfid;
+int var = 200;
+/*** End of user code area ***/
+
+/*********************************************************************
+*
+*       Public code
+*
+**********************************************************************
+*/
+/*********************************************************************
+*
+*       cbSCREEN_Detection
+*/
+void cbSCREEN_Detection(WM_MESSAGE * pMsg) {
+  GUI_USE_PARA(pMsg);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__ID_BUTTON_home__WM_NOTIFICATION_CLICKED
+*/
+void SCREEN_Detection__ID_BUTTON_home__WM_NOTIFICATION_CLICKED(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__ID_BUTTON_drive__WM_NOTIFICATION_CLICKED
+*/
+void SCREEN_Detection__ID_BUTTON_drive__WM_NOTIFICATION_CLICKED(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__ID_BUTTON_diag__WM_NOTIFICATION_CLICKED
+*/
+void SCREEN_Detection__ID_BUTTON_diag__WM_NOTIFICATION_CLICKED(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_av_gauche__APPW_JOB_SETVIS
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_av_gauche__APPW_JOB_SETVIS(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+
+	var = APPW_GetVarData(ID_VAR_US_AV_LEFT,NULL);
+	APPW_SetValue(SCREEN_Detection,ID_TEXT_04,var);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_av_gauche__APPW_JOB_SETVIS_0
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_av_gauche__APPW_JOB_SETVIS_0(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_or_av_gauche__APPW_JOB_SETVIS
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_or_av_gauche__APPW_JOB_SETVIS(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_or_av_gauche__APPW_JOB_SETVIS_0
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_or_av_gauche__APPW_JOB_SETVIS_0(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_av_droit__APPW_JOB_SETVIS
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_av_droit__APPW_JOB_SETVIS(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_av_droit__APPW_JOB_SETVIS_0
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_av_droit__APPW_JOB_SETVIS_0(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_or_av_droit__APPW_JOB_SETVIS
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_or_av_droit__APPW_JOB_SETVIS(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_or_av_droit__APPW_JOB_SETVIS_0
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_or_av_droit__APPW_JOB_SETVIS_0(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_unlock__APPW_JOB_SET
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_unlock__APPW_JOB_SET(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_unlock__APPW_JOB_CLEAR
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_unlock__APPW_JOB_CLEAR(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_ar_gauche__APPW_JOB_SETVIS
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_ar_gauche__APPW_JOB_SETVIS(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_ar_gauche__APPW_JOB_SETVIS_0
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_ar_gauche__APPW_JOB_SETVIS_0(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_or_ar_gauche__APPW_JOB_SETVIS
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_or_ar_gauche__APPW_JOB_SETVIS(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_or_ar_gauche__APPW_JOB_SETVIS_0
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_or_ar_gauche__APPW_JOB_SETVIS_0(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_ar_droit__APPW_JOB_SETVIS
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_ar_droit__APPW_JOB_SETVIS(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_av_gauche__APPW_JOB_SETVIS_1
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_av_gauche__APPW_JOB_SETVIS_1(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_av_droit__APPW_JOB_SETVIS_1
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_av_droit__APPW_JOB_SETVIS_1(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_av_droit__APPW_JOB_SETVIS_2
+*/
+void SCREEN_Detection__WM_NOTIFICATION_VALUE_CHANGED__ID_red_av_droit__APPW_JOB_SETVIS_2(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*************************** End of file ****************************/

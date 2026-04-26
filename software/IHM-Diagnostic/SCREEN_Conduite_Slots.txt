@@ -1,0 +1,139 @@
+/*********************************************************************
+*                     SEGGER Microcontroller GmbH                    *
+*        Solutions for real time microcontroller applications        *
+**********************************************************************
+*                                                                    *
+*        (c) 1996 - 2026  SEGGER Microcontroller GmbH                *
+*                                                                    *
+*        Internet: www.segger.com    Support:  support@segger.com    *
+*                                                                    *
+**********************************************************************
+----------------------------------------------------------------------
+File        : SCREEN_Conduite_Slots.c
+Purpose     : AppWizard managed file, function content could be changed
+---------------------------END-OF-HEADER------------------------------
+*/
+
+#include "Application.h"
+#include "../Generated/Resource.h"
+#include "../Generated/SCREEN_Conduite.h"
+
+/*** Begin of user code area ***/
+extern volatile float lat;
+extern volatile float longi;
+extern volatile float speed;
+extern volatile int ID_donnees;
+extern volatile int clignotant;
+/*** End of user code area ***/
+
+/*********************************************************************
+*
+*       Public code
+*
+**********************************************************************
+*/
+/*********************************************************************
+*
+*       cbSCREEN_Conduite
+*/
+void cbSCREEN_Conduite(WM_MESSAGE * pMsg) {
+  GUI_USE_PARA(pMsg);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Energie__APPW_NOTIFICATION_INITDIALOG__ID_TIMER_00__APPW_JOB_START
+*/
+void SCREEN_Energie__APPW_NOTIFICATION_INITDIALOG__ID_TIMER_00__APPW_JOB_START(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Energie__ID_TIMER_00__APPW_NOTIFICATION_TIMER
+*/
+void SCREEN_Energie__ID_TIMER_00__APPW_NOTIFICATION_TIMER(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Energie__ID_SLIDER_00__WM_NOTIFICATION_VALUE_CHANGED__ID_TEXT_01__APPW_JOB_SETVALUE
+*/
+void SCREEN_Energie__ID_SLIDER_00__WM_NOTIFICATION_VALUE_CHANGED__ID_TEXT_01__APPW_JOB_SETVALUE(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Energie__WM_NOTIFICATION_VALUE_CHANGED__ID_TEXT_03__APPW_JOB_SETVALUE
+*/
+void SCREEN_Energie__WM_NOTIFICATION_VALUE_CHANGED__ID_TEXT_03__APPW_JOB_SETVALUE(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+	  APPW_SetValue(SCREEN_Conduite,ID_GAUGE_00,speed);
+		switch(ID_donnees){
+					case 0x170 : // GPS
+							APPW_SetValue(SCREEN_Conduite,ID_TEXT_07,longi);
+							APPW_SetValue(SCREEN_Conduite,ID_TEXT_05,lat);
+						break;			
+					case 0x132 : //VITESSE & CLIGNOTANT
+						if(clignotant == 1){
+							APPW_SetValue(SCREEN_Conduite,ID_SWITCH_gauche,1);
+							APPW_SetValue(SCREEN_Conduite,ID_SWITCH_droit,0);
+						}
+						else if(clignotant == 2){
+							APPW_SetValue(SCREEN_Conduite,ID_SWITCH_gauche,0);
+							APPW_SetValue(SCREEN_Conduite,ID_SWITCH_droit,1);
+						}
+						else{
+							APPW_SetValue(SCREEN_Conduite,ID_SWITCH_gauche,0);
+							APPW_SetValue(SCREEN_Conduite,ID_SWITCH_droit,0);
+						}
+						break;
+					default:
+						break;
+				}
+}
+
+/*********************************************************************
+*
+*       SCREEN_Conduite__ID_BUTTON_home__WM_NOTIFICATION_CLICKED
+*/
+void SCREEN_Conduite__ID_BUTTON_home__WM_NOTIFICATION_CLICKED(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Conduite__ID_BUTTON_detect__WM_NOTIFICATION_CLICKED
+*/
+void SCREEN_Conduite__ID_BUTTON_detect__WM_NOTIFICATION_CLICKED(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*********************************************************************
+*
+*       SCREEN_Conduite__ID_BUTTON_diag__WM_NOTIFICATION_CLICKED
+*/
+void SCREEN_Conduite__ID_BUTTON_diag__WM_NOTIFICATION_CLICKED(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
+  GUI_USE_PARA(pAction);
+  GUI_USE_PARA(hScreen);
+  GUI_USE_PARA(pMsg);
+  GUI_USE_PARA(pResult);
+}
+
+/*************************** End of file ****************************/
